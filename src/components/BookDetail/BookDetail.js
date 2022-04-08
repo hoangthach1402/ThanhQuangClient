@@ -10,13 +10,13 @@ const BookDetail = ({bookId}) => {
   }
   })
   if(loading) return <p>Loading...</p>
-  // if(bookId!==null && error) return <p>Error Loading...</p>
   if(error) return <p>Error ...</p>
   
-  // if(bookId===null) return <p>not selected</p>
-  // if(loading) return <p>Loading...</p>
+
   return (
-    <Card bg='info' text='white' className='shadow' >  
+    <>
+       
+      {data ?<Card bg='info' text='white' className='shadow' >  
     <Card.Body>
     
     <Card.Title>{data.book.name}</Card.Title>
@@ -36,7 +36,9 @@ const BookDetail = ({bookId}) => {
     </Card.Text>
     </Card.Body>
     
-    </Card>
+    </Card>: <p>select book</p>}    
+    </>
+
   )
 }
 
