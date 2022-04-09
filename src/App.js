@@ -10,8 +10,10 @@ import { useQuery, gql } from "@apollo/client";
 import { createContext } from "react";
 import { get } from "jquery";
 import SaleManagement from './components/SaleManagement/SaleManagement';
+import ProductManagement from './components/SaleManagement/ProductManagement';
 export const ThanhQuangContext = createContext();
 function App() {
+  const [isSaleManagement,setIsSaleManagement] = useState(false)
   const [isOrder,setIsOrder] = useState(false);
   console.log(isOrder);
   const [isSale,setIsSale] = useState(false); 
@@ -38,8 +40,11 @@ function App() {
   return (
     <ThanhQuangContext.Provider value={ThanhQuangContextValue}>
       <button onClick={()=>setIsSale(!isSale)}>{isSale?'Book Station':'Sale Station'}</button>
-    
-      {isSale?<SaleManagement />: 
+      <button onClick={()=>setIsSaleManagement(!isSaleManagement)}>Sale Management</button>
+      
+      {isSale && <SaleManagement /> }
+      {(isSaleManagement) && <ProductManagement />}
+      {(!isSaleManagement && !isSale) && 
         <div
         className="container py-3 mt-3"
         style={{ backgroundColor: "lightcyan" }}

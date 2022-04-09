@@ -40,7 +40,7 @@ const SaleManagement = () => {
       
       {data_products && data_products.products.map(product=>(
         <div key={product.id} className=" col-6 col-md-4 col-lg-3">
-        <div className="card " style={{width: "18rem"}}>
+        <div className={clsx('card',styles.cartProduct)} style={{width: "8rem"}}>
   <img className="card-img-top" src={product.img} alt="Card image cap" />
   <div className="card-body">
     <h5 className="card-title">{product.name}</h5>
