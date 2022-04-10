@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import GlobalState from "./components/GlobalState/GlobalState";
-import { Container } from "react-bootstrap";
 import BookList from "./components/BookList/BookList";
-import { Row, Col } from "react-bootstrap";
 import Form from "./components/Form/Form";
 import clsx from "clsx";
 import { useQuery, gql } from "@apollo/client";
 import { createContext } from "react";
-import { get } from "jquery";
 import SaleManagement from './components/SaleManagement/SaleManagement';
 import ProductManagement from './components/SaleManagement/ProductManagement';
 export const ThanhQuangContext = createContext();

@@ -31,7 +31,7 @@ const ProductManagement = () => {
       refetchQueries: [{ query: getProducts }],
     });
   };
-  
+
   useEffect(() => {
     if (data) {
       setProductSelected(
@@ -44,15 +44,13 @@ const ProductManagement = () => {
     data && setListProducts(data.books);
   }, []);
 
-
-
   //  console.log(listProducts)
   let n = 1;
   return (
     <div>
       <h4>Welcome : Product Management Station</h4>
       <div className=" py-5">
-        <button className="btn btn-success">Add product</button>  
+        <button className="btn btn-success">Add product</button>
         <table
           className={clsx(
             "table table-bordered table-hover",

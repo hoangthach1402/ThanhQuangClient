@@ -1,7 +1,6 @@
 import React, { useContext,useState } from 'react'
 // import {} from 'react-bootstrap'
 import { useQuery, gql, useMutation } from "@apollo/client";
-import { ThanhQuangContext } from '../../App'
 import {getBooks,getAuthors} from '../../graphql-client/queries'
 const Form = () => {
   const [author,setAuthor] = useState({
