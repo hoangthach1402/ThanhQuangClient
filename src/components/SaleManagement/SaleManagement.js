@@ -17,11 +17,11 @@ const SaleManagement = () => {
    const [isCartOpen,setIsCartOpen] = useState(false);
    const {loading:loading_products,error:error_products,data:data_products} = useQuery(getProducts)
    const {loading:loading_users,error:error_users,data:data_users} = useQuery(getUsers)
-   console.log(data_users);
+  //  console.log(data_users);
   const [isCreateCustomer,setIsCreateCustomer] =useState(false)
   
   return (
-    <div className="container bg-light border">
+    <div className="container  border">
       {isOrder && <Order />}
      <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn btn-primary text-white',styles.buttonCart)}>OpenCart</button>
      {isCartOpen && <Cart />}
@@ -36,7 +36,7 @@ const SaleManagement = () => {
       <option value={user.id} key={user.id}>{user.name}</option>
      ))}
      </select>
-      <div className="bg-light row">
+      <div className="p-2 mt-2 row">
       
       {data_products && data_products.products.map(product=>(
         <div key={product.id} className=" col-6 col-md-4 col-lg-3">

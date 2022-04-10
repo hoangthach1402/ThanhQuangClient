@@ -12,10 +12,10 @@ import SaleManagement from './components/SaleManagement/SaleManagement';
 import ProductManagement from './components/SaleManagement/ProductManagement';
 export const ThanhQuangContext = createContext();
 function App() {
+  const [theme,setTheme] = useState(false);
+  const [selectStation,setSelectStation] = useState('book'); 
   const [isSaleManagement,setIsSaleManagement] = useState(false)
   const [isOrder,setIsOrder] = useState(false);
-  console.log(isOrder);
-  const [isSale,setIsSale] = useState(false); 
   const [carts,setCarts] =useState([]) 
   const handleRemoveCart =(id)=>{
   const newCarts = carts.filter(cart=>cart.id !== id);
@@ -36,17 +36,21 @@ function App() {
   const ThanhQuangContextValue = {
   carts,handleRemoveCart,handleAddToCart,addToCart,handleOrder,isOrder
   };
+ 
+
   return (
     <ThanhQuangContext.Provider value={ThanhQuangContextValue}>
-      <button onClick={()=>setIsSale(!isSale)}>{isSale?'Book Station':'Sale Station'}</button>
-      <button onClick={()=>setIsSaleManagement(!isSaleManagement)}>Sale Management</button>
+ 
+      <button onClick={()=>setSelectStation('book')}>Book Management </button>
+      <button onClick={()=>setSelectStation('Sale')}>Sale </button>
+      <button onClick={()=>setSelectStation('ProductManagement')}>Product Management</button>
       
-      {isSale && <SaleManagement /> }
-      {(isSaleManagement) && <ProductManagement />}
-      {(!isSaleManagement && !isSale) && 
+      {selectStation==='Sale' && <SaleManagement /> }
+      {(selectStation==='ProductManagement') && <ProductManagement />}
+      {selectStation==='book' && 
         <div
-        className="container py-3 mt-3"
-        style={{ backgroundColor: "lightcyan" }}
+        className='container py-3'
+       
       >
         <h1 className="text-center text-info mb-3 ">My Books</h1>
         <hr />
