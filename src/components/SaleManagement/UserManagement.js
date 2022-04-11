@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createUser } from "../../graphql-client/mutations";
+import {getUsers} from '../../graphql-client/queries';
 import { useMutation, useQuery } from "@apollo/client";
 
 const UserManagement = () => {
@@ -20,6 +21,7 @@ const UserManagement = () => {
         mobile: user.mobile,
         address: user.address,
       },
+      refetchQueries: [{ query:getUsers}]
     });
   };
 
