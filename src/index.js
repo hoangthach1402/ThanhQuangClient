@@ -14,7 +14,7 @@ import {
 
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  uri: "https://thanhquangserver.herokuapp.com/",
   cache: new InMemoryCache(),
 });
   
