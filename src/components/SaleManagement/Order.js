@@ -1,23 +1,82 @@
-import React,{useContext} from 'react'
-import clsx from 'clsx';
-import {ThanhQuangContext} from '../../App'
-import styles from './Cart.module.scss';
-const Order = () => {
-    const {handleOrder} = useContext(ThanhQuangContext)
-  return (
-    <div className={clsx('bg-dark text-white p-5',styles.containerOrder)}>Order customer
-    <div className={clsx('bg-white text-dark text-center',styles.formOrder)}>
-    <h4>Hoa don ban hang</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, provident.</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, pariatur.</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, pariatur.</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, pariatur.</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, pariatur.</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, pariatur.</p>
-    </div>
-    <button className="btn btn-danger" onClick={()=>handleOrder()}>X</button>
-    </div>
-  )
-}
+import React, { useContext,useState } from "react";
+import clsx from "clsx";
+import { ThanhQuangContext } from "../../App";
+import styles from "./Cart.module.scss";
+import {useMutation} from '@apollo/client'
+import {createOrder} from '../../graphql-client/mutations';
+const Order = ({ user }) => {
+  // console.log(user);
+ const [addOrder,orderMutate] = useMutation(createOrder);
+  
+ let n=0;
+ let total
+ const { handleOrder, carts,handleNewCarts } = useContext(ThanhQuangContext);
 
-export default Order
+ const newListId = carts.map(product=>{
+   return product.id ;
+ }).join(',');
+ 
+ const [order,setOrder] = useState({
+   userId:user.id, 
+   productId:newListId, 
+   payying:"",
+ }) 
+  
+  total =  carts.reduce((a,b)=>{
+     return a+(b.price*b.stock)
+    },0);
+  const handleChange=(changes)=>{
+    setOrder({ ...order,...changes})
+    
+  }
+    const handleCreateOrder = ()=>{
+      // console.log(order)
+      addOrder({
+        variables: {
+          userId: order.userId,
+          productId: order.productId,
+          payying:parseInt(order.payying)
+        }
+      })
+      handleNewCarts();
+      handleOrder();
+    }
+
+
+  return (
+    <div className={clsx("bg-dark text-white p-5", styles.containerOrder)}>
+      Order customer
+      <div className={clsx("bg-white text-dark text-center", styles.formOrder)}>
+        <h4>Hoa don ban hang</h4>
+        <p>Ten khach hang : {user.name}.</p>
+        <table>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Stock</th>
+          </tr>
+          {carts.map((product) => (
+            <tr>
+             <td>{++n} </td>
+             <td>{product.name}</td>   
+             <td>{product.type}</td>   
+             <td>{product.price}</td>   
+             <td>{product.stock}</td>   
+            </tr>
+          ))}
+        </table>
+          <h4 className="text-right mt-5">Tong cong: {total}</h4>
+        <label htmlFor="paying">Nhan cua khach</label>
+        <input type="number" value={order.payying} onInput={e=>handleChange({payying:e.target.value})} />
+      </div>
+      <button onClick={()=>handleCreateOrder()}>Tao hoa don</button>
+      <button className="btn btn-danger" onClick={() => handleOrder()}>
+        X
+      </button>
+    </div>
+  );
+};
+
+export default Order;

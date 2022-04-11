@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import UserManagement from './UserManagement';
 import {getUsers,getProducts} from '../../graphql-client/queries'
 import {useQuery} from '@apollo/client';
@@ -11,18 +11,27 @@ const SaleManagement = () => {
    const {isOrder} = useContext(ThanhQuangContext) 
    
    const [selectedUserId,setSelectedUserId] = useState() ;
-  const {addToCart,carts} = useContext(ThanhQuangContext)
-  console.log(selectedUserId);
- 
+   const {addToCart,carts} = useContext(ThanhQuangContext)
+   const [selectedUser, setSelectedUser] = useState();
+
    const [isCartOpen,setIsCartOpen] = useState(false);
    const {loading:loading_products,error:error_products,data:data_products} = useQuery(getProducts)
    const {loading:loading_users,error:error_users,data:data_users} = useQuery(getUsers)
-  //  console.log(data_users);
+ 
   const [isCreateCustomer,setIsCreateCustomer] =useState(false)
-  
+  useEffect(() => {
+    if(data_users && selectedUserId!=null){
+      let user = data_users.users.find(user => user.id===selectedUserId)
+      setSelectedUser(user)
+    }
+  },[selectedUserId])
+
+
+
   return (
     <div className="container  border">
-      {isOrder && <Order />}
+      {isOrder && selectedUser && <Order user={selectedUser}/> }
+      {isOrder && !selectedUser? <p className="bg-danger text-white p-2">please select user</p>:''}
      <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn btn-primary text-white',styles.buttonCart)}>OpenCart</button>
      {isCartOpen && <Cart />}
      <h3>Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-dark text-white">Create Customer</button>

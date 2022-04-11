@@ -11,8 +11,16 @@ query{
     img
   }
 }
-`
-
+`;
+const getUser =gql`
+query($userId: ID!){
+  user(id: $userId) {
+    id
+    name
+    address
+  }
+}
+`;
 const getUsers = gql`
   query getUsers{
     users {
@@ -34,7 +42,7 @@ const getUsers = gql`
       }
     }
   }
-`
+`;
 
 
 
@@ -74,5 +82,36 @@ const getAuthors = gql`
     }
   }
 `;
+const getOrders =gql`
+query{
+  orders {
+    id
+    user {
+      name 
+    }
+    products {
+      id
+      name
+      price
+    }
+    payying
+  }
+}
+`;
+ const getOrderByUser =gql`
+  query($userId: ID!){
+  user(id: $userId) {
+    orders {
+      payying
+      products {
+        name
+        price
+      }
+    }
+  }
+}
+ ` ;
 
-export { getBooks, getSingleBook, getAuthors,getUsers, getProducts };
+
+
+export { getBooks, getSingleBook, getAuthors,getUsers,getUser, getProducts ,getOrderByUser,getOrders};

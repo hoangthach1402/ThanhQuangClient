@@ -6,6 +6,7 @@ import { useQuery, gql } from "@apollo/client";
 import { createContext } from "react";
 import SaleManagement from './components/SaleManagement/SaleManagement';
 import ProductManagement from './components/SaleManagement/ProductManagement';
+import OrderManagement from './components/SaleManagement/OrderManagement'
 export const ThanhQuangContext = createContext();
 function App() {
   const [theme,setTheme] = useState(false);
@@ -28,9 +29,11 @@ function App() {
     let isNotExist = carts.find(cart=>cart.id===product.id) ===(null || undefined); 
     isNotExist &&  setCarts([...carts,{...product}]) ;
   }
-   
+  const handleNewCarts=()=>{
+    setCarts([]);
+  } 
   const ThanhQuangContextValue = {
-  carts,handleRemoveCart,handleAddToCart,addToCart,handleOrder,isOrder
+  carts,handleRemoveCart,handleAddToCart,addToCart,handleOrder,isOrder,handleNewCarts
   };
  
 
@@ -40,9 +43,10 @@ function App() {
       <button onClick={()=>setSelectStation('book')}>Book Management </button>
       <button onClick={()=>setSelectStation('Sale')}>Sale </button>
       <button onClick={()=>setSelectStation('ProductManagement')}>Product Management</button>
-      
+      <button onClick={()=>setSelectStation('orderManagement')}>Order Management</button>
       {selectStation==='Sale' && <SaleManagement /> }
       {(selectStation==='ProductManagement') && <ProductManagement />}
+      {(selectStation==='orderManagement') && <OrderManagement />}
       {selectStation==='book' && 
         <div
         className='container py-3'

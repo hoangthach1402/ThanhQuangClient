@@ -57,7 +57,14 @@ mutation($editBookId: ID!, $name: String!, $genre: String!, $authorId: String!){
     }
   }
 }
+`;
+const createOrder =gql`
+mutation($userId: ID!, $productId: String!, $payying: Int!){
+  createOrder(userId: $userId, productId: $productId, payying: $payying) {
+    payying
+  }
+}
+`	;
 
-`	
 
-export { addSingleBook, addSingleAuthor,editBook ,createUser,deleteUser,editProduct,createProduct}
+export { addSingleBook, addSingleAuthor,editBook ,createUser,deleteUser,editProduct,createProduct,createOrder}
