@@ -53,7 +53,7 @@ const OrderManagement = () => {
      </tr>
        
        {order.products.map(product=>(
-         <tr>
+         <tr key={product.id}>
          <td>{product.name}</td>
          <td>{product.price}</td>
          <td>{product.stock}</td>
