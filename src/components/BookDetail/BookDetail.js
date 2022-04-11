@@ -1,5 +1,4 @@
 import React from 'react'
-import {Card} from 'react-bootstrap'
 import { useQuery } from "@apollo/client";
 import { getSingleBook } from "../../graphql-client/queries";
 const BookDetail = ({bookId}) => {
@@ -15,8 +14,8 @@ const BookDetail = ({bookId}) => {
 
   return (
     <>
-       
-      {data ?<Card bg='info' text='white' className='shadow' >  
+  <div></div>       
+      {/* {data ?<Card bg='info' text='white' className='shadow' >  
     <Card.Body>
     
     <Card.Title>{data.book.name}</Card.Title>
@@ -36,7 +35,7 @@ const BookDetail = ({bookId}) => {
     </Card.Text>
     </Card.Body>
     
-    </Card>: <p>select book</p>}    
+    </Card>: <p>select book</p>}     */}
     </>
 
   )
