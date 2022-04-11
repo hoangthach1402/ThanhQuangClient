@@ -29,14 +29,7 @@ const deleteUser =gql`
 }
 `
 
-const addSingleBook = gql`
-	mutation addSingleBookMutation {
-		createBook(name: $name, genre: $genre, authorId: $authorId) {
-			id
-			name
-		}
-	}
-`
+
 
 const addSingleAuthor = gql`
 	mutation addSingleAuthorMutation($name: String, $age: Int) {
@@ -46,18 +39,7 @@ const addSingleAuthor = gql`
 		}
 	}
 	`
-const editBook =gql`
-mutation($editBookId: ID!, $name: String!, $genre: String!, $authorId: String!){
-  editBook(id: $editBookId, name: $name, genre: $genre, authorId: $authorId) {
-    name
-    genre 
-    author{
-    name 
-    age
-    }
-  }
-}
-`;
+
 const createOrder =gql`
 mutation createOrder($userId: ID!, $input: [InputProduct]!, $payying: Int!){
   createOrder(userId: $userId, input: $input, payying: $payying) {
@@ -67,4 +49,4 @@ mutation createOrder($userId: ID!, $input: [InputProduct]!, $payying: Int!){
 `	;
 
 
-export { addSingleBook, addSingleAuthor,editBook ,createUser,deleteUser,editProduct,createProduct,createOrder}
+export {  addSingleAuthor ,createUser,deleteUser,editProduct,createProduct,createOrder}

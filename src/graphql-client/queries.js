@@ -1,109 +1,83 @@
 import { gql } from "@apollo/client";
 
-const getProducts =gql`
-query{
-  products {
-    id
-    name
-    type
-    price
-    stock
-    img
+const getProducts = gql`
+  query {
+    products {
+      id
+      name
+      type
+      price
+      stock
+      img
+    }
   }
-}
 `;
-const getUser =gql`
-query($userId: ID!){
+const getUser = gql`
+query getUserById($userId: ID!){
   user(id: $userId) {
+     id 
+    name 
+    address 
+    orders {
+      id
+      products {
+        id
+        name 
+        price
+        stock 
+      }
+    payying        
+    }
+  }
+  }
+
+`;
+const getUsers = gql`
+query{
+  users {
     id
     name
+    mobile
     address
   }
 }
-`;
-const getUsers = gql`
-  query getUsers{
-    users {
-      id
-      name
-      mobile
-      }
-    }
   
 `;
-     
- 
-     
-     
 
-
-
-const getBooks = gql`
-  query getBooksQuery {
-    books {
-      name
+const getOrders = gql`
+  query {
+    orders {
       id
+      user {
+        name
+      }
+      products {
+        id
+        name
+        price
+      }
+      payying
     }
   }
 `;
-
-const getSingleBook = gql`
-  query getSingleBookQuery($id: ID!) {
-    book(id: $id) {
-      id
-      name
-      genre
-      author {
-        id
-        name
-        age
-        books {
-          id
+const getOrderByUser = gql`
+  query ($userId: ID!) {
+    user(id: $userId) {
+      orders {
+        payying
+        products {
           name
+          price
         }
       }
     }
   }
 `;
 
-const getAuthors = gql`
-  query getAuthorsQuery {
-    authors {
-      id
-      name
-    }
-  }
-`;
-const getOrders =gql`
-query{
-  orders {
-    id
-    user {
-      name 
-    }
-    products {
-      id
-      name
-      price
-    }
-    payying
-  }
-}
-`;
- const getOrderByUser =gql`
-  query($userId: ID!){
-  user(id: $userId) {
-    orders {
-      payying
-      products {
-        name
-        price
-      }
-    }
-  }
-}
- ` ;
-
-
-
-export { getBooks, getSingleBook, getAuthors,getUsers,getUser, getProducts ,getOrderByUser,getOrders};
+export {
+  getUsers,
+  getUser,
+  getProducts,
+  getOrderByUser,
+  getOrders,
+};

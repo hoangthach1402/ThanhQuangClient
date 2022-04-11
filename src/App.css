@@ -11,6 +11,9 @@ flex-wrap: wrap;
     width:30%;
     margin-bottom: 300px;
 }
+.card-img{
+    max-height: 200px;
+}
 @media screen and (max-width: 768px) {
     .cardItem{
         width:100%;
