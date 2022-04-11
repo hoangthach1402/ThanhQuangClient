@@ -36,12 +36,12 @@ const SaleManagement = () => {
       <option value={user.id} key={user.id}>{user.name}</option>
      ))}
      </select>
-      <div className="p-2 mt-2 row">
+      <div className="p-2 mt-2 cardList">
       
       {data_products && data_products.products.map(product=>(
-        <div key={product.id} className=" col-6 col-md-4 col-lg-3">
-        <div className={clsx('card',styles.cartProduct)} style={{width: "8rem"}}>
-  <img className="card-img-top" src={product.img} alt="Card image cap" />
+        <div key={product.id} className="cardItem">
+        <div className={clsx(styles.cartProduct)} style={{width: "12rem"}}>
+  <img className="card-img" src={product.img} alt="Card image cap" />
   <div className="card-body">
     <h5 className="card-title">{product.name}</h5>
   </div>
@@ -51,7 +51,7 @@ const SaleManagement = () => {
     <li className="list-group-item">Type: {product.type}</li>
   </ul>
   <div><button onClick={()=>addToCart(product)}>Add to cart</button></div>
-</div>
+  </div>
         </div>
       ))}
       </div>

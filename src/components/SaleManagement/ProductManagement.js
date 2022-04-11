@@ -3,15 +3,17 @@ import { useQuery, useMutation } from "@apollo/client";
 import { getProducts } from "../../graphql-client/queries";
 import { editProduct } from "../../graphql-client/mutations";
 import styles from "./Cart.module.scss";
-
+import FormAddProduct from './FormAddProduct';
 import clsx from "clsx";
 const ProductManagement = () => {
+  const [isAddProduct,setIsAddProduct] = useState(false);
   const { loading, error, data } = useQuery(getProducts);
   const [editProductValue, editProductMutate] = useMutation(editProduct);
   const [productSelected, setProductSelected] = useState(null);
   const [selectedProductId, setselectedProductId] = useState(null);
   const [listProducts, setListProducts] = useState(null);
   const handleChangeProduct = (changes, product) => {};
+console.log(isAddProduct);
 
   const handleChange = (changes) => {
     // console.log(changes)
@@ -50,7 +52,10 @@ const ProductManagement = () => {
     <div>
       <h4>Welcome : Product Management Station</h4>
       <div className=" py-5">
-        <button className="btn btn-success">Add product</button>
+        <button onClick={()=>setIsAddProduct(!isAddProduct)} className="btn btn-success">Add product</button>
+        {isAddProduct && <FormAddProduct />
+        
+        }
         <table
           className={clsx(
             "table table-bordered table-hover",
