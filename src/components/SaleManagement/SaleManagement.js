@@ -13,7 +13,7 @@ const SaleManagement = () => {
    const [selectedUserId,setSelectedUserId] = useState() ;
    const {addToCart,carts} = useContext(ThanhQuangContext)
    const [selectedUser, setSelectedUser] = useState();
-
+  const  [productAdd,setProductAdd] = useState(); 
    const [isCartOpen,setIsCartOpen] = useState(false);
    const {loading:loading_products,error:error_products,data:data_products} = useQuery(getProducts)
    const {loading:loading_users,error:error_users,data:data_users} = useQuery(getUsers)
@@ -26,8 +26,7 @@ const SaleManagement = () => {
     }
   },[selectedUserId])
 
-
-
+console.log(data_users);
   return (
     <div className="container  border">
       {isOrder && selectedUser && <Order user={selectedUser}/> }
@@ -59,7 +58,7 @@ const SaleManagement = () => {
     <li className="list-group-item">Price: {product.price}</li>
     <li className="list-group-item">Type: {product.type}</li>
   </ul>
-  <div><button onClick={()=>addToCart(product)}>Add to cart</button></div>
+  <div><button onClick={()=>addToCart({...product,stock:1})}>Add to cart</button></div>
   </div>
         </div>
       ))}

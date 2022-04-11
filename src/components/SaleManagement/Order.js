@@ -6,19 +6,17 @@ import {useMutation} from '@apollo/client'
 import {createOrder} from '../../graphql-client/mutations';
 const Order = ({ user }) => {
   // console.log(user);
- const [addOrder,orderMutate] = useMutation(createOrder);
+ const [addOrder,{ loading, error, data }] = useMutation(createOrder);
   
  let n=0;
  let total
  const { handleOrder, carts,handleNewCarts } = useContext(ThanhQuangContext);
 
- const newListId = carts.map(product=>{
-   return product.id ;
- }).join(',');
+
  
  const [order,setOrder] = useState({
    userId:user.id, 
-   productId:newListId, 
+   input:[], 
    payying:"",
  }) 
   
@@ -27,20 +25,23 @@ const Order = ({ user }) => {
     },0);
   const handleChange=(changes)=>{
     setOrder({ ...order,...changes})
-    
+
   }
     const handleCreateOrder = ()=>{
-      // console.log(order)
+      const newCarts = carts.map(cart=>(
+         {name:cart.name, img:cart.img,price:cart.price,stock:cart.stock,price:cart.price,type:cart.type}
+      ))
       addOrder({
         variables: {
           userId: order.userId,
-          productId: order.productId,
+          input:newCarts,
           payying:parseInt(order.payying)
         }
       })
-      handleNewCarts();
-      handleOrder();
     }
+      
+    
+   
 
 
   return (
@@ -69,7 +70,7 @@ const Order = ({ user }) => {
         </table>
           <h4 className="text-right mt-5">Tong cong: {total}</h4>
         <label htmlFor="paying">Nhan cua khach</label>
-        <input type="number" value={order.payying} onInput={e=>handleChange({payying:e.target.value})} />
+        <input type="number" value={order.payying} onInput={e=>handleChange({payying:parseInt(e.target.value)})} />
       </div>
       <button onClick={()=>handleCreateOrder()}>Tao hoa don</button>
       <button className="btn btn-danger" onClick={() => handleOrder()}>

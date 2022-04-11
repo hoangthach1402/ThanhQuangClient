@@ -22,6 +22,9 @@ function App() {
   console.log('run');
   setCarts([...carts,{...product}])
   }
+  const handleSetCarts=(products)=>{
+    setCarts(products)
+  }
   const handleOrder=()=>{
   setIsOrder(!isOrder);
   }
@@ -33,7 +36,7 @@ function App() {
     setCarts([]);
   } 
   const ThanhQuangContextValue = {
-  carts,handleRemoveCart,handleAddToCart,addToCart,handleOrder,isOrder,handleNewCarts
+  carts,handleRemoveCart,handleAddToCart,addToCart,handleOrder,isOrder,handleNewCarts,handleSetCarts
   };
  
 

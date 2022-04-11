@@ -8,6 +8,11 @@ flex-wrap: wrap;
 
 }
 .cardItem{
-    width:23%;
+    width:30%;
     margin-bottom: 300px;
+}
+@media screen and (max-width: 768px) {
+    .cardItem{
+        width:100%;
+    }
 }

@@ -16,9 +16,10 @@ const OrderManagement = () => {
      setOrder({...selectOrder});
     }
     } 
-  
+    // let total =0 ;
     useEffect(() => {
       getOrder();
+      // 
     },[orderSelectedId])
     console.log(order)
   
@@ -40,19 +41,27 @@ const OrderManagement = () => {
         }
        
       </div>
-      <div className="col-6">
+      <div className="col-6 order_Detail">
      {orderSelectedId && order && 
      <div>
      <p>{order.user.name}</p>
-     <ul>
+     <table>
+     <tr>
+       <th>ProductName</th>
+       <th>Price</th>
+       <th>Stock</th>
+     </tr>
+       
        {order.products.map(product=>(
-         <li>Name: {product.name} Price: ${product.price} SL: {product.stock}</li>
+         <tr>
+         <td>{product.name}</td>
+         <td>{product.price}</td>
+         <td>{product.stock}</td>
+       </tr>
        ))}
-     </ul>
+     </table>
         <p>Paying : ${order.payying}</p>
-        <p>Total: {order.products.reduce((a,b)=>{
-          return a+(b.stock*b.price)
-        },0)} </p>
+        <p>Total: </p>
         
      </div>
         

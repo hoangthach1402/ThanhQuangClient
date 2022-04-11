@@ -59,8 +59,8 @@ mutation($editBookId: ID!, $name: String!, $genre: String!, $authorId: String!){
 }
 `;
 const createOrder =gql`
-mutation($userId: ID!, $productId: String!, $payying: Int!){
-  createOrder(userId: $userId, productId: $productId, payying: $payying) {
+mutation createOrder($userId: ID!, $input: [InputProduct]!, $payying: Int!){
+  createOrder(userId: $userId, input: $input, payying: $payying) {
     payying
   }
 }

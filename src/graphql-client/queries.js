@@ -27,22 +27,14 @@ const getUsers = gql`
       id
       name
       mobile
-     
-      orders {
-        user {
-          id
-          name
-        }
-        payying
-        products {
-          id
-          name
-          price
-        }
       }
     }
-  }
+  
 `;
+     
+ 
+     
+     
 
 
 
