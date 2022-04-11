@@ -34,7 +34,7 @@ const handleSubmit =()=>{
   const [addProduct,productMutate] = useMutation(createProduct)
   
  return (
-    <div className="form bg-info text-white p-2">
+    <div className="form bg-success text-white p-2">
   <div class="form-group">
     <label for="exampleInputName1">Name Product: </label>
     <input type="text" value={product.name} onInput={(e)=>handleChange({name:e.target.value})} class="form-control" id="exampleInputName1" aria-describedby="NameHelp" placeholder="Enter Name" />

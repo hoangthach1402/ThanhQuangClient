@@ -20,7 +20,7 @@ const UserDashboard = () => {
     let n=0;
     return (
     <div >
-     <button  onClick={()=>setIsCreate(!isCreate)}>Create Customer</button>
+     <button className="btn btn-success m-2"  onClick={()=>setIsCreate(!isCreate)}>Create Customer</button>
       {isCreate && <UserManagement />}  
       <div className="row bg-info text-white">
       <div className="col-6">
