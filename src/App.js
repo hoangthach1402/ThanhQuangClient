@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import BookList from "./components/BookList/BookList";
-import Form from "./components/Form/Form";
-import clsx from "clsx";
-import { useQuery, gql } from "@apollo/client";
 import { createContext } from "react";
 import SaleManagement from './components/SaleManagement/SaleManagement';
 import ProductManagement from './components/SaleManagement/ProductManagement';
 import OrderManagement from './components/SaleManagement/OrderManagement'
 export const ThanhQuangContext = createContext();
 function App() {
-  const [theme,setTheme] = useState(false);
   const [selectStation,setSelectStation] = useState('book'); 
   const [isSaleManagement,setIsSaleManagement] = useState(false)
   const [isOrder,setIsOrder] = useState(false);
@@ -50,18 +45,7 @@ function App() {
       {selectStation==='Sale' && <SaleManagement /> }
       {(selectStation==='ProductManagement') && <ProductManagement />}
       {(selectStation==='orderManagement') && <OrderManagement />}
-      {selectStation==='book' && 
-        <div
-        className='container py-3'
-       
-      >
-        <h1 className="text-center text-info mb-3 ">My Books</h1>
-        <hr />
-        <Form />
-        <hr />
-        <BookList />
-      </div>
-      }
+  
       
     </ThanhQuangContext.Provider>
   );
