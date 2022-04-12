@@ -40,12 +40,12 @@ function App() {
 
   return (
     <ThanhQuangContext.Provider value={ThanhQuangContextValue}>
-    <div className="border-bottom pb-2 border-dark">
+    <div className="border-bottom pb-2 border-dark m-2 ">
 
-      <button className={clsx('btn border-end',selectStation==='userDashboard'&&'btn-primary')} onClick={()=>setSelectStation('userDashboard')}>User Management </button>
-      <button className={clsx('btn border-end',selectStation==='Sale'&& 'btn-primary')} onClick={()=>setSelectStation('Sale')}>Sale </button>
-      <button className={clsx('btn border-end',selectStation==='ProductManagement'&&'btn-primary')} onClick={()=>setSelectStation('ProductManagement')}>Product Management</button>
-      <button className={clsx('btn border-end',selectStation==='orderManagement'&&'btn-primary')} onClick={()=>setSelectStation('orderManagement')}>Order Management</button>
+      <button className={clsx('btn border-end',selectStation==='userDashboard'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('userDashboard')}>User Management </button>
+      <button className={clsx('btn border-end px-4',selectStation==='Sale'&& 'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('Sale')}>Sale </button>
+      <button className={clsx('btn border-end',selectStation==='ProductManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('ProductManagement')}>Product Management</button>
+      <button className={clsx('btn border-end',selectStation==='orderManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('orderManagement')}>Order Management</button>
     </div>
 
       {selectStation==='Sale' && <SaleManagement /> }

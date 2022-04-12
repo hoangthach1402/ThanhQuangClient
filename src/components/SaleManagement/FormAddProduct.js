@@ -43,7 +43,7 @@ const handleSubmit =()=>{
   const [addProduct,productMutate] = useMutation(createProduct)
   
  return (
-    <div className="form bg-success text-white p-2">
+    <div className="form bg-dark text-light p-2 border border-light">
   <div class="form-group">
     <label for="exampleInputName1">Name Product: </label>
     <input type="text" value={product.name} onInput={(e)=>handleChange({name:e.target.value})} class="form-control" id="exampleInputName1" aria-describedby="NameHelp" placeholder="Enter Name" />
@@ -64,7 +64,7 @@ const handleSubmit =()=>{
     <label for="exampleInputPrice">Price Product: </label>
     <input type="number" class="form-control" id="exampleInputPrice" value={product.value} onInput={e=>handleChange({price:e.target.value})} aria-describedby="NameHelp" placeholder="Enter Price" />
   </div>
-  <button onClick={()=>handleSubmit()}  class="btn btn-primary">Submit</button>
+  <button onClick={()=>handleSubmit()}  class="btn border border-light text-light my-2 d-block  m-auto px-4">Submit</button>
     </div>
 
   )

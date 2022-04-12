@@ -25,16 +25,29 @@ const SaleManagement = () => {
       setSelectedUser(user)
     }
   },[selectedUserId])
-
+  const showCart =()=>{
+    return (
+      <i class="fa-solid fa-cart-shopping"></i>
+    )
+  }
+  const CloseCart=()=>{
+  return (
+    <>
+    <i class="fa-solid fa-angle-up"></i>
+    <i class="fa-solid fa-cart-shopping"></i>
+    </>
+  )
+  }
   return (
     <div className="container  border bg-dark text-white p-3">
       {isOrder && selectedUser && <Order user={selectedUser}/> }
       {isOrder && !selectedUser? <p className="bg-danger position-fixed top-0 left-0 w-50 text-white p-2">please select user</p>:''}
      <div>
-     <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn btn-primary text-white position-relative',styles.buttonCart)}>{isCartOpen ?'Close Cart':'Show Cart'}
+     <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn border border-light text-white position-relative',styles.buttonCart)}>{isCartOpen ?CloseCart():showCart()}
      <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2">{carts.length}<span class="visually-hidden"></span></span>
-     </button>
      {isCartOpen && <Cart />}
+     
+     </button>
 
      </div>
      <h3>Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2">Create Customer</button>
@@ -52,23 +65,27 @@ const SaleManagement = () => {
       
       {data_products && data_products.products.map(product=>(
         <div key={product.id} className="cardItem bg-light p-2 border text-black">
-        <div className={clsx(styles.cartProduct)} style={{width: "12rem"}}>
-      <div className="imgContainer">
-      <img className="card-img" src={product.img} alt="Card image cap" />
-      </div>
-       <div>
+        <div className={clsx(styles.cartProduct)}>
+        <div className="imgContainer">
+        <img className="card-img" src={product.img} alt="Card image cap" />
+        </div>
+        <div className="cardContent">
+        <div className="cardContent__Top">
          {/* {product.name} */}
-       <p>Ten San Pham: <span className="fw-bold">{product.name}</span></p>
-       <p>Gia: <span className="fw-bold text-danger">${product.price}</span></p>
-       <p>Loai: <span className="fw-bold">{product.type}</span></p>
-       </div> 
-  <div>
-  <button className="btn border" onClick={()=>addToCart({...product,stock:1})}>Add to cart</button></div>
+        <p>Ten San Pham: <span className="fw-bold">{product.name}</span></p>
+        <p>Gia: <span className="fw-bold text-danger">${product.price}</span></p>
+        <p>Loai: <span className="fw-bold">{product.type}</span></p>
+        </div> 
+    <div className="cardContent__Bottom">
+    <button className="btn border border-dark" onClick={()=>addToCart({...product,stock:1})}>Them Vao Gio Hang <i class="fa-solid fa-cart-shopping"></i></button>
+    </div>
+       </div>
+  </div>
+        </div>
+       
 
     
 
-  </div>
-        </div>
       ))}
       </div>
     </div>

@@ -75,11 +75,21 @@ const UserDashboard = () => {
     })
    }
 
-
+   const DebtToString=(debt)=>{
+    return (
+        <p className="bg-danger text-light fw-bold p-2">Can Thanh Toan : ${debt} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></p>
+    )
+   }
+   const CompletePayment =()=>{
+    return (
+        <p className="text-light bg-success fw-bold p-2">Da Thanh Toan <i className="border p-1 bg-light border-light rounded-circle  text-success fa-solid fs-5 fa-check"></i></p>
+    )
+   }
     let n=0;
     return (
     <div >
-     <button className="btn btn-success m-2"  onClick={()=>setIsCreate(!isCreate)}>Create Customer</button>
+   
+     <button className="btn border border-dark bg-light text-dark m-2"  onClick={()=>setIsCreate(!isCreate)}>Create Customer</button>
       {isCreate && <UserManagement />}  
       <div className="row bg-dark text-white">
       <div className="col-6 p-3 ">
@@ -118,9 +128,9 @@ const UserDashboard = () => {
                 }
                 {u_data.user.orders.map(order=>(
                 <div key={order.id} className="bg-white text-black p-2 border border-dark">
-                    <p>Ma Don: {order.id}</p>
-                    <table>
-                        <tr>
+                    <p className="fw-bold border-bottom border-dark">Ma Don: {order.id}</p>
+                    <table className="border p-2 border-dark">
+                        <tr className="p-2">
                             <th>#</th>
                             <th>Name</th>
                             <th>Price</th>
@@ -135,20 +145,20 @@ const UserDashboard = () => {
                                 <td>{product.stock}</td>
                             </tr>
                         ))}
-                         <p>Tong cong:{order.products.reduce((a,b)=>{
+                         <p className="fw-bold text-light p-2 bg-dark  ">Tong Cong:  ${order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
                          },0)} </p>
-                         <p>Da thanh toan : {order.payying}</p>
+                         <p className="text-light bg-primary fw-bold p-2">Da thanh toan : ${order.payying}</p>
                          { order.payying < order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
-                         },0)?`Can Thanh Toan :`+ substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying)):'Da Thanh Toan Du' }
+                         },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying))):CompletePayment()}
                     </table>
-                    <button onClick={()=>handleDeleteOrder(order.id)}>Xoa Hoa Don </button>  
+                    <button className="btn border  border-dark" onClick={()=>handleDeleteOrder(order.id)}>Xoa Hoa Don </button>  
                 </div>
-
                 ))}
 
 
+              
             </div>}
         </div>    
       </div>

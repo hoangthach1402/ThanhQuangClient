@@ -61,7 +61,7 @@ const ProductManagement = () => {
       <div className="bg-dark text-white py-5">
         <button
           onClick={() => setIsAddProduct(!isAddProduct)}
-          className="btn btn-success"
+          className="btn bg-dark text-white border border-white my-2"
         >
           Add product
         </button>

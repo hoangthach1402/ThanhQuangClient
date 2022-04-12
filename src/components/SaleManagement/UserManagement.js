@@ -26,8 +26,9 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="bg-success w-100  p-2 text-dark ">
+    <div className="bg-dark  w-100  p-4 text-light border m-2">
       <div class="mb-3">
+        <h4 >Form Thong Tin Khach hang</h4>
         <label for="exampleFormControlInput1" class="form-label">
           Ten Khach Hang
         </label>
@@ -69,9 +70,9 @@ const UserManagement = () => {
 
       <button
         onClick={() => handleSubmit()}
-        className=" btn btn-primary text-white d-block m-auto"
+        className=" btn border border-light px-4  bg-dark text-white d-block m-auto"
       >
-        Create
+        Create Customer
       </button>
     </div>
   );

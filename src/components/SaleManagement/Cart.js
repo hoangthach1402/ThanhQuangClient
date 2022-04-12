@@ -22,7 +22,7 @@ const Cart = () => {
  }
 }
   return (
-    <div className={clsx('bg-light border  text-white p-2',styles.cart)}>
+    <div className={clsx('bg-light border  text-white p-2 shadow',styles.cart)}>
         {carts.length ===0 && <p className="text-black fw-bold">Cart is empty</p>}
         {carts && carts.map(cart=>(
         <div key={cart.id} className={clsx(styles.item)}>

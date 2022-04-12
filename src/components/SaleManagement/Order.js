@@ -49,12 +49,24 @@ const Order = ({ user }) => {
   }
 
   return (
-    <div className={clsx("bg-dark text-white p-5", styles.containerOrder)}>
-      Order customer
-      <div className={clsx("bg-white text-dark text-center", styles.formOrder)}>
-        <h4>Hoa don ban hang</h4>
-        <p>Ten khach hang : {user.name}.</p>
-        <table>
+    <div className={clsx("bg-dark text-white p-5 rounded", styles.containerOrder)}>
+     
+      <div className={clsx("bg-white text-dark ", styles.formOrder)}>
+        <div className="pb-2 border-bottom border-dark">
+        <button className="btn border bg-success text-light border-dark px-2 mx-2 shadow" onClick={() => handleCreateOrder()}>Tạo Hóa Đơn</button>
+      <button className="btn mx-2 px-4 border border-dark btn-danger shadow" onClick={() => handleOrder()}>
+        X
+      </button>
+        </div>
+        <h5 className="text-danger">
+Hóa Đơn Bán Hàng</h5>
+        <p className="text-dark">Cửa Hàng ...................</p>
+        <p>Ngay.....Thang...... Nam .........</p>
+        <p className="">Họ Tên Khách Hàng: <span className="fw-bold">{user.name}.</span> </p>
+        <p>Ghi Chu: ...................................................................</p>
+        <p>Thông Tin Đơn Hàng : </p>
+        <div className="p-3 border">
+        <table >
           <tr>
             <th>#</th>
             <th>Name</th>
@@ -63,27 +75,26 @@ const Order = ({ user }) => {
             <th>Stock</th>
           </tr>
           {carts.map((product) => (
-            <tr>
-              <td>{++n} </td>
-              <td>{product.name}</td>
-              <td>{product.type}</td>
-              <td>{product.price}</td>
-              <td>{product.stock}</td>
+            <tr className="border border-dark">
+              <td>{++n}. </td>
+              <td className="border border-dark">  {product.name}</td>
+              <td> {product.type}</td>
+              <td className="border border-dark">  {product.price}</td>
+              <td>  {product.stock}</td>
             </tr>
           ))}
         </table>
-        <h4 className="text-right mt-5">Tong cong: {total}</h4>
-        <label htmlFor="paying">Nhan cua khach</label>
+        </div>
+        <p className="text-right fw-bold">Tổng Cộng : ${total}</p>
+        <label className="fw-bold px-2" htmlFor="paying">Nhận Của Khách</label>
         <input
           type="number"
           value={order.payying}
+          placeholder="vd:  520.000.00"
           onInput={(e) => handleChange({ payying: parseInt(e.target.value) })}
         />
       </div>
-      <button onClick={() => handleCreateOrder()}>Tao hoa don</button>
-      <button className="btn btn-danger" onClick={() => handleOrder()}>
-        X
-      </button>
+    
     </div>
   );
 };
