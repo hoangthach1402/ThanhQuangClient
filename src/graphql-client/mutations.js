@@ -22,7 +22,7 @@ const createUser = gql`
 }
 `
 const deleteUser =gql`
-	mutation {
+mutation deleteUser($deleteUserId: ID!){
   deleteUser(id: $deleteUserId) {
     name
   }
@@ -68,4 +68,4 @@ const editUser =gql`
 }
 `
 
-export {  addSingleAuthor ,createUser,deleteUser,editProduct,createProduct,createOrder,deleteProduct,deleteOrder}
+export {  addSingleAuthor ,createUser,deleteUser,editProduct,createProduct,createOrder,deleteProduct,deleteOrder,editUser}

@@ -26,13 +26,17 @@ const SaleManagement = () => {
     }
   },[selectedUserId])
 
-console.log(data_users);
   return (
     <div className="container  border bg-dark text-white p-3">
       {isOrder && selectedUser && <Order user={selectedUser}/> }
-      {isOrder && !selectedUser? <p className="bg-danger text-white p-2">please select user</p>:''}
-     <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn btn-primary text-white',styles.buttonCart)}>OpenCart</button>
+      {isOrder && !selectedUser? <p className="bg-danger position-fixed top-0 left-0 w-50 text-white p-2">please select user</p>:''}
+     <div>
+     <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn btn-primary text-white position-relative',styles.buttonCart)}>{isCartOpen ?'Close Cart':'Show Cart'}
+     <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2">{carts.length}<span class="visually-hidden"></span></span>
+     </button>
      {isCartOpen && <Cart />}
+
+     </div>
      <h3>Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2">Create Customer</button>
      {isCreateCustomer && <UserManagement />}
     

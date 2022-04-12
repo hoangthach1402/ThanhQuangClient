@@ -33,7 +33,7 @@ query getUserById($userId: ID!){
 
 `;
 const getUsers = gql`
-query{
+query getUsers{
   users {
     id
     name

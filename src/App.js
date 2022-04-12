@@ -4,12 +4,14 @@ import SaleManagement from './components/SaleManagement/SaleManagement';
 import ProductManagement from './components/SaleManagement/ProductManagement';
 import OrderManagement from './components/SaleManagement/OrderManagement'
 import UserDashboard from './components/SaleManagement/UserDashboard';
+import clsx from 'clsx'
 export const ThanhQuangContext = createContext();
 function App() {
   const [selectStation,setSelectStation] = useState('Sale'); 
   const [isSaleManagement,setIsSaleManagement] = useState(false)
   const [isOrder,setIsOrder] = useState(false);
   const [carts,setCarts] =useState([]) 
+  const [isSelectedBtn,setIsSelectedBtn] = useState(); 
   const handleRemoveCart =(id)=>{
   const newCarts = carts.filter(cart=>cart.id !== id);
   setCarts(newCarts);
@@ -40,10 +42,10 @@ function App() {
     <ThanhQuangContext.Provider value={ThanhQuangContextValue}>
     <div className="border-bottom pb-2 border-dark">
 
-      <button className="btn border-end " onClick={()=>setSelectStation('userDashboard')}>User Management </button>
-      <button className="btn border-end" onClick={()=>setSelectStation('Sale')}>Sale </button>
-      <button className="btn border-end" onClick={()=>setSelectStation('ProductManagement')}>Product Management</button>
-      <button className="btn border-end" onClick={()=>setSelectStation('orderManagement')}>Order Management</button>
+      <button className={clsx('btn border-end',selectStation==='userDashboard'&&'btn-primary')} onClick={()=>setSelectStation('userDashboard')}>User Management </button>
+      <button className={clsx('btn border-end',selectStation==='Sale'&& 'btn-primary')} onClick={()=>setSelectStation('Sale')}>Sale </button>
+      <button className={clsx('btn border-end',selectStation==='ProductManagement'&&'btn-primary')} onClick={()=>setSelectStation('ProductManagement')}>Product Management</button>
+      <button className={clsx('btn border-end',selectStation==='orderManagement'&&'btn-primary')} onClick={()=>setSelectStation('orderManagement')}>Order Management</button>
     </div>
 
       {selectStation==='Sale' && <SaleManagement /> }

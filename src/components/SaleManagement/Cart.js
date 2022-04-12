@@ -22,21 +22,21 @@ const Cart = () => {
  }
 }
   return (
-    <div className={clsx('bg-info text-white p-2',styles.cart)}>
-        {carts.length ===0 && <p>Cart is empty</p>}
+    <div className={clsx('bg-light border  text-white p-2',styles.cart)}>
+        {carts.length ===0 && <p className="text-black fw-bold">Cart is empty</p>}
         {carts && carts.map(cart=>(
-        <div key={cart.id} className={styles.item}>
-        <div className={styles.containImg}><img className={styles.img} src={cart.img} alt="" /></div>
-        <div className={styles.title}>{cart.name}</div>
-        <div className={styles.title}>{cart.price}</div>
+        <div key={cart.id} className={clsx(styles.item)}>
+        <div className={clsx(styles.containImg,'p-2')}><img className={styles.img} src={cart.img} alt="" /></div>
+        <div className='fw-bold mx-2'>{cart.name}</div>
+        <div className='fw-bold'>{cart.price}</div>
         <div className={styles.quantity}>
         <input type="number" value={cart.stock}  onChange={e=>handleChange([{stock:e.target.value},{id:cart.id}])}/>
         </div>
-        <div><button onClick={()=>handleRemoveCart(cart.id)}>X</button></div>
+        <div><button className="btn" onClick={()=>handleRemoveCart(cart.id)}>X</button></div>
         </div>
         ))
         }
-       {carts.length!==0 && <button onClick={()=>handleOrder()}>Order</button>} 
+       {carts.length!==0 && <button className="btn btn-dark" onClick={()=>handleOrder()}>Order</button>} 
       
     </div>
        

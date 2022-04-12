@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { ThanhQuangContext } from "../../App";
 import styles from "./Cart.module.scss";
 import { useMutation } from "@apollo/client";
-import {getOrders} from '../../graphql-client/queries';
+import {getOrders,getUsers} from '../../graphql-client/queries';
 import { createOrder } from "../../graphql-client/mutations";
 const Order = ({ user }) => {
   // console.log(user);
@@ -42,7 +42,7 @@ const Order = ({ user }) => {
         input: newCarts,
         payying: parseInt(order.payying),
       },
-      refetchQueries: [{ query:getOrders}]
+      refetchQueries: [{ query:getOrders},{query:getUsers}]
     });
     handleNewCarts();
     handleOrder();

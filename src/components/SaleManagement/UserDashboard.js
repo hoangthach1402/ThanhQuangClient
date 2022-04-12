@@ -1,24 +1,63 @@
 import React,{useState,useEffect} from 'react'
 import {useQuery,useMutation} from '@apollo/client';
-import {deleteOrder,editUser} from '../../graphql-client/mutations';
+import {deleteOrder,editUser,deleteUser} from '../../graphql-client/mutations';
 import UserManagement from './UserManagement';
 import {getUsers,getUser,getOrders} from '../../graphql-client/queries';
 import clsx from 'clsx';
 const UserDashboard = () => {
+   const [editUserValue,editUserMutate] = useMutation(editUser,{
+       refetchQueries:[{query:getUsers}]
+   })
+    const [deleteUserValue,deleteUserMutate] = useMutation(deleteUser);
     const [deleteOrderById,deleteOrderMutate] = useMutation(deleteOrder)
     const [isCreate,setIsCreate]= useState(false);
    const {loading:user_loading, error:user_error, data:user_data} = useQuery(getUsers);
     const [isDebt,setIsDebt] = useState(false)
-   const [selectedUserId,setSelectedUserId] = useState(null);
+    const [selectedUserId,setSelectedUserId] = useState(null);
+ 
+    const handleChange = (changes)=>{
+        setEditUserState({ ...editUserState,...changes})
+    }
+    const [editUserState,setEditUserState] =useState({name:"",mobile:"",address:""});
+  
+    const handleUpdate =(id)=>{
+        // const testQuery ={
+        //     editUserId:selectedUserId,
+        //     name:editUserState.name,
+        //     mobile:editUserState.mobile,
+        //     address:editUserState.address
+        // }
+        // console.log(testQuery)
+            editUserValue({variables:{
+            editUserId:selectedUserId,
+            name:editUserState.name,
+            mobile:editUserState.mobile,
+            address:editUserState.address
+        },
+        refetchQueries: [{ query:getUser,variables:{userId:selectedUserId}}]
+    })
+    }
+
    const {loading:u_loading,error:u_err,data:u_data} = useQuery(getUser,{
        variables: {
         userId:selectedUserId
        }
-   }) 
+   })
+
+   useEffect(()=>{
+       if(user_data){
+           const findUser = user_data.users.find(u=>u.id===selectedUserId)
+           setEditUserState({...editUserState,...findUser});
+        }
+    },[selectedUserId])
+
+
+
    const substract =(a,b)=>{
        let result =  a-b ;
        return result
    }
+
    const handleDeleteOrder =(id)=>{
     deleteOrderById({
         variables: {
@@ -27,6 +66,16 @@ const UserDashboard = () => {
         refetchQueries: [{query:getUser,variables:{userId:selectedUserId}}]
     })
    }
+   const handleDeleteUser =(id)=>{
+    deleteUserValue({
+        variables: {
+            deleteUserId:id
+        },
+        refetchQueries: [{ query:getUsers},{query:getUsers,variables:{userId:selectedUserId}}]
+    })
+   }
+
+
     let n=0;
     return (
     <div >
@@ -56,14 +105,19 @@ const UserDashboard = () => {
             {u_data && <div className='p-4 border-start border-light'>
                <div className="mb-4 border-bottom border-light py-2">
 
-                <button className="btn btn-success">Update User Info</button>
-                <button className="btn btn-danger mx-2">Delete User</button>
+                <button onClick={()=>handleUpdate(u_data.user.id)} className="btn btn-success">Update User Info</button>
+                <button onClick={()=>handleDeleteUser(u_data.user.id)} className="btn btn-danger mx-2">Delete</button>
                </div>
-                <p>Ten Khach Hang: {u_data.user.name}</p>
-                <p>Dia Chi :{u_data.user.address}</p>
-                <p>So Dien Thoai :{u_data.user.mobile}</p>
+                {editUserState && 
+                <>
+                <p>Ten Khach Hang: <input onInput={(e)=>handleChange({name:e.target.value})} value={editUserState.name}/> </p>
+                <p>Dia Chi : <input  onInput={e=>handleChange({address:e.target.value})} value={editUserState.address}/></p>
+                <p>So Dien Thoai :<input onInput={e=>handleChange({mobile:e.target.value})} value={editUserState.mobile}/></p>
+
+                </>
+                }
                 {u_data.user.orders.map(order=>(
-                <div className="bg-white text-black p-2 border border-dark">
+                <div key={order.id} className="bg-white text-black p-2 border border-dark">
                     <p>Ma Don: {order.id}</p>
                     <table>
                         <tr>
@@ -74,7 +128,7 @@ const UserDashboard = () => {
                         </tr>
                         
                         {order.products.map((product,index)=>(
-                            <tr>
+                            <tr key={product.id}>
                                 <td>{++index}</td>
                                 <td>{product.name}</td>
                                 <td>{product.price}</td>
