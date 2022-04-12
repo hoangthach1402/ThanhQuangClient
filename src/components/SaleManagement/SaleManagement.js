@@ -27,23 +27,25 @@ const SaleManagement = () => {
   },[selectedUserId])
   const showCart =()=>{
     return (
-      <i class="fa-solid fa-cart-shopping"></i>
+      <>
+      <span>&#128584;</span><i className="fa-solid fa-cart-shopping"></i>
+      </>
     )
   }
   const CloseCart=()=>{
   return (
     <>
-    <i class="fa-solid fa-angle-up"></i>
-    <i class="fa-solid fa-cart-shopping"></i>
+      <span>&#128585;</span>
+    <i className="fa-solid fa-cart-shopping"></i>
     </>
   )
   }
   return (
     <div className="container  border bg-dark text-white p-3">
       {isOrder && selectedUser && <Order user={selectedUser}/> }
-      {isOrder && !selectedUser? <p className="bg-danger position-fixed top-0 left-0 w-50 text-white p-2">please select user</p>:''}
+      {isOrder && !selectedUser? <p className="bg-danger  text-white p-2">Chọn Khách Hàng <span>&#128064;</span> </p>:''}
      <div>
-     <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn border border-light text-white position-relative z-index-10',styles.buttonCart)}>{isCartOpen ?CloseCart():showCart()}
+     <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn border border-light text-white position-relative ',styles.buttonCart)}>{isCartOpen ?CloseCart():showCart()}
      <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2">{carts.length}<span class="visually-hidden"></span></span>
      </button>
      <button className="position-relative btn btnAomacanada ">Check
@@ -81,7 +83,7 @@ const SaleManagement = () => {
         <p>Loai: <span className="fw-bold">{product.type}</span></p>
         </div> 
     <div className="cardContent__Bottom">
-    <button className="btn border border-dark" onClick={()=>addToCart({...product,stock:1})}>Them Vao Gio Hang <i class="fa-solid fa-cart-shopping"></i></button>
+    <button className="btn border border-dark" onClick={()=>addToCart({...product,stock:1})}>Them Vao Gio Hang <i className="fa-solid fa-cart-shopping"></i></button>
     </div>
        </div>
   </div>

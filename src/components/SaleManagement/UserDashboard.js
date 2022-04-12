@@ -77,7 +77,7 @@ const UserDashboard = () => {
 
    const DebtToString=(debt)=>{
     return (
-        <p className="bg-danger text-light fw-bold p-2">Can Thanh Toan : ${debt} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></p>
+        <p className="bg-danger text-light fw-bold p-2"><span >&#128405;</span>Can Thanh Toan : ${debt} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></p>
     )
    }
    const CompletePayment =()=>{
@@ -145,10 +145,10 @@ const UserDashboard = () => {
                                 <td>{product.stock}</td>
                             </tr>
                         ))}
-                         <p className="fw-bold text-light p-2 bg-dark  ">Tong Cong:  ${order.products.reduce((a,b)=>{
+                         <p className="fw-bold text-light p-2 bg-dark  "><span>&#128181;</span>Tong Cong:  ${order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
                          },0)} </p>
-                         <p className="text-light bg-primary fw-bold p-2">Da thanh toan : ${order.payying}</p>
+                         <p className="text-light bg-primary fw-bold p-2"><span>&#128181;</span> Da thanh toan : ${order.payying}</p>
                          { order.payying < order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
                          },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying))):CompletePayment()}
