@@ -56,8 +56,8 @@ const UserDashboard = () => {
             {u_data && <div className='p-4 border-start border-light'>
                <div className="mb-4 border-bottom border-light py-2">
 
-                <button className="btn btn-success">Update</button>
-                <button className="btn btn-danger mx-2">Delete</button>
+                <button className="btn btn-success">Update User Info</button>
+                <button className="btn btn-danger mx-2">Delete User</button>
                </div>
                 <p>Ten Khach Hang: {u_data.user.name}</p>
                 <p>Dia Chi :{u_data.user.address}</p>

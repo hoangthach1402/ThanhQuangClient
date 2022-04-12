@@ -38,11 +38,13 @@ function App() {
 
   return (
     <ThanhQuangContext.Provider value={ThanhQuangContextValue}>
- 
-      <button onClick={()=>setSelectStation('userDashboard')}>User Management </button>
-      <button onClick={()=>setSelectStation('Sale')}>Sale </button>
-      <button onClick={()=>setSelectStation('ProductManagement')}>Product Management</button>
-      <button onClick={()=>setSelectStation('orderManagement')}>Order Management</button>
+    <div className="border-bottom pb-2 border-dark">
+
+      <button className="btn border-end " onClick={()=>setSelectStation('userDashboard')}>User Management </button>
+      <button className="btn border-end" onClick={()=>setSelectStation('Sale')}>Sale </button>
+      <button className="btn border-end" onClick={()=>setSelectStation('ProductManagement')}>Product Management</button>
+      <button className="btn border-end" onClick={()=>setSelectStation('orderManagement')}>Order Management</button>
+    </div>
 
       {selectStation==='Sale' && <SaleManagement /> }
       {selectStation==='userDashboard' && <UserDashboard /> }

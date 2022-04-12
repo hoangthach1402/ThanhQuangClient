@@ -28,12 +28,12 @@ const SaleManagement = () => {
 
 console.log(data_users);
   return (
-    <div className="container  border">
+    <div className="container  border bg-dark text-white p-3">
       {isOrder && selectedUser && <Order user={selectedUser}/> }
       {isOrder && !selectedUser? <p className="bg-danger text-white p-2">please select user</p>:''}
      <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn btn-primary text-white',styles.buttonCart)}>OpenCart</button>
      {isCartOpen && <Cart />}
-     <h3>Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-dark text-white">Create Customer</button>
+     <h3>Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2">Create Customer</button>
      {isCreateCustomer && <UserManagement />}
     
      <select name="" id=""
@@ -47,18 +47,22 @@ console.log(data_users);
       <div className="p-2 mt-2 cardList">
       
       {data_products && data_products.products.map(product=>(
-        <div key={product.id} className="cardItem">
+        <div key={product.id} className="cardItem bg-light p-2 border text-black">
         <div className={clsx(styles.cartProduct)} style={{width: "12rem"}}>
-  <img className="card-img" src={product.img} alt="Card image cap" />
-  <div className="card-body">
-    <h5 className="card-title">{product.name}</h5>
-  </div>
+      <div className="imgContainer">
+      <img className="card-img" src={product.img} alt="Card image cap" />
+      </div>
+       <div>
+         {/* {product.name} */}
+       <p>Ten San Pham: <span className="fw-bold">{product.name}</span></p>
+       <p>Gia: <span className="fw-bold text-danger">${product.price}</span></p>
+       <p>Loai: <span className="fw-bold">{product.type}</span></p>
+       </div> 
+  <div>
+  <button className="btn border" onClick={()=>addToCart({...product,stock:1})}>Add to cart</button></div>
+
     
-  <ul className="list-group ">
-    <li className="list-group-item">Price: {product.price}</li>
-    <li className="list-group-item">Type: {product.type}</li>
-  </ul>
-  <div><button onClick={()=>addToCart({...product,stock:1})}>Add to cart</button></div>
+
   </div>
         </div>
       ))}
