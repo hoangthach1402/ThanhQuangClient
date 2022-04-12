@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {useMutation} from '@apollo/client'
 import {createProduct} from '../../graphql-client/mutations';
 import {getProducts} from '../../graphql-client/queries'
-const FormAddProduct = () => {
+const FormAddProduct = ({handleIsAdd}) => {
  const [product,setProduct] = useState({
  name:"",
  type:"",
@@ -14,6 +14,7 @@ const handleChange =(changes)=>{
   setProduct({ ...product, ...changes})
 }
 const handleSubmit =()=>{
+
   addProduct({
     variables:{
 
@@ -26,6 +27,14 @@ const handleSubmit =()=>{
     refetchQueries: [{ query:getProducts}]
   }
   )
+  setProduct({
+    name:"",
+    type:"",
+    img:"",
+     price:"",
+     stock:"" ,
+   });
+   handleIsAdd();
 }
   
   
@@ -56,8 +65,8 @@ const handleSubmit =()=>{
     <input type="number" class="form-control" id="exampleInputPrice" value={product.value} onInput={e=>handleChange({price:e.target.value})} aria-describedby="NameHelp" placeholder="Enter Price" />
   </div>
   <button onClick={()=>handleSubmit()}  class="btn btn-primary">Submit</button>
-
     </div>
+
   )
 }
 

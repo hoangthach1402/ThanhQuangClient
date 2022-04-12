@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { getProducts } from "../../graphql-client/queries";
-import { editProduct } from "../../graphql-client/mutations";
+import { editProduct,deleteProduct } from "../../graphql-client/mutations";
 import styles from "./Cart.module.scss";
 import FormAddProduct from './FormAddProduct';
 import clsx from "clsx";
@@ -12,13 +12,12 @@ const ProductManagement = () => {
   const [productSelected, setProductSelected] = useState(null);
   const [selectedProductId, setselectedProductId] = useState(null);
   const [listProducts, setListProducts] = useState(null);
-  const handleChangeProduct = (changes, product) => {};
-console.log(isAddProduct);
+  const [productDeleteId,productDeleteMutate]= useMutation(deleteProduct)
 
   const handleChange = (changes) => {
-    // console.log(changes)
     setProductSelected({ ...productSelected, ...changes });
   };
+   
   const handleUpdate = () => {
     console.log(productSelected);
     editProductValue({
@@ -41,42 +40,53 @@ console.log(isAddProduct);
       );
     }
   }, [selectedProductId]);
-
+const handleIsAdd=()=>{
+  setIsAddProduct(!isAddProduct)
+}
   useEffect(() => {
     data && setListProducts(data.books);
   }, []);
-
-  //  console.log(listProducts)
+  const handleDelete=(id)=>{
+    productDeleteId({
+      variables: {
+        deleteProductId:id
+      },
+      refetchQueries: [{ query:getProducts}]
+    }
+    )
+  }
   let n = 1;
   return (
     <div>
       <h4>Welcome : Product Management Station</h4>
-      <div className=" py-5">
+      <div className="bg-dark text-white py-5">
         <button onClick={()=>setIsAddProduct(!isAddProduct)} className="btn btn-success">Add product</button>
-        {isAddProduct && <FormAddProduct />
+        {isAddProduct && <FormAddProduct handleIsAdd={handleIsAdd}/>
         
         }
-        <table
+        <div className="row">
+          <div className="col-6">
+          <table
           className={clsx(
-            "table table-bordered table-hover",
+            " ",
             styles.tableContainer
           )}
         >
           <thead>
             <tr>
-              <th scope="col-1">#</th>
-              <th scope="col-2">Img</th>
-              <th scope="col-2">Name</th>
-              <th scope="col-1">Type</th>
-              <th scope="col-1">Price</th>
-              <th scope="col-2">Stock</th>
+              <th >#</th>
+              <th >Img</th>
+              <th >Tên</th>
+              <th >Loại</th>
+              <th >Giá</th>
+              <th >Số Lượng</th>
             </tr>
           </thead>
           <tbody>
             {data &&
               data.products.map((product) => (
                 <tr
-                  className={selectedProductId === product.id && "bg-dark"}
+                  className={selectedProductId === product.id && "bg-light text-black"}
                   key={product.id}
                   onClick={setselectedProductId.bind(this, product.id)}
                 >
@@ -85,79 +95,71 @@ console.log(isAddProduct);
                   </th>
 
                   <td className="d-flex ">
-                    {selectedProductId === product.id && (
+                    {/* {selectedProductId === product.id && (
                       <button
                         className="btn btn-success"
                         onClick={(e) => handleUpdate(e)}
                       >
                         Update
                       </button>
-                    )}
+                    )} */}
 
                     <img
                       className={clsx(styles.imgProductManagement)}
                       src={product.img}
                       alt=""
                     />
-                    <input
-                      type="text"
-                      value={
-                        productSelected && selectedProductId === product.id
-                          ? productSelected.img
-                          : product.img
-                      }
-                      onInput={(e) => handleChange({ img: e.target.value })}
-                    />
+                 
                   </td>
                   <td>
-                    <input
-                      type="text"
-                      value={
-                        productSelected && selectedProductId === product.id
-                          ? productSelected.name
-                          : product.name
-                      }
-                      onInput={(e) => handleChange({ name: e.target.value })}
-                    />
+                    <p>{product.name}</p>
                   </td>
                   <td>
-                    <input
-                      className="w-120"
-                      type="text"
-                      value={
-                        productSelected && selectedProductId === product.id
-                          ? productSelected.type
-                          : product.type
-                      }
-                      onInput={(e) => handleChange({ type: e.target.value })}
-                    />
+                 <p>{product.type}</p>
                   </td>
                   <td>
-                    <input
-                      type="text"
-                      onInput={(e) => handleChange({ price: e.target.value })}
-                      value={
-                        productSelected && selectedProductId === product.id
-                          ? productSelected.price
-                          : product.price
-                      }
-                    />
+               <p>{product.price}</p>
                   </td>
                   <td className="col-2 w-25">
-                    <input
-                      type="number"
-                      value={
-                        productSelected && selectedProductId === product.id
-                          ? productSelected.stock
-                          : product.stock
-                      }
-                      onInput={(e) => handleChange({ stock: e.target.value })}
-                    />
+                    <p>{product.stock}</p>
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
+          </div>
+          <div className="col-6 border">
+            {!productSelected && <p>Please Select you want to Edit ^^</p>}
+              {productSelected && <div>
+                <h3>Form Update</h3>
+                <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default">Img URL</span>
+  <input type="text" value={productSelected.img} onInput={e=>handleChange({img:e.target.value})} class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+</div>
+                <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+  <input type="text" value={productSelected.name} onInput={e=>handleChange({name:e.target.value})} class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+</div>
+                         <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default">Loai</span>
+  <input type="text" value={productSelected.type} onInput={e=>handleChange({type:e.target.value})} class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+</div>
+             <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+  <input type="text" value={productSelected.price} onInput={e=>handleChange({price:e.target.value})} class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+</div>
+           <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default">Stock</span>
+  <input type="text" value={productSelected.stock} onInput={e=>handleChange({stock:e.target.value})} class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+</div>
+    <button className="btn btn-primary" onClick={() =>handleUpdate()}>Update</button>
+    <button onClick={()=>handleDelete(productSelected.id)} className="btn btn-danger ms-2">Delete</button>         
+
+              </div>
+              }      
+          </div>
+        </div>
+      
       </div>
     </div>
   );

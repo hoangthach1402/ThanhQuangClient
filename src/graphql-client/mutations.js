@@ -28,7 +28,13 @@ const deleteUser =gql`
   }
 }
 `
-
+const deleteProduct =gql`
+  mutation deleteProduct($deleteProductId: ID!){
+  deleteProduct(id: $deleteProductId) {
+   name 
+  }
+}
+`
 
 
 const addSingleAuthor = gql`
@@ -39,6 +45,13 @@ const addSingleAuthor = gql`
 		}
 	}
 	`
+  const deleteOrder =gql`
+  mutation deleteOrder($deleteOrderId: ID!){
+  deleteOrder(id: $deleteOrderId) {
+  payying
+  }
+}
+  `
 
 const createOrder =gql`
 mutation createOrder($userId: ID!, $input: [InputProduct]!, $payying: Int!){
@@ -47,6 +60,12 @@ mutation createOrder($userId: ID!, $input: [InputProduct]!, $payying: Int!){
   }
 }
 `	;
+const editUser =gql`
+  mutation editUser($editUserId: ID!, $name: String!, $mobile: String!, $address: String!){
+  editUser(id: $editUserId, name: $name, mobile: $mobile, address: $address) {
+    name
+  }
+}
+`
 
-
-export {  addSingleAuthor ,createUser,deleteUser,editProduct,createProduct,createOrder}
+export {  addSingleAuthor ,createUser,deleteUser,editProduct,createProduct,createOrder,deleteProduct,deleteOrder}

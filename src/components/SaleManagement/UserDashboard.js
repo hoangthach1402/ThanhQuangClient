@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from 'react'
-import {useQuery} from '@apollo/client';
+import {useQuery,useMutation} from '@apollo/client';
+import {deleteOrder,editUser} from '../../graphql-client/mutations';
 import UserManagement from './UserManagement';
-import {getUsers,getUser} from '../../graphql-client/queries';
+import {getUsers,getUser,getOrders} from '../../graphql-client/queries';
 import clsx from 'clsx';
 const UserDashboard = () => {
-   const [isCreate,setIsCreate]= useState(false);
+    const [deleteOrderById,deleteOrderMutate] = useMutation(deleteOrder)
+    const [isCreate,setIsCreate]= useState(false);
    const {loading:user_loading, error:user_error, data:user_data} = useQuery(getUsers);
     const [isDebt,setIsDebt] = useState(false)
    const [selectedUserId,setSelectedUserId] = useState(null);
@@ -17,22 +19,30 @@ const UserDashboard = () => {
        let result =  a-b ;
        return result
    }
+   const handleDeleteOrder =(id)=>{
+    deleteOrderById({
+        variables: {
+            deleteOrderId:id
+        },
+        refetchQueries: [{query:getUser,variables:{userId:selectedUserId}}]
+    })
+   }
     let n=0;
     return (
     <div >
      <button className="btn btn-success m-2"  onClick={()=>setIsCreate(!isCreate)}>Create Customer</button>
       {isCreate && <UserManagement />}  
-      <div className="row bg-info text-white">
-      <div className="col-6">
+      <div className="row bg-dark text-white">
+      <div className="col-6 p-3 ">
       <table>
-          <tr>
+          <tr className="border-bottom border-light p-2">
               <th>#</th>
               <th>Name</th>
               <th>Mobile</th>
               <th>Address</th>
           </tr>
           {user_data && user_data.users.map(user=>(
-              <tr className={clsx('p-2',selectedUserId===user.id && 'bg-dark text-white')} key={user.id} onClick={setSelectedUserId.bind(this,user.id)}>
+              <tr className={clsx(selectedUserId===user.id && 'bg-white text-black')} key={user.id} onClick={setSelectedUserId.bind(this,user.id)}>
                   <td>{++n}</td>
                   <td>{user.name}</td>
                   <td>{user.mobile}</td>
@@ -41,14 +51,19 @@ const UserDashboard = () => {
           ))}
       </table>
       </div>
-        <div className="col-6 bg-dark text-white">
+        <div className="col-6 bg-dark text-white ">
             {u_loading && <p>Loading ...</p>}
-            {u_data && <div className='p-2'>
+            {u_data && <div className='p-4 border-start border-light'>
+               <div className="mb-4 border-bottom border-light py-2">
+
+                <button className="btn btn-success">Update</button>
+                <button className="btn btn-danger mx-2">Delete</button>
+               </div>
                 <p>Ten Khach Hang: {u_data.user.name}</p>
                 <p>Dia Chi :{u_data.user.address}</p>
                 <p>So Dien Thoai :{u_data.user.mobile}</p>
                 {u_data.user.orders.map(order=>(
-                <div className="bg-dark text-white p-2 border">
+                <div className="bg-white text-black p-2 border border-dark">
                     <p>Ma Don: {order.id}</p>
                     <table>
                         <tr>
@@ -73,7 +88,8 @@ const UserDashboard = () => {
                          { order.payying < order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
                          },0)?`Can Thanh Toan :`+ substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying)):'Da Thanh Toan Du' }
-                    </table>  
+                    </table>
+                    <button onClick={()=>handleDeleteOrder(order.id)}>Xoa Hoa Don </button>  
                 </div>
 
                 ))}
