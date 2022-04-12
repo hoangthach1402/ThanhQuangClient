@@ -13,7 +13,7 @@ const SaleManagement = () => {
    const [selectedUserId,setSelectedUserId] = useState() ;
    const {addToCart,carts} = useContext(ThanhQuangContext)
    const [selectedUser, setSelectedUser] = useState();
-  const  [productAdd,setProductAdd] = useState(); 
+   const  [productAdd,setProductAdd] = useState(); 
    const [isCartOpen,setIsCartOpen] = useState(false);
    const {loading:loading_products,error:error_products,data:data_products} = useQuery(getProducts)
    const {loading:loading_users,error:error_users,data:data_users} = useQuery(getUsers)
@@ -43,13 +43,17 @@ const SaleManagement = () => {
       {isOrder && selectedUser && <Order user={selectedUser}/> }
       {isOrder && !selectedUser? <p className="bg-danger position-fixed top-0 left-0 w-50 text-white p-2">please select user</p>:''}
      <div>
-     <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn border border-light text-white position-relative',styles.buttonCart)}>{isCartOpen ?CloseCart():showCart()}
+     <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn border border-light text-white position-relative z-index-10',styles.buttonCart)}>{isCartOpen ?CloseCart():showCart()}
      <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2">{carts.length}<span class="visually-hidden"></span></span>
-     {isCartOpen && <Cart />}
-     
      </button>
-
+     <button className="position-relative btn btnAomacanada ">Check
+     
+     {isCartOpen && <Cart />}
+     </button>
      </div>
+     
+     
+
      <h3>Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2">Create Customer</button>
      {isCreateCustomer && <UserManagement />}
     

@@ -49,9 +49,9 @@ const Order = ({ user }) => {
   }
 
   return (
-    <div className={clsx("bg-dark text-white p-5 rounded", styles.containerOrder)}>
+    <div className={clsx("bg-light border border-dark text-white p-5 rounded shadow ", styles.containerOrder)}>
      
-      <div className={clsx("bg-white text-dark ", styles.formOrder)}>
+      <div className={clsx("bg-white text-dark shadow", styles.formOrder)}>
         <div className="pb-2 border-bottom border-dark">
         <button className="btn border bg-success text-light border-dark px-2 mx-2 shadow" onClick={() => handleCreateOrder()}>Tạo Hóa Đơn</button>
       <button className="btn mx-2 px-4 border border-dark btn-danger shadow" onClick={() => handleOrder()}>

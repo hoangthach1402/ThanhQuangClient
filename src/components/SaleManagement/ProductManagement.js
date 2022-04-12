@@ -67,7 +67,7 @@ const ProductManagement = () => {
         </button>
         {isAddProduct && <FormAddProduct handleIsAdd={handleIsAdd} />}
         <div className="row">
-          <div className="col-6">
+          <div className="col-xs-12 col-md-6 col-lg-6 col-xl-6">
             <table className={clsx(" ", styles.tableContainer)}>
               <thead>
                 <tr>
@@ -118,7 +118,7 @@ const ProductManagement = () => {
               </tbody>
             </table>
           </div>
-          <div className="col-6 border">
+          <div className="col-xs-12 border col-md-6 col-lg-6 col-xl-6 ">
             {!productSelected && <p>Please Select you want to Edit ^^</p>}
             {productSelected && (
               <div>
