@@ -12,6 +12,32 @@ const getProducts = gql`
     }
   }
 `;
+const getProductWithOrders =gql`
+query getProductWithOrders($productId: ID!){
+  product(id: $productId) {
+    id 
+    name 
+    price
+    stock
+    type 
+    orders {
+      id
+      user{
+        name 
+      }
+      payying
+      products {
+        img
+        name
+        stock 
+        price
+        type 
+      }
+    } 
+  }
+}
+`
+
 const getUser = gql`
 query getUserById($userId: ID!){
   user(id: $userId) {
@@ -80,4 +106,5 @@ export {
   getProducts,
   getOrderByUser,
   getOrders,
+  getProductWithOrders
 };

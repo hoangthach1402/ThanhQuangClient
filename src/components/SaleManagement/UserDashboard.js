@@ -48,7 +48,9 @@ const UserDashboard = () => {
        if(user_data){
            const findUser = user_data.users.find(u=>u.id===selectedUserId)
            setEditUserState({...editUserState,...findUser});
+
         }
+        // getUser({variables:{userId:selectedUserId}})
     },[selectedUserId])
 
 
@@ -112,7 +114,7 @@ const UserDashboard = () => {
       </div>
         <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 bg-dark text-white ">
             {u_loading && <p>Loading ...</p>}
-            {u_data && <div className='p-4 border-start border-light'>
+            {u_data && <div className='p-4 border-start border-light '>
                <div className="mb-4 border-bottom border-light py-2">
 
                 <button onClick={()=>handleUpdate(u_data.user.id)} className="btn btn-success">Update User Info</button>
@@ -127,9 +129,9 @@ const UserDashboard = () => {
                 </>
                 }
                 {u_data.user.orders.map(order=>(
-                <div key={order.id} className="bg-white text-black p-2 border border-dark">
+                <div key={order.id} className="bg-white text-black p-2 m-3 border border-dark w-100">
                     <p className="fw-bold border-bottom border-dark">Ma Don: {order.id}</p>
-                    <table className="border p-2 border-dark">
+                    <table className="border p-3 border-dark w-100">
                         <tr className="p-2">
                             <th>#</th>
                             <th>Name</th>
@@ -145,10 +147,10 @@ const UserDashboard = () => {
                                 <td>{product.stock}</td>
                             </tr>
                         ))}
-                         <p className="fw-bold text-light p-2 bg-dark  "><span>&#128181;</span>Tong Cong:  ${order.products.reduce((a,b)=>{
+                         <p className="fw-bold text-light p-2 bg-dark mt-2 d-block w-80"><span>&#128181; </span> Tong Cong:  ${order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
                          },0)} </p>
-                         <p className="text-light bg-primary fw-bold p-2"><span>&#128181;</span> Da thanh toan : ${order.payying}</p>
+                         <p className="text-light bg-primary fw-bold p-2"><span>&#128181; </span> Da thanh toan : ${order.payying}</p>
                          { order.payying < order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
                          },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying))):CompletePayment()}

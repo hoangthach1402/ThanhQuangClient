@@ -55,14 +55,15 @@ const SaleManagement = () => {
      </div>
      
      
-
-     <h3>Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2">Create Customer</button>
+     
+     <h3>Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2">Tạo Khách Hàng Mới</button>
      {isCreateCustomer && <UserManagement />}
     
      <select name="" id=""
      onChange={(e)=>setSelectedUserId(e.target.value)}
      >
-     <option value="">Select User</option>
+     
+     <option value="">Chọn Khách Hàng </option>
      {data_users && data_users.users.map(user=>(
       <option value={user.id} key={user.id}>{user.name}</option>
      ))}
@@ -71,21 +72,22 @@ const SaleManagement = () => {
       
       {data_products && data_products.products.map(product=>(
         <div key={product.id} className="cardItem bg-light p-2 border text-black">
-        <div className={clsx(styles.cartProduct)}>
+      
         <div className="imgContainer">
         <img className="card-img" src={product.img} alt="Card image cap" />
         </div>
         <div className="cardContent">
         <div className="cardContent__Top">
          {/* {product.name} */}
-        <p>Ten San Pham: <span className="fw-bold">{product.name}</span></p>
-        <p>Gia: <span className="fw-bold text-danger">${product.price}</span></p>
-        <p>Loai: <span className="fw-bold">{product.type}</span></p>
+        <p>Tên Sản Phẩm: <span className="fw-bold">{product.name}</span></p>
+        <p>Gía : <span className="fw-bold text-danger">${product.price}</span></p>
+        <p>Loại : <span className="fw-bold">{product.type}</span></p>
+        <p>Hàng Còn : <span className="fw-bold ">{product.stock}</span></p>
         </div> 
     <div className="cardContent__Bottom">
     <button className="btn border border-dark" onClick={()=>addToCart({...product,stock:1})}>Them Vao Gio Hang <i className="fa-solid fa-cart-shopping"></i></button>
     </div>
-       </div>
+       
   </div>
         </div>
        
