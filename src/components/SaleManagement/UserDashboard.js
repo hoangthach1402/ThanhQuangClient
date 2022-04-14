@@ -147,14 +147,14 @@ const UserDashboard = () => {
                                 <td>{product.stock}</td>
                             </tr>
                         ))}
-                         <p className="fw-bold text-light p-2 bg-dark mt-2 d-block w-80"><span>&#128181; </span> Tong Cong:  ${order.products.reduce((a,b)=>{
+                    </table>
+                    <p className="fw-bold text-light p-2 bg-dark  d-block w-80"><span>&#128181; </span> Tong Cong:  ${order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
                          },0)} </p>
                          <p className="text-light bg-primary fw-bold p-2"><span>&#128181; </span> Da thanh toan : ${order.payying}</p>
                          { order.payying < order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
-                         },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying))):CompletePayment()}
-                    </table>
+                         },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying))):CompletePayment()}      
                     <button className="btn border  border-dark" onClick={()=>handleDeleteOrder(order.id)}>Xoa Hoa Don </button>  
                 </div>
                 ))}
