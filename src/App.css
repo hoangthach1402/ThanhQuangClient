@@ -72,3 +72,20 @@ transform: translateX(-100%);
     }
 }
 
+.containerApp{
+margin-top: 90px;
+}
+.navMobile{
+position: fixed;
+top:0;
+right:0;
+left:0;
+z-index: 5;
+}
+.navPc{
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    z-index: 5;
+}

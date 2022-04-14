@@ -61,15 +61,16 @@ function App() {
   {/* <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> */}
 </div>
     }
-    <div className="border-bottom pb-2 border-dark m-2 d-flex flex-wrap d-none d-sm-none d-md-block">
+    <div className="bg-light shadow d-flex flex-wrap d-none d-sm-none d-md-block navPc">
     <span className="fs-3 fw-bold">&#128018; SaleLIKEMonkey</span>
-      <button className={clsx('btn border-end',selectStation==='userDashboard'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('userDashboard')}><span>📚 </span>User Management </button>
+      <button className={clsx('btn border-end',selectStation==='userDashboard'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('userDashboard')}><span>📚 </span>User </button>
       <button className={clsx('btn border-end px-4',selectStation==='Sale'&& 'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('Sale')}>🛍️ Sale </button>
-      <button className={clsx('btn border-end',selectStation==='ProductManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('ProductManagement')}>🏠 Product Management</button>
-      <button className={clsx('btn border-end',selectStation==='orderManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('orderManagement')}>📦 Order Management</button>
-      <button className={clsx('btn border-end',selectStation==='historyProduct'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('historyProduct')}><span>&#128214;</span> Lịch Sử Hàng </button>
+      <button className={clsx('btn border-end',selectStation==='ProductManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('ProductManagement')}>🏠 Product</button>
+      <button className={clsx('btn border-end',selectStation==='orderManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('orderManagement')}>📦 Order </button>
+      <button className={clsx('btn border-end',selectStation==='historyProduct'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('historyProduct')}><span>&#128214;</span> Lịch Sử  
+      </button>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none navMobile">
   <div class="container-fluid">
     <p><span className="fs-1 fw-bold">&#128018;</span> <span className="fs-1 fw-bold">SaleLIKEMonkey</span></p>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,22 +79,22 @@ function App() {
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-      <div className={clsx('btn border-end',selectStation==='userDashboard'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('userDashboard')}><span>📚 </span>User Management </div>
+      <div className={clsx('btn border-end',selectStation==='userDashboard'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('userDashboard')}><span>📚 </span>User</div>
         </li>
         <li>
       <div className={clsx('btn border-end px-4',selectStation==='Sale'&& 'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('Sale')}>🛍️ Sale </div>
         </li>
 
         <li>
-      <div className={clsx('btn border-end',selectStation==='ProductManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('ProductManagement')}>🏠 Product Management</div>
+      <div className={clsx('btn border-end',selectStation==='ProductManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('ProductManagement')}>🏠 Product</div>
 
         </li>
         <li>
-      <div className={clsx('btn border-end',selectStation==='orderManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('orderManagement')}>📦 Order Management</div>
+      <div className={clsx('btn border-end',selectStation==='orderManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('orderManagement')}>📦 Order </div>
 
         </li>
         <li>
-      <div className={clsx('btn border-end',selectStation==='historyProduct'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('historyProduct')}><span>&#128214;</span> Lịch Sử Hàng </div>
+      <div className={clsx('btn border-end',selectStation==='historyProduct'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('historyProduct')}><span>&#128214;</span> Lịch Sử  </div>
 
         </li>
 
@@ -104,12 +105,13 @@ function App() {
   </div>
 </nav>
 
-
+      <div className="containerApp">
       {selectStation==='Sale' && <SaleManagement /> }
       {selectStation==='userDashboard' && <UserDashboard /> }
       {(selectStation==='ProductManagement') && <ProductManagement />}
       {(selectStation==='orderManagement') && <OrderManagement />}
       {(selectStation==='historyProduct') && <ProductHistory />}
+      </div>
   
       
     </ThanhQuangContext.Provider>
