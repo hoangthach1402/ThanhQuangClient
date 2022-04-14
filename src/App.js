@@ -15,6 +15,9 @@ function App() {
   const [carts,setCarts] =useState([]) 
   const [isSelectedBtn,setIsSelectedBtn] = useState(); 
   const [isSuccessCreateUser,setIsSuccessCreateUser] = useState(false);
+  useEffect(() => {
+  setIsOrder(false);
+  },[selectStation])
   const handleIsOrderSuccess=()=>{
     setIsOrderSuccess(!isOrderSuccess);
   }
