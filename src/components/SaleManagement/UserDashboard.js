@@ -121,12 +121,28 @@ const UserDashboard = () => {
                 <button onClick={()=>handleDeleteUser(u_data.user.id)} className="btn btn-danger mx-2">Delete</button>
                </div>
                 {editUserState && 
-                <>
-                <p>Ten Khach Hang: <input onInput={(e)=>handleChange({name:e.target.value})} value={editUserState.name}/> </p>
-                <p>Dia Chi : <input  onInput={e=>handleChange({address:e.target.value})} value={editUserState.address}/></p>
-                <p>So Dien Thoai :<input onInput={e=>handleChange({mobile:e.target.value})} value={editUserState.mobile}/></p>
+                <div>
+                <div className="row border p-4">
+                <div className="col-sm-6 col-md-4 ">Ten Khach Hang:</div>
+                <div className="col-sm-6 col-md-8">
+                 <input className="w-100" onInput={(e)=>handleChange({name:e.target.value})} value={editUserState.name}/> 
+                </div>
+                 <div className="col-sm-6 col-md-4">
+                 Dia Chi :
+                 </div>  
+                 <div className="col-sm-6 col-md-8 ">
+                 <input className="w-100" onInput={e=>handleChange({address:e.target.value})} value={editUserState.address}/>
+                 </div> 
+                 <div className="col-sm-6 col-md-4">
+                 So Dien Thoai :
+                 </div>   
+                 <div className="col-sm-6 col-md-8">
+                     <input className="w-100" onInput={e=>handleChange({mobile:e.target.value})} value={editUserState.mobile}/>
+                 </div>   
 
-                </>
+                </div>
+
+                </div>
                 }
                 {u_data.user.orders.map(order=>(
                 <div key={order.id} className="bg-white text-black p-2 m-3 border border-dark w-100">
