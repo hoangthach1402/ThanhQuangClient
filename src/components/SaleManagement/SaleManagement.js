@@ -53,7 +53,7 @@ const SaleManagement = () => {
     );
   };
   return (
-    <div className="container  text-white p-3">
+    <div className="container  text-white ">
        <h4 className="text-dark text-center border-bottom border-dark ">SALE</h4> 
       {isOrder && selectedUser && <Order user={selectedUser} />}
       {isOrder && !selectedUser ? (

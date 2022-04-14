@@ -52,15 +52,20 @@ function App() {
     {isOrderSuccess && 
       <div className="alert alert-success alert-dismissible fade show" role="alert">
   <strong>Tao Don Hang Thanh Cong </strong> 
-  {/* <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> */}
+  <button type="button" class="btn-close" ></button>
 </div>
     }
+    
     {isSuccessCreateUser && 
       <div className="alert alert-success alert-dismissible fade show" role="alert">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     Tao Khach Hang Thanh Cong
-  {/* <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> */}
 </div>
     }
+    <div className="alert alert-success alert-dismissible fade show w-80 index-10 btnAlert" role="alert">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+     <p>Tao Khach Hang Thanh Cong !</p> 
+</div>
     <div className="bg-light shadow d-flex flex-wrap d-none d-sm-none d-md-block navPc">
     <span className="fs-3 fw-bold">&#128018; SaleLIKEMonkey</span>
       <button className={clsx('btn border-end',selectStation==='userDashboard'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('userDashboard')}><span>📚 </span>User </button>

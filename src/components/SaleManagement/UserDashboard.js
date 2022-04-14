@@ -1,10 +1,12 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import {useQuery,useMutation} from '@apollo/client';
 import {deleteOrder,editUser,deleteUser} from '../../graphql-client/mutations';
 import UserManagement from './UserManagement';
 import {getUsers,getUser,getOrders} from '../../graphql-client/queries';
+import {ThanhQuangContext} from '../../App'
 import clsx from 'clsx';
 const UserDashboard = () => {
+    const {handleCreateUserSuccess} = useContext(ThanhQuangContext)  
    const [editUserValue,editUserMutate] = useMutation(editUser,{
        refetchQueries:[{query:getUsers}]
    })
@@ -21,13 +23,7 @@ const UserDashboard = () => {
     const [editUserState,setEditUserState] =useState({name:"",mobile:"",address:""});
   
     const handleUpdate =(id)=>{
-        // const testQuery ={
-        //     editUserId:selectedUserId,
-        //     name:editUserState.name,
-        //     mobile:editUserState.mobile,
-        //     address:editUserState.address
-        // }
-        // console.log(testQuery)
+      
             editUserValue({variables:{
             editUserId:selectedUserId,
             name:editUserState.name,
@@ -36,6 +32,7 @@ const UserDashboard = () => {
         },
         refetchQueries: [{ query:getUser,variables:{userId:selectedUserId}}]
     })
+      
     }
 
    const {loading:u_loading,error:u_err,data:u_data} = useQuery(getUser,{
@@ -87,12 +84,19 @@ const UserDashboard = () => {
         <p className="text-light bg-success fw-bold p-2 text-end">Da Thanh Toan <i className="border p-1 bg-light border-light rounded-circle  text-success fa-solid fs-5 fa-check"></i></p>
     )
    }
+   const handleIsCreateUserDashboard =()=>{
+     console.log('run')
+     setIsCreate(!isCreate)
+   }
+   const test=()=>{
+   console.log('test')
+   }
     let n=0;
     return (
-    <div className="bg-light">
+    <div className="bg-light ">
         <h4 className="text-dark text-center border-bottom border-dark ">USERS</h4>
      <button className="btn border border-dark bg-light text-dark m-2 "  onClick={()=>setIsCreate(!isCreate)}>Create Customer</button>
-      {isCreate && <UserManagement />}  
+      {isCreate && <UserManagement handleIsCreateUserDashboard={handleIsCreateUserDashboard}/>}  
       <div className="row  text-dark">
       <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 p-3 border border-light p-2">
       <table className="table   table-striped">
