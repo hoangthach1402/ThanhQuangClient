@@ -26,8 +26,9 @@ const UserManagement = ({handleIsCreate,test,handleIsCreateUserDashboard}) => {
     });
     handleCreateUserSuccess()
     // handleIsCreate();
-    handleIsCreateUserDashboard()
-    // handleIsCreateUserDashboard();
+    // handleIsCreateUserDashboard
+    
+    handleIsCreateUserDashboard();
     setUser({
       name: "",
     mobile: "",

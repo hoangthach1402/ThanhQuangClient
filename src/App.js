@@ -46,10 +46,10 @@ function App() {
   carts,handleRemoveCart,handleAddToCart,addToCart,handleOrder,isOrder,handleNewCarts,handleSetCarts
   ,handleCreateUserSuccess,isSuccessCreateUser,handleIsOrderSuccess
   };
-
+  console.log(isSuccessCreateUser)
   return (
     <ThanhQuangContext.Provider value={ThanhQuangContextValue}>
-    {isOrderSuccess && 
+    {/* {isOrderSuccess && 
       <div className="alert alert-success alert-dismissible fade show" role="alert">
   <strong>Tao Don Hang Thanh Cong </strong> 
   <button type="button" class="btn-close" ></button>
@@ -61,9 +61,13 @@ function App() {
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     Tao Khach Hang Thanh Cong
 </div>
-    }
-    <div className="alert alert-success alert-dismissible fade show w-80 index-10 btnAlert" role="alert">
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    } */}
+    <div className={clsx('alert alert-success alert-dismissible fade  btnAlert',isOrderSuccess?'show':'d-none')} role="alert">
+  <strong>Tao Don Hang Thanh Cong </strong> 
+  <button onClick={()=>setIsOrderSuccess(!isOrderSuccess)} class="btn-close" ></button>
+</div>
+    <div className={clsx('alert alert-success alert-dismissible fade w-80 index-10 btnAlert',isSuccessCreateUser?'show':'d-none')} role="alert">
+  <button  onClick={()=>setIsSuccessCreateUser(!isSuccessCreateUser)} class="btn-close" ></button>
      <p>Tao Khach Hang Thanh Cong !</p> 
 </div>
     <div className="bg-light shadow d-flex flex-wrap d-none d-sm-none d-md-block navPc">
@@ -78,38 +82,27 @@ function App() {
     <nav class="navbar navbar-expand-lg navbar-light bg-light opacity-100 d-md-none navMobile shadow">
   <div class="container-fluid ">
   
-    {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
-    </button> */}
-      <span onClick={()=>setSelectStation('userDashboard')} className='btn border'>📚</span>
-      <span onClick={()=>setSelectStation('Sale')} className="btn">🛍️</span>
-      <span  onClick={()=>setSelectStation('ProductManagement')} className="btn">🏠</span>
-      <span  onClick={()=>setSelectStation('orderManagement')} className="btn">📦</span>
-      <span onClick={()=>setSelectStation('historyProduct')} className="btn">&#128214;</span>
+    </button>
+      <span onClick={()=>setSelectStation('userDashboard')} className={clsx('btn',selectStation==='userDashboard'?'bg-dark':'')} >📚</span>
+      <span onClick={()=>setSelectStation('Sale')} className={clsx('btn',selectStation==='Sale'?'bg-dark':'')}>🛍️</span>
+      <span  onClick={()=>setSelectStation('ProductManagement')} className={clsx('btn',selectStation==='ProductManagement'?'bg-dark':'')}>🏠</span>
+      <span  onClick={()=>setSelectStation('orderManagement')} className={clsx('btn',selectStation==='orderManagement'?'bg-dark':'')}>📦</span>
+      <span onClick={()=>setSelectStation('historyProduct')} className={clsx('btn',selectStation==='historyProduct'?'bg-dark':'')}>&#128214;</span>
       <p><span className="fs-1 fw-bold">&#128018;</span></p>
 
-    {/* <div className="collapse navbar-collapse shadow border-bottom border-dark" id="navbarNavDarkDropdown">
+    <div className="collapse navbar-collapse shadow border-bottom border-dark" id="navbarNavDarkDropdown">
       <ul className="navbar-nav">
         <li className="nav-item dropdown">
-      <div className={clsx('w-100 text-left py-2 rounded-pill',selectStation==='userDashboard'&&'border border-dark')} onClick={()=>setSelectStation('userDashboard')}><span>&nbsp; 📚</span>User</div>
+      <div className={clsx('w-100 text-left py-2 rounded-pill')} >Dang nhap</div>
         </li>
-        <li>
-      <div className={clsx('w-100 text-left py-2 rounded-pill',selectStation==='Sale'&& ' border border-dark')} onClick={()=>setSelectStation('Sale')}>&nbsp;🛍️ Sale </div>
-        </li>
-
-        <li>
-      <div className={clsx('w-100 text-left py-2 rounded-pill',selectStation==='ProductManagement'&&' border border-dark')} onClick={()=>setSelectStation('ProductManagement')}>&nbsp; 🏠 Product</div>
-
-        </li>
-        <li>
-      <div className={clsx('w-100 text-left py-2 rounded-pill',selectStation==='orderManagement'&&' border border-dark')} onClick={()=>setSelectStation('orderManagement')}>&nbsp; 📦 Order </div>
-
-        </li>
-        <li>
-        <div className={clsx('w-100 text-left py-2 rounded-pill',selectStation==='historyProduct'&&' border border-dark')} onClick={()=>setSelectStation('historyProduct')}><span>&nbsp;&#128214;</span> Lịch Sử  </div>
+        <li className="nav-item dropdown">
+      <div className={clsx('w-100 text-left py-2 rounded-pill')} >Dang Xuat</div>
         </li>
       </ul>
-    </div> */}
+   
+    </div>
   </div>
 </nav>
 
