@@ -28,7 +28,7 @@ const OrderManagement = () => {
   return (
     
     <div className="bg-white">
-    <h3>Welcome Order Management Station</h3>
+    <h4 className="text-center text-dark border-bottom border-dark">ORDERS</h4>
     <div className='row'>
       <div className="col-6">
         {data && data.orders.map(order=>(

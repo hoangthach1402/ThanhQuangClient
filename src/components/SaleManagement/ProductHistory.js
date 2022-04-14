@@ -27,6 +27,7 @@ const ProductHistory = () => {
   // },[selectProductId])
   return (
     <div className="">
+        <h4 className="text-center text-dark border-bottom border-dark">History</h4>
       <div className="row">
         <div className="col-xs-12 col-md-6 p-2 border-end border-light p-4">
               <table className="table table-striped">

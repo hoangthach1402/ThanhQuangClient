@@ -57,7 +57,7 @@ const ProductManagement = () => {
   let n = 1;
   return (
     <div>
-      <h4>Welcome : Product Management Station</h4>
+      <h4 className='text-dark text-center border-bottom border-dark'>Products</h4>
       <div className="bg-light text-dark py-5">
         <button
           onClick={() => setIsAddProduct(!isAddProduct)}

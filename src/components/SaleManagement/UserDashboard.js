@@ -90,7 +90,7 @@ const UserDashboard = () => {
     let n=0;
     return (
     <div className="bg-light">
-   
+        <h4 className="text-dark text-center border-bottom border-dark ">USERS</h4>
      <button className="btn border border-dark bg-light text-dark m-2 "  onClick={()=>setIsCreate(!isCreate)}>Create Customer</button>
       {isCreate && <UserManagement />}  
       <div className="row  text-dark">

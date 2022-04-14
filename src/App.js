@@ -70,40 +70,47 @@ function App() {
       <button className={clsx('btn border-end',selectStation==='historyProduct'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('historyProduct')}><span>&#128214;</span> Lịch Sử  
       </button>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none navMobile">
-  <div class="container-fluid">
-    <p><span className="fs-1 fw-bold">&#128018;</span> <span className="fs-1 fw-bold">SaleLIKEMonkey</span></p>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-      <div className={clsx('btn border-end',selectStation==='userDashboard'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('userDashboard')}><span>📚 </span>User</div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light opacity-100 d-md-none navMobile shadow">
+  <div class="container-fluid ">
+  
+    {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button> */}
+      <span onClick={()=>setSelectStation('userDashboard')} className='btn border'>📚</span>
+      <span onClick={()=>setSelectStation('Sale')} className="btn">🛍️</span>
+      <span  onClick={()=>setSelectStation('ProductManagement')} className="btn">🏠</span>
+      <span  onClick={()=>setSelectStation('orderManagement')} className="btn">📦</span>
+      <span onClick={()=>setSelectStation('historyProduct')} className="btn">&#128214;</span>
+      <p><span className="fs-1 fw-bold">&#128018;</span></p>
+
+    {/* <div className="collapse navbar-collapse shadow border-bottom border-dark" id="navbarNavDarkDropdown">
+      <ul className="navbar-nav">
+        <li className="nav-item dropdown">
+      <div className={clsx('w-100 text-left py-2 rounded-pill',selectStation==='userDashboard'&&'border border-dark')} onClick={()=>setSelectStation('userDashboard')}><span>&nbsp; 📚</span>User</div>
         </li>
         <li>
-      <div className={clsx('btn border-end px-4',selectStation==='Sale'&& 'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('Sale')}>🛍️ Sale </div>
+      <div className={clsx('w-100 text-left py-2 rounded-pill',selectStation==='Sale'&& ' border border-dark')} onClick={()=>setSelectStation('Sale')}>&nbsp;🛍️ Sale </div>
         </li>
 
         <li>
-      <div className={clsx('btn border-end',selectStation==='ProductManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('ProductManagement')}>🏠 Product</div>
+      <div className={clsx('w-100 text-left py-2 rounded-pill',selectStation==='ProductManagement'&&' border border-dark')} onClick={()=>setSelectStation('ProductManagement')}>&nbsp; 🏠 Product</div>
 
         </li>
         <li>
-      <div className={clsx('btn border-end',selectStation==='orderManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('orderManagement')}>📦 Order </div>
+      <div className={clsx('w-100 text-left py-2 rounded-pill',selectStation==='orderManagement'&&' border border-dark')} onClick={()=>setSelectStation('orderManagement')}>&nbsp; 📦 Order </div>
 
         </li>
         <li>
-      <div className={clsx('btn border-end',selectStation==='historyProduct'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('historyProduct')}><span>&#128214;</span> Lịch Sử  </div>
-
+        <div className={clsx('w-100 text-left py-2 rounded-pill',selectStation==='historyProduct'&&' border border-dark')} onClick={()=>setSelectStation('historyProduct')}><span>&nbsp;&#128214;</span> Lịch Sử  </div>
         </li>
+      </ul>
+    </div> */}
+  </div>
+</nav>
+
 
         
        
-      </ul>
-    </div>
-  </div>
-</nav>
 
       <div className="containerApp">
       {selectStation==='Sale' && <SaleManagement /> }
