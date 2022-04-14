@@ -15,6 +15,9 @@ const SaleManagement = () => {
   const [selectedUser, setSelectedUser] = useState();
   const [productAdd, setProductAdd] = useState();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  useEffect(() => {
+  setIsClose(false)
+  },[isOrder])
   const {
     loading: loading_products,
     error: error_products,
@@ -64,9 +67,9 @@ const SaleManagement = () => {
       ) : (
         ""
       )} */}
-      <div className={clsx('alert alert-warning alert-dismissible fade  btnAlert',isOrder && !selectedUser?'show':'d-none')} role="alert">
+      <div className={clsx('alert alert-warning alert-dismissible fade  btnAlert',isOrder && !selectedUser&&!isClose?'show':'d-none')} role="alert">
     <strong>Vui Long Chon Khach Hang</strong> 
-    {/* <button  class="btn-close" >X</button> */}
+    <button  onClick={()=>setIsClose(true)} class="btn-close" >X</button>
   </div>
       
       <div>
