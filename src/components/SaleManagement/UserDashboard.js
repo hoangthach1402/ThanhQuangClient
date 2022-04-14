@@ -79,12 +79,12 @@ const UserDashboard = () => {
 
    const DebtToString=(debt)=>{
     return (
-        <p className="bg-danger text-light fw-bold p-2"><span >&#128405;</span>Can Thanh Toan : ${debt} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></p>
+        <p className="bg-danger text-light fw-bold p-2 text-end"><span >&#128405;</span>Can Thanh Toan : ${debt} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></p>
     )
    }
    const CompletePayment =()=>{
     return (
-        <p className="text-light bg-success fw-bold p-2">Da Thanh Toan <i className="border p-1 bg-light border-light rounded-circle  text-success fa-solid fs-5 fa-check"></i></p>
+        <p className="text-light bg-success fw-bold p-2 text-end">Da Thanh Toan <i className="border p-1 bg-light border-light rounded-circle  text-success fa-solid fs-5 fa-check"></i></p>
     )
    }
     let n=0;
@@ -164,14 +164,14 @@ const UserDashboard = () => {
                             </tr>
                         ))}
                     </table>
-                    <p className="fw-bold text-light p-2 bg-dark  d-block w-80"><span>&#128181; </span> Tong Cong:  ${order.products.reduce((a,b)=>{
+                    <p className="fw-bold text-light p-2 bg-dark  d-block w-80 text-end"><span>&#128181; </span> Tong Cong:  ${order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
                          },0)} </p>
-                         <p className="text-light bg-primary fw-bold p-2"><span>&#128181; </span> Da thanh toan : ${order.payying}</p>
+                         <p className="text-light bg-primary fw-bold p-2 text-end"><span>&#128181; </span> Da thanh toan : ${order.payying}</p>
                          { order.payying < order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
                          },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying))):CompletePayment()}      
-                    <button className="btn border  border-dark" onClick={()=>handleDeleteOrder(order.id)}>Xoa Hoa Don </button>  
+                    <button className="btn border  border-dark d-block ms-auto" onClick={()=>handleDeleteOrder(order.id)}>Xoa Hoa Don </button>  
                 </div>
                 ))}
 
