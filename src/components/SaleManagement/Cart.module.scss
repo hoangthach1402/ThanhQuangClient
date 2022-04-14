@@ -50,12 +50,17 @@ right:0;
 left:0;
 position:absolute;
 
-z-index: 4;
+z-index: 9;
 .formOrder{
 padding:20px;
-
-
-overflow:auto !important;
+position:fixed;
+top: 0;
+right:0;
+left:0;
+bottom: 0;
+width:100vw;
+height:100vh;
+overflow:auto;
 }
 }
 
