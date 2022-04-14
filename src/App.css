@@ -28,7 +28,7 @@ justify-content: flex-start;
 }
 .imgContainer{
     margin:auto;
-    width: 200px;
+    width: fit-content;
     height: 200px;
     flex-shrink: 0;
 }
@@ -49,6 +49,18 @@ justify-content: center;
 margin-top: auto;
 margin-left: auto;
 margin-right: auto;
+}
+.btnAoMaFloridaChild{
+z-index: 2;
+position:fixed;
+top:65px;
+right:5%;
+}
+.btnAoMaFloridaParent{
+    z-index: 5;
+position:fixed;
+top:65px;
+right:5%;
 }
 .btnAomacanada{
 z-index: 2;
@@ -71,7 +83,13 @@ transform: translateX(-100%);
     /* text-align: center; */
     }
 }
+.productHistoryInfo{
+position:sticky;
+top: 0;
+    left: 0;
+    right: 0;
 
+}
 .containerApp{
 margin-top: 90px;
 }
@@ -95,4 +113,28 @@ position:fixed;
 right:0;
 top:60px;
 height:50px;
+}
+.userDashboard__Info{
+position:sticky;
+top:0;
+left:0;
+right:0;
+}
+.vh-50{
+height:50vh;
+}
+.sticky-0{
+position:sticky;
+top:0;
+left:0;
+right:0;
+}
+.max-height50{
+max-height: 50%;
+}
+.max-height100vh{
+max-height:100vh;
+}
+.userDashboard__Left{
+max-height: 50vh;
 }

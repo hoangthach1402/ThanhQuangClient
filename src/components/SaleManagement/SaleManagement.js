@@ -68,7 +68,7 @@ const SaleManagement = () => {
         <button
           onClick={() => setIsCartOpen(!isCartOpen)}
           className={clsx(
-            "btn border border-light bg-dark text-light position-relative ",
+            "btn border border-light bg-dark text-light btnAoMaFloridaParent ",
             styles.buttonCart
           )}
         >
@@ -78,7 +78,7 @@ const SaleManagement = () => {
             <span class="visually-hidden"></span>
           </span>
         </button>
-        <button className="position-relative btn btnAomacanada ">
+        <button className="btn btnAoMaFloridaChild ">
           Check
           {isCartOpen && <Cart />}
         </button>

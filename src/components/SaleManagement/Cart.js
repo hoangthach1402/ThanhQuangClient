@@ -36,7 +36,7 @@ const Cart = () => {
         </div>
         ))
         }
-       {carts.length!==0 && <button className="btn btn-dark" onClick={()=>handleOrder()}>Order <span>&#129297;</span></button>} 
+       {carts.length!==0 && <button className="btn border border-dark " onClick={()=>handleOrder()}>Thanh Toan<span>&#129297;</span></button>} 
       
     </div>
        

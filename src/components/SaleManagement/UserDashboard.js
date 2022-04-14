@@ -99,61 +99,90 @@ const UserDashboard = () => {
      <button className="btn border border-dark bg-light text-dark m-2 "  onClick={()=>setIsCreate(!isCreate)}>Create Customer</button>
       {isCreate && <UserManagement handleIsCreateUserDashboard={handleIsCreateUserDashboard}/>}  
       <div className="row  text-dark">
-      <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 p-3 border border-light p-2">
-      <table className="table   table-striped">
-          <thead className="">
-              <th>#</th>
-              <th>Name</th>
-              <th>Mobile</th>
-              <th>Address</th>
-          </thead>
-              <tbody>
-              
-              {user_data && user_data.users.map(user=>(
-              <tr className={clsx(selectedUserId===user.id && 'table-active')} key={user.id} onClick={setSelectedUserId.bind(this,user.id)}>
-                  <td>{++n}</td>
-                  <td>{user.name}</td>
-                  <td>{user.mobile}</td>
-                  <td>{user.address}</td>
-              </tr>
-          ))}
-              </tbody>
-      </table>
+      <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 border border-light userDashboard__Left overflow-auto  ">
+      
+      <div className="accordion-item ">
+        <h2 className="accordion-header sticky-0" id="panelsStayOpen-headingTwo">
+          <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-four" aria-expanded="true" aria-controls="panelsStayOpen-four">
+            SHOW USER
+          </button>
+        </h2>
+        <div id="panelsStayOpen-four" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+          <div className="accordion-body">
+            <table className="table  max-height50 table-striped">
+                <thead className="">
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                </thead>
+                    <tbody>
+                    
+                    {user_data && user_data.users.map(user=>(
+                    <tr className={clsx(selectedUserId===user.id && 'table-active')} key={user.id} onClick={setSelectedUserId.bind(this,user.id)}>
+                        <td>{++n}</td>
+                        <td>{user.name}</td>
+                        <td>{user.mobile}</td>
+                        <td>{user.address}</td>
+                    </tr>
+                ))}
+                    </tbody>
+            </table>
+          </div>
+        </div>
+      </div>    
+     
       </div>
-        <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 bg-light text-dark ">
+        <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 bg-light text-dark max-height100vh overflow-auto">
             {u_loading && <p>Loading ...</p>}
-            {u_data && <div className='p-4 border-start border-light  border-start border-light'>
-               <div className="mb-4 border-bottom border-light py-2">
-
-                <button onClick={()=>handleUpdate(u_data.user.id)} className="btn btn-success">Update User Info</button>
-                <button onClick={()=>handleDeleteUser(u_data.user.id)} className="btn btn-danger mx-2">Delete</button>
-               </div>
-                {editUserState && 
-                <div>
-                <div className="row border p-4">
-                <div className="col-sm-6 col-md-4 fw-bold ">Ten Khach Hang:</div>
-                <div className="col-sm-6 col-md-8">
-                 <input className="w-100" onInput={(e)=>handleChange({name:e.target.value})} value={editUserState.name}/> 
+            {u_data && <div className='border-start border-light  border-start border-light'>
+                
+            <div class="accordion-item sticky-0">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-five" aria-expanded="false" aria-controls="panelsStayOpen-five">
+            Show User Info
+          </button>
+        </h2>
+        <div id="panelsStayOpen-five" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+            <div className="userDashboard__Info bg-light shadow">
+                <div className=" shadow">
+                 <button onClick={()=>handleUpdate(u_data.user.id)} className="btn btn-success">Update User Info</button>
+                 <button onClick={()=>handleDeleteUser(u_data.user.id)} className="btn btn-danger mx-2">Delete</button>
                 </div>
-                 <div className="col-sm-6 col-md-4 fw-bold">
-                 Dia Chi :
-                 </div>  
-                 <div className="col-sm-6 col-md-8 ">
-                 <input className="w-100" onInput={e=>handleChange({address:e.target.value})} value={editUserState.address}/>
-                 </div> 
-                 <div className="col-sm-6 col-md-4 fw-bold">
-                  Mobile:
-                 </div>   
+ 
+                 {editUserState && 
+                 <div>
+                 <div className="row border ">
+                 <div className="col-sm-6 col-md-4 fw-bold ">Ten Khach Hang:</div>
                  <div className="col-sm-6 col-md-8">
-                     <input className="w-100" onInput={e=>handleChange({mobile:e.target.value})} value={editUserState.mobile}/>
-                 </div>   
-
+                  <input className="w-100" onInput={(e)=>handleChange({name:e.target.value})} value={editUserState.name}/> 
+                 </div>
+                  <div className="col-sm-6 col-md-4 fw-bold">
+                  Dia Chi :
+                  </div>  
+                  <div className="col-sm-6 col-md-8 ">
+                  <input className="w-100" onInput={e=>handleChange({address:e.target.value})} value={editUserState.address}/>
+                  </div> 
+                  <div className="col-sm-6 col-md-4 fw-bold">
+                   Mobile:
+                  </div>   
+                  <div className="col-sm-6 col-md-8">
+                      <input className="w-100" onInput={e=>handleChange({mobile:e.target.value})} value={editUserState.mobile}/>
+                  </div>   
+                 </div>
+                 </div>
+                 }
                 </div>
+          </div>
+        </div>
+      </div>
+             
 
-                </div>
-                }
+               
+
                 {u_data.user.orders.map(order=>(
-                <div key={order.id} className="bg-white text-black p-2 m-3 border border-dark w-100">
+                <div key={order.id} className="bg-light text-black p-2 m-3 border border-dark w-100">
                     <p className="fw-bold border-bottom border-dark">Ma Don: {order.id}</p>
                     <table className="table table-striped">
                         <thead className="p-2">

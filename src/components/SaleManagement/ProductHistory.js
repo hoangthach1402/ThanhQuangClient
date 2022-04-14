@@ -61,8 +61,8 @@ const ProductHistory = () => {
             </div>
           )}
           {selectProductId && product_data && (
-            <div>
-              <div className="border-bottom mb-2 shadow p-2">
+            <div className="vh-100 overflow-auto">
+              <div className="border-bottom bg-light shadow productHistoryInfo">
                <p className=" border-bottom fs-4 text-dark fw-bold">Product Infomation</p>
               <p className=""><span className="text-dark fw-bold">TÊN SP :</span> <span className="mx-2 p-2 border-end">{product_data.product.name} </span>  <span className="text-dark fw-bold">GÍA :</span> <span className="text-success fw-bold"><span className="fs-4">$</span>{product_data.product.price}</span> </p>
              
