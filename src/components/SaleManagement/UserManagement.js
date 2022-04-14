@@ -3,7 +3,8 @@ import { createUser } from "../../graphql-client/mutations";
 import {getUsers} from '../../graphql-client/queries';
 import { useMutation, useQuery } from "@apollo/client";
 
-const UserManagement = () => {
+const UserManagement = ({handleIsCreate}) => {
+  
   const [user, setUser] = useState({
     name: "",
     mobile: "",
@@ -23,6 +24,12 @@ const UserManagement = () => {
       },
       refetchQueries: [{ query:getUsers}]
     });
+    handleIsCreate();
+    setUser({
+      name: "",
+    mobile: "",
+    address: "",
+    })
   };
 
   return (

@@ -32,6 +32,9 @@ const SaleManagement = () => {
       </>
     )
   }
+  const handleIsCreate =()=>{
+    setIsCreateCustomer(!isCreateCustomer);
+  }
   const CloseCart=()=>{
   return (
     <>
@@ -57,7 +60,7 @@ const SaleManagement = () => {
      
      
      <h3>Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2">Tạo Khách Hàng Mới</button>
-     {isCreateCustomer && <UserManagement />}
+     {isCreateCustomer && <UserManagement handleIsCreate={handleIsCreate}/>}
     
      <select name="" id=""
      onChange={(e)=>setSelectedUserId(e.target.value)}
