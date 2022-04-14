@@ -29,7 +29,7 @@ const ProductHistory = () => {
     <div className="">
       <div className="row">
         <div className="col-xs-12 col-md-6 p-2 border-end border-light p-4">
-              <table className="table bg-dark table-dark table-striped">
+              <table className="table table-striped">
                 <tr>
                   <th>#</th>
                   <th>Name</th>
@@ -37,9 +37,11 @@ const ProductHistory = () => {
                   <th>Price</th>
                   <th>SO LUONG</th>
                 </tr>
+          <tbody>
+          
           {products_data &&
             products_data.products.map((product,index) => (
-              <tr className={selectProductId==product.id &&'bg-light text-dark'} key={product.id} onClick={setSelectProductId.bind(this,product.id)}>
+              <tr className={selectProductId==product.id &&'table-active'} key={product.id} onClick={setSelectProductId.bind(this,product.id)}>
               <td>{++index}</td>          
               <td>{product.name}</td>          
               <td>{product.type}</td>          
@@ -48,6 +50,7 @@ const ProductHistory = () => {
               </tr>
             ))
         }
+          </tbody>
               </table>
               </div>
         <div className="col-xs-12 col-md-6 p-2">

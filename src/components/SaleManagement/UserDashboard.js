@@ -95,26 +95,29 @@ const UserDashboard = () => {
       {isCreate && <UserManagement />}  
       <div className="row  text-dark">
       <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 p-3 border border-light p-2">
-      <table className="table  table-striped table-hover">
+      <table className="table   table-striped">
           <thead className="">
               <th>#</th>
               <th>Name</th>
               <th>Mobile</th>
               <th>Address</th>
           </thead>
-          {user_data && user_data.users.map(user=>(
-              <tr className={clsx(selectedUserId===user.id && 'bg-dark text-light')} key={user.id} onClick={setSelectedUserId.bind(this,user.id)}>
+              <tbody>
+              
+              {user_data && user_data.users.map(user=>(
+              <tr className={clsx(selectedUserId===user.id && 'table-active')} key={user.id} onClick={setSelectedUserId.bind(this,user.id)}>
                   <td>{++n}</td>
                   <td>{user.name}</td>
                   <td>{user.mobile}</td>
                   <td>{user.address}</td>
               </tr>
           ))}
+              </tbody>
       </table>
       </div>
         <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 bg-light text-dark ">
             {u_loading && <p>Loading ...</p>}
-            {u_data && <div className='p-4 border-start border-light  border-start border-dark'>
+            {u_data && <div className='p-4 border-start border-light  border-start border-light'>
                <div className="mb-4 border-bottom border-light py-2">
 
                 <button onClick={()=>handleUpdate(u_data.user.id)} className="btn btn-success">Update User Info</button>

@@ -68,7 +68,7 @@ const ProductManagement = () => {
         {isAddProduct && <FormAddProduct handleIsAdd={handleIsAdd} />}
         <div className="row">
           <div className="col-xs-12 col-md-6 col-lg-6 col-xl-6">
-            <table className={clsx("table ", styles.tableContainer)}>
+            <table className={clsx("table  table-striped", styles.tableContainer)}>
               <thead>
                 <tr>
                   <th>#</th>
@@ -85,7 +85,7 @@ const ProductManagement = () => {
                     <tr
                       className={
                         selectedProductId === product.id &&
-                        "bg-dark text-light"
+                        "table-active"
                       }
                       key={product.id}
                       onClick={setselectedProductId.bind(this, product.id)}
