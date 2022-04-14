@@ -52,13 +52,13 @@ function App() {
     {isOrderSuccess && 
       <div className="alert alert-success alert-dismissible fade show" role="alert">
   <strong>Tao Don Hang Thanh Cong </strong> 
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  {/* <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> */}
 </div>
     }
     {isSuccessCreateUser && 
       <div className="alert alert-success alert-dismissible fade show" role="alert">
     Tao Khach Hang Thanh Cong
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  {/* <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> */}
 </div>
     }
     <div className="border-bottom pb-2 border-dark m-2 d-flex flex-wrap d-none d-sm-none d-md-block">

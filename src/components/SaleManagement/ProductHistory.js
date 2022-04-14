@@ -63,23 +63,24 @@ const ProductHistory = () => {
             <div>
               <div className="border-bottom mb-2 shadow p-2">
                <p className=" border-bottom fs-2 text-primary fw-bold">Product In4:</p>
-              <p className=""><span className="text-warning">TÊN SP :</span> <span className="mx-2 p-2 border-end">{product_data.product.name} </span>  <span className="text-warning">GÍA :</span> <span className="text-success fw-bold"><span className="fs-3">$</span>{product_data.product.price}</span> </p>
+              <p className=""><span className="text-dark fw-bold">TÊN SP :</span> <span className="mx-2 p-2 border-end">{product_data.product.name} </span>  <span className="text-dark fw-bold">GÍA :</span> <span className="text-success fw-bold"><span className="fs-4">$</span>{product_data.product.price}</span> </p>
              
-              <p> <span className="text-warning">SỐ LƯỢNG</span> <span className="border-end mx-2 px-2">{product_data.product.stock}</span>  <span className="text-warning">  Loại:</span> {product_data.product.type}</p>
+              <p> <span className="text-dark fw-bold">SỐ LƯỢNG</span> <span className="border-end mx-2 px-2">{product_data.product.stock}</span>  <span className="text-dark fw-bold">  Loại:</span> {product_data.product.type}</p>
             
               </div>
               <p><span className="text-dark fw-bold border-bottom my-2 blockquote">Sản Phẩm Được Bán Trong Những Đơn Này: </span></p>
               {product_data.product.orders.map(order=>(
-                  <div className="bg-light text-dark m-2 p-2 shadow">
+                  <div className="bg-light text-dark m-2 p-2 shadow border border-top border-dark">
                     <p>OrderId :{order.id}</p>  
                     <p>Khach Hang :{order.user.name}</p>
                     <table className="table ">
-                    <tr>
+                    <thead>
                         <th>#</th>
                         <th>Name</th>
                         <th>Price</th>
                         <th>So Luong</th>
-                    </tr>
+                    </thead>
+                      <tbody>
                     {order.products.map((product,index)=>(
                         <tr>
                         <td>{++index}</td>
@@ -88,6 +89,8 @@ const ProductHistory = () => {
                         <td className="text-center">{product.stock}</td>
                         </tr>
                     ))}  
+                      
+                      </tbody>
                     </table>
                   </div>
               ))}

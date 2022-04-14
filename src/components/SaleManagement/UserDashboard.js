@@ -150,13 +150,14 @@ const UserDashboard = () => {
                 {u_data.user.orders.map(order=>(
                 <div key={order.id} className="bg-white text-black p-2 m-3 border border-dark w-100">
                     <p className="fw-bold border-bottom border-dark">Ma Don: {order.id}</p>
-                    <table className="border p-3 border-dark w-100">
-                        <tr className="p-2">
+                    <table className="table table-striped">
+                        <thead className="p-2">
                             <th>#</th>
                             <th>Name</th>
                             <th>Price</th>
                             <th>SL</th>
-                        </tr>
+                        </thead>
+                        <tbody>
                         
                         {order.products.map((product,index)=>(
                             <tr key={product.id}>
@@ -166,6 +167,7 @@ const UserDashboard = () => {
                                 <td>{product.stock}</td>
                             </tr>
                         ))}
+                        </tbody>
                     </table>
                     <p className="fw-bold text-light p-2 bg-dark  d-block w-80 text-end"><span>&#128181; </span> Tong Cong:  ${order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
