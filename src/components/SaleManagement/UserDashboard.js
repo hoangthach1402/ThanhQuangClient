@@ -76,12 +76,12 @@ const UserDashboard = () => {
 
    const DebtToString=(debt)=>{
     return (
-        <p className="w-50 ms-auto bg-danger text-light fw-bold  text-start"><span >&#128405;</span>Can Thanh Toan : ${debt} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></p>
+        <div className="w-50 ms-auto bg-danger text-light fw-bold  text-start"><span >&#128405;</span>Can Thanh Toan : ${debt} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></div>
     )
    }
    const CompletePayment =()=>{
     return (
-        <p className="w-50 ms-auto text-light bg-success fw-bold  text-start">✔️ Thanh Toán Đủ </p>
+        <div className="w-50 ms-auto text-light bg-success fw-bold  text-start">✔️ Thanh Toán Đủ </div>
     )
    }
    const handleIsCreateUserDashboard =()=>{
@@ -109,7 +109,7 @@ const UserDashboard = () => {
         </h2>
         <div id="panelsStayOpen-four" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
           <div className="accordion-body">
-            <table className="table  vh-100 table-striped">
+            <table className="table bg-paper vh-100 table-striped">
                 <thead className="">
                     <th>#</th>
                     <th>Name</th>
@@ -146,14 +146,14 @@ const UserDashboard = () => {
         <div id="panelsStayOpen-five" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
           <div class="accordion-body">
             <div className="userDashboard__Info bg-light shadow">
-                <div className=" shadow">
-                 <button onClick={()=>handleUpdate(u_data.user.id)} className="btn btn-success">Update User Info</button>
-                 <button onClick={()=>handleDeleteUser(u_data.user.id)} className="btn btn-danger mx-2">Delete</button>
+                <div className=" shadow bg-cart">
+                 <button onClick={()=>handleUpdate(u_data.user.id)} className="btn border text-success border-dark">Update User </button>
+                 <button onClick={()=>handleDeleteUser(u_data.user.id)} className="btn border border-dark mx-2">❌</button>
                 </div>
  
                  {editUserState && 
                  <div>
-                 <div className="row border ">
+                 {/* <div className="row border ">
                  <div className="col-sm-6 col-md-4 fw-bold ">Ten Khach Hang:</div>
                  <div className="col-sm-6 col-md-8">
                   <input className="w-100" onInput={(e)=>handleChange({name:e.target.value})} value={editUserState.name}/> 
@@ -170,7 +170,19 @@ const UserDashboard = () => {
                   <div className="col-sm-6 col-md-8">
                       <input className="w-100" onInput={e=>handleChange({mobile:e.target.value})} value={editUserState.mobile}/>
                   </div>   
-                 </div>
+                 </div> */}
+                 <div class="input-group flex-nowrap bg-cart">
+  <span class="input-group-text" id="addon-wrapping">Ten KH:</span>
+  <input type="text" class="form-control"  onInput={(e)=>handleChange({name:e.target.value})} value={editUserState.name} placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" />
+</div>
+               <div class="input-group flex-nowrap">
+  <span class="input-group-text" id="addon-wrapping">Dia Chi</span>
+  <input type="text" class="form-control" onInput={e=>handleChange({address:e.target.value})} value={editUserState.address} placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" />
+</div>
+               <div class="input-group flex-nowrap">
+  <span class="input-group-text" id="addon-wrapping">Phone📱</span>
+  <input type="text" class="form-control" onInput={e=>handleChange({mobile:e.target.value})} value={editUserState.mobile} placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" />
+</div>
                  </div>
                  }
                 </div>

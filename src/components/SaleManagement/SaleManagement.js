@@ -9,7 +9,7 @@ import Order from "./Order";
 import { ThanhQuangContext } from "../../App";
 const SaleManagement = () => {
   const { isOrder } = useContext(ThanhQuangContext);
-
+  const [isClose,setIsClose]= useState(false)
   const [selectedUserId, setSelectedUserId] = useState();
   const { addToCart, carts } = useContext(ThanhQuangContext);
   const [selectedUser, setSelectedUser] = useState();
@@ -52,17 +52,22 @@ const SaleManagement = () => {
       </>
     );
   };
+  console.log(isClose)
   return (
     <div className="container  text-white ">
        <h4 className="text-dark text-center border-bottom border-dark ">SALE</h4> 
       {isOrder && selectedUser && <Order user={selectedUser} />}
-      {isOrder && !selectedUser ? (
+      {/* {isOrder && !selectedUser ? (
         <p className="bg-danger  text-white p-2">
           Chọn Khách Hàng <span>&#128064;</span>{" "}
         </p>
       ) : (
         ""
-      )}
+      )} */}
+      <div className={clsx('alert alert-warning alert-dismissible fade  btnAlert',isOrder && !selectedUser?'show':'d-none')} role="alert">
+    <strong>Vui Long Chon Khach Hang</strong> 
+    {/* <button  class="btn-close" >X</button> */}
+  </div>
       
       <div>
         <button

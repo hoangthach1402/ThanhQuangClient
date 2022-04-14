@@ -62,6 +62,10 @@ function App() {
     Tao Khach Hang Thanh Cong
 </div>
     } */}
+    {/* <div className={clsx('alert alert-success alert-dismissible fade  btnAlert',isOrder?'show':'d-none')} role="alert">
+  <strong>Vui Long Chon Khach Hang !</strong> 
+  <button onClick={()=>setIsOrderSuccess(!isOrderSuccess)} class="btn-close" ></button>
+</div> */}
     <div className={clsx('alert alert-success alert-dismissible fade  btnAlert',isOrderSuccess?'show':'d-none')} role="alert">
   <strong>Tao Don Hang Thanh Cong </strong> 
   <button onClick={()=>setIsOrderSuccess(!isOrderSuccess)} class="btn-close" ></button>

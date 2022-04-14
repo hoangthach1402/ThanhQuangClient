@@ -38,9 +38,9 @@ const UserManagement = ({handleIsCreate,test,handleIsCreateUserDashboard}) => {
   };
 
   return (
-    <div className="bg-dark  w-100  p-4 text-light border m-2">
+    <div className="bg-paper  w-100  p-4 text-dark border m-2">
       <div class="mb-3">
-        <h4 >Form Thong Tin Khach hang</h4>
+        <div className="fs-5 text-center">Form Thong Tin Khach hang</div>
         <label for="exampleFormControlInput1" class="form-label">
           Ten Khach Hang
         </label>

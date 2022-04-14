@@ -68,26 +68,29 @@ Hóa Đơn Bán Hàng</h5>
         <p>Thông Tin Đơn Hàng : </p>
         <div className="p-3 border">
         <table className="w-100 table table-striped">
-          <tr>
+          <thead>
             <th>#</th>
             <th>Name</th>
             <th>Type</th>
             <th>Price</th>
             <th>Stock</th>
-          </tr>
+          </thead>
+          <tbody>
+          
           {carts.map((product) => (
-            <tr className=" border-dark">
+            <tr className=" ">
               <td>{++n}. </td>
-              <td className=" border-dark">  {product.name}</td>
+              <td className="">  {product.name}</td>
               <td> {product.type}</td>
-              <td className=" border-dark">  {product.price}</td>
+              <td className=" ">  {product.price}</td>
               <td>  {product.stock}</td>
             </tr>
           ))}
+          </tbody>
         </table>
         </div>
-        <p className="text-right fw-bold">Tổng Cộng : ${total}</p>
-        <label className="fw-bold px-2" htmlFor="paying">Nhận Của Khách</label>
+        <div className="text-end fw-bold">Tổng Cộng : <span className="text-danger">${total}</span></div>
+        <label className="fw-bold px-2" htmlFor="paying">Nhận Của Khách: </label>
         <div className="input-group mb-3">
   <span className="input-group-text">$</span>
   <input type="number" class="form-control"
