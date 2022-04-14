@@ -59,7 +59,7 @@ const SaleManagement = () => {
      
      
      
-     <h3 className="text-dark">Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2">Tạo Khách Hàng Mới</button>
+     <h3 className="text-dark">Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2 border border-dark">Tạo Khách Hàng Mới</button>
      {isCreateCustomer && <UserManagement handleIsCreate={handleIsCreate}/>}
     
      <select name="" id=""

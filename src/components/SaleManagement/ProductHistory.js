@@ -65,7 +65,7 @@ const ProductHistory = () => {
               <p> <span className="text-warning">SỐ LƯỢNG</span> <span className="border-end mx-2 px-2">{product_data.product.stock}</span>  <span className="text-warning">  Loại:</span> {product_data.product.type}</p>
             
               </div>
-              <p><span className="text-light fw-bold border-bottom my-2 blockquote">Sản Phẩm Được Bán Trong Những Đơn Này: </span></p>
+              <p><span className="text-dark fw-bold border-bottom my-2 blockquote">Sản Phẩm Được Bán Trong Những Đơn Này: </span></p>
               {product_data.product.orders.map(order=>(
                   <div className="bg-light text-dark m-2 p-2 shadow">
                     <p>OrderId :{order.id}</p>  

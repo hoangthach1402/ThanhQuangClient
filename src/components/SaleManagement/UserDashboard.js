@@ -89,21 +89,21 @@ const UserDashboard = () => {
    }
     let n=0;
     return (
-    <div >
+    <div className="bg-light">
    
      <button className="btn border border-dark bg-light text-dark m-2 "  onClick={()=>setIsCreate(!isCreate)}>Create Customer</button>
       {isCreate && <UserManagement />}  
       <div className="row  text-dark">
       <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 p-3 border border-light p-2">
-      <table className="table ">
-          <tr className="border-bottom border-light p-2">
+      <table className="table  table-striped table-hover">
+          <thead className="">
               <th>#</th>
               <th>Name</th>
               <th>Mobile</th>
               <th>Address</th>
-          </tr>
+          </thead>
           {user_data && user_data.users.map(user=>(
-              <tr className={clsx(selectedUserId===user.id && 'bg-white text-black')} key={user.id} onClick={setSelectedUserId.bind(this,user.id)}>
+              <tr className={clsx(selectedUserId===user.id && 'bg-dark text-light')} key={user.id} onClick={setSelectedUserId.bind(this,user.id)}>
                   <td>{++n}</td>
                   <td>{user.name}</td>
                   <td>{user.mobile}</td>
@@ -112,9 +112,9 @@ const UserDashboard = () => {
           ))}
       </table>
       </div>
-        <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 bg-dark text-white ">
+        <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 bg-light text-dark ">
             {u_loading && <p>Loading ...</p>}
-            {u_data && <div className='p-4 border-start border-light '>
+            {u_data && <div className='p-4 border-start border-light  border-start border-dark'>
                <div className="mb-4 border-bottom border-light py-2">
 
                 <button onClick={()=>handleUpdate(u_data.user.id)} className="btn btn-success">Update User Info</button>
@@ -123,18 +123,18 @@ const UserDashboard = () => {
                 {editUserState && 
                 <div>
                 <div className="row border p-4">
-                <div className="col-sm-6 col-md-4 ">Ten Khach Hang:</div>
+                <div className="col-sm-6 col-md-4 fw-bold ">Ten Khach Hang:</div>
                 <div className="col-sm-6 col-md-8">
                  <input className="w-100" onInput={(e)=>handleChange({name:e.target.value})} value={editUserState.name}/> 
                 </div>
-                 <div className="col-sm-6 col-md-4">
+                 <div className="col-sm-6 col-md-4 fw-bold">
                  Dia Chi :
                  </div>  
                  <div className="col-sm-6 col-md-8 ">
                  <input className="w-100" onInput={e=>handleChange({address:e.target.value})} value={editUserState.address}/>
                  </div> 
-                 <div className="col-sm-6 col-md-4">
-                 So Dien Thoai :
+                 <div className="col-sm-6 col-md-4 fw-bold">
+                  Mobile:
                  </div>   
                  <div className="col-sm-6 col-md-8">
                      <input className="w-100" onInput={e=>handleChange({mobile:e.target.value})} value={editUserState.mobile}/>
