@@ -76,12 +76,12 @@ const UserDashboard = () => {
 
    const DebtToString=(debt)=>{
     return (
-        <p className="bg-danger text-light fw-bold p-2 text-end"><span >&#128405;</span>Can Thanh Toan : ${debt} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></p>
+        <p className="w-50 ms-auto bg-danger text-light fw-bold  text-start"><span >&#128405;</span>Can Thanh Toan : ${debt} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></p>
     )
    }
    const CompletePayment =()=>{
     return (
-        <p className="text-light bg-success fw-bold p-2 text-end">Da Thanh Toan <i className="border p-1 bg-light border-light rounded-circle  text-success fa-solid fs-5 fa-check"></i></p>
+        <p className="w-50 ms-auto text-light bg-success fw-bold  text-start">✔️ Thanh Toán Đủ </p>
     )
    }
    const handleIsCreateUserDashboard =()=>{
@@ -109,7 +109,7 @@ const UserDashboard = () => {
         </h2>
         <div id="panelsStayOpen-four" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
           <div className="accordion-body">
-            <table className="table  max-height50 table-striped">
+            <table className="table  vh-100 table-striped">
                 <thead className="">
                     <th>#</th>
                     <th>Name</th>
@@ -182,8 +182,9 @@ const UserDashboard = () => {
                
 
                 {u_data.user.orders.map(order=>(
-                <div key={order.id} className="bg-light text-black p-2 m-3 border border-dark w-100">
-                    <p className="fw-bold border-bottom border-dark">Ma Don: {order.id}</p>
+                <div key={order.id} className="bg-paper text-dark p-2 m-1 border border-dark w-100 position-relative">
+                    <div className="fw-bold border-bottom border-dark">Ma Don:<span>{order.id}</span></div>
+                    <div>KH: {u_data.user.name}</div>
                     <table className="table table-striped">
                         <thead className="p-2">
                             <th>#</th>
@@ -203,20 +204,20 @@ const UserDashboard = () => {
                         ))}
                         </tbody>
                     </table>
-                    <p className="fw-bold text-light p-2 bg-dark  d-block w-80 text-end"><span>&#128181; </span> Tong Cong:  ${order.products.reduce((a,b)=>{
+                    <div className="fw-bold text-light  bg-dark  ms-auto d-block w-50 text-start"><span>&#128181; </span> Tong Cong:  ${order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
-                         },0)} </p>
-                         <p className="text-light bg-primary fw-bold p-2 text-end"><span>&#128181; </span> Da thanh toan : ${order.payying}</p>
+                         },0)} </div>
+                         <div className="text-light bg-primary fw-bold  ms-auto w-50 text-start"><span>&#128181; </span> Da thanh toan : ${order.payying}</div>
                          { order.payying < order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
                          },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying))):CompletePayment()}      
-                    <button className="btn border  border-dark d-block ms-auto" onClick={()=>handleDeleteOrder(order.id)}>Xoa Hoa Don </button>  
+                    <button className="btn border  border-dark d-block ms-auto userDashboard__btnDelete bg-light" onClick={()=>handleDeleteOrder(order.id)}>❌ </button>  
                 </div>
                 ))}
+            </div>}
 
 
               
-            </div>}
         </div>    
       </div>
 
