@@ -58,17 +58,17 @@ const ProductManagement = () => {
   return (
     <div>
       <h4>Welcome : Product Management Station</h4>
-      <div className="bg-dark text-white py-5">
+      <div className="bg-light text-dark py-5">
         <button
           onClick={() => setIsAddProduct(!isAddProduct)}
-          className="btn bg-dark text-white border border-white my-2"
+          className="btn bg-dark text-light border border-white my-2"
         >
           Add product
         </button>
         {isAddProduct && <FormAddProduct handleIsAdd={handleIsAdd} />}
         <div className="row">
           <div className="col-xs-12 col-md-6 col-lg-6 col-xl-6">
-            <table className={clsx(" ", styles.tableContainer)}>
+            <table className={clsx("table ", styles.tableContainer)}>
               <thead>
                 <tr>
                   <th>#</th>
@@ -85,7 +85,7 @@ const ProductManagement = () => {
                     <tr
                       className={
                         selectedProductId === product.id &&
-                        "bg-light text-black"
+                        "bg-dark text-light"
                       }
                       key={product.id}
                       onClick={setselectedProductId.bind(this, product.id)}
@@ -107,10 +107,10 @@ const ProductManagement = () => {
                       <td>
                         {product.type}
                       </td>
-                      <td>
+                      <td className="text-center">
                         {product.price}
                       </td>
-                      <td className="col-2 w-25">
+                      <td className="col-2 w-25 text-center">
                         {product.stock}
                       </td>
                     </tr>

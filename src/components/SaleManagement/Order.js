@@ -11,7 +11,7 @@ const Order = ({ user }) => {
 
   let n = 0;
   let total;
-  const { handleOrder, carts, handleNewCarts } = useContext(ThanhQuangContext);
+  const { handleOrder, carts, handleNewCarts,handleIsOrderSuccess } = useContext(ThanhQuangContext);
 
   const [order, setOrder] = useState({
     userId: user.id,
@@ -46,11 +46,12 @@ const Order = ({ user }) => {
     });
     handleNewCarts();
     handleOrder();
+    handleIsOrderSuccess()
   }
 
   return (
     <div className={clsx("bg-light border border-dark text-white p-5 rounded shadow ", styles.containerOrder)}>
-     
+      
       <div className={clsx("bg-white text-dark shadow", styles.formOrder)}>
         <div className="pb-2 border-bottom border-dark">
         <button className="btn border bg-success text-light border-dark px-2 mx-2 shadow" onClick={() => handleCreateOrder()}>Tạo Hóa Đơn</button>
@@ -66,7 +67,7 @@ Hóa Đơn Bán Hàng</h5>
         <p>Ghi Chu: ...................................................................</p>
         <p>Thông Tin Đơn Hàng : </p>
         <div className="p-3 border">
-        <table >
+        <table className="w-100 table table-striped">
           <tr>
             <th>#</th>
             <th>Name</th>
@@ -75,11 +76,11 @@ Hóa Đơn Bán Hàng</h5>
             <th>Stock</th>
           </tr>
           {carts.map((product) => (
-            <tr className="border border-dark">
+            <tr className=" border-dark">
               <td>{++n}. </td>
-              <td className="border border-dark">  {product.name}</td>
+              <td className=" border-dark">  {product.name}</td>
               <td> {product.type}</td>
-              <td className="border border-dark">  {product.price}</td>
+              <td className=" border-dark">  {product.price}</td>
               <td>  {product.stock}</td>
             </tr>
           ))}
@@ -87,12 +88,15 @@ Hóa Đơn Bán Hàng</h5>
         </div>
         <p className="text-right fw-bold">Tổng Cộng : ${total}</p>
         <label className="fw-bold px-2" htmlFor="paying">Nhận Của Khách</label>
-        <input
-          type="number"
-          value={order.payying}
-          placeholder="vd:  520.000.00"
-          onInput={(e) => handleChange({ payying: parseInt(e.target.value) })}
-        />
+        <div className="input-group mb-3">
+  <span className="input-group-text">$</span>
+  <input type="number" class="form-control"
+  value={order.payying}
+  onInput={(e) => handleChange({ payying: parseInt(e.target.value) })}
+   aria-label="Amount (to the nearest dollar)"/>
+  <span className="input-group-text">.00</span>
+</div>
+       
       </div>
     
     </div>

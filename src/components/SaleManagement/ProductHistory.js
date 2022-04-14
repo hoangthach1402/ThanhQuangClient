@@ -26,20 +26,30 @@ const ProductHistory = () => {
   //    }})
   // },[selectProductId])
   return (
-    <div className="bg-dark text-light">
+    <div className="">
       <div className="row">
         <div className="col-xs-12 col-md-6 p-2 border-end border-light p-4">
+              <table className="table bg-dark table-dark table-striped">
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Price</th>
+                  <th>SO LUONG</th>
+                </tr>
           {products_data &&
             products_data.products.map((product,index) => (
-              <div
-                key={product.id}
-                onClick={setSelectProductId.bind(this, product.id)}
-                className={selectProductId===product.id?'bg-light text-dark':'bg-dark text-white'}
-              >
-                <p> <span className="fs-5 text-warning">#{++index}</span> <span className=""><ins>Name:</ins></span> <span className="">{product.name}</span></p>
+              <tr className={selectProductId==product.id &&'bg-light text-dark'} key={product.id} onClick={setSelectProductId.bind(this,product.id)}>
+              <td>{++index}</td>          
+              <td>{product.name}</td>          
+              <td>{product.type}</td>          
+              <td className="text-center">{product.price}</td>          
+              <td className="text-center">{product.stock}</td>          
+              </tr>
+            ))
+        }
+              </table>
               </div>
-            ))}
-        </div>
         <div className="col-xs-12 col-md-6 p-2">
           {product_loading && (
             <div class="spinner-border" role="status">
@@ -48,7 +58,7 @@ const ProductHistory = () => {
           )}
           {selectProductId && product_data && (
             <div>
-              <div className="border-bottom mb-2">
+              <div className="border-bottom mb-2 shadow p-2">
                <p className=" border-bottom fs-2 text-primary fw-bold">Product In4:</p>
               <p className=""><span className="text-warning">TÊN SP :</span> <span className="mx-2 p-2 border-end">{product_data.product.name} </span>  <span className="text-warning">GÍA :</span> <span className="text-success fw-bold"><span className="fs-3">$</span>{product_data.product.price}</span> </p>
              
@@ -57,10 +67,10 @@ const ProductHistory = () => {
               </div>
               <p><span className="text-light fw-bold border-bottom my-2 blockquote">Sản Phẩm Được Bán Trong Những Đơn Này: </span></p>
               {product_data.product.orders.map(order=>(
-                  <div className="bg-light text-dark m-2 p-2">
+                  <div className="bg-light text-dark m-2 p-2 shadow">
                     <p>OrderId :{order.id}</p>  
                     <p>Khach Hang :{order.user.name}</p>
-                    <table>
+                    <table className="table ">
                     <tr>
                         <th>#</th>
                         <th>Name</th>

@@ -44,11 +44,11 @@ const SaleManagement = () => {
   )
   }
   return (
-    <div className="container  border bg-dark text-white p-3">
+    <div className="container  border bg-light text-white p-3">
       {isOrder && selectedUser && <Order user={selectedUser}/> }
       {isOrder && !selectedUser? <p className="bg-danger  text-white p-2">Chọn Khách Hàng <span>&#128064;</span> </p>:''}
      <div>
-     <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn border border-light text-white position-relative ',styles.buttonCart)}>{isCartOpen ?CloseCart():showCart()}
+     <button  onClick={()=>setIsCartOpen(!isCartOpen)} className={clsx('btn border border-light bg-dark text-light position-relative ',styles.buttonCart)}>{isCartOpen ?CloseCart():showCart()}
      <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2">{carts.length}<span class="visually-hidden"></span></span>
      </button>
      <button className="position-relative btn btnAomacanada ">Check
@@ -59,7 +59,7 @@ const SaleManagement = () => {
      
      
      
-     <h3>Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2">Tạo Khách Hàng Mới</button>
+     <h3 className="text-dark">Welcome Sale Station </h3><button onClick={()=>setIsCreateCustomer(!isCreateCustomer)} className="btn btn-light mx-2">Tạo Khách Hàng Mới</button>
      {isCreateCustomer && <UserManagement handleIsCreate={handleIsCreate}/>}
     
      <select name="" id=""

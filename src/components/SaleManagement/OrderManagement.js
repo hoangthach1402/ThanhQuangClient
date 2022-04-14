@@ -21,7 +21,6 @@ const OrderManagement = () => {
       getOrder();
       // 
     },[orderSelectedId])
-    console.log(order)
   
 
    

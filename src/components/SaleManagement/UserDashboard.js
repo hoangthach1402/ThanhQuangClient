@@ -93,9 +93,9 @@ const UserDashboard = () => {
    
      <button className="btn border border-dark bg-light text-dark m-2 "  onClick={()=>setIsCreate(!isCreate)}>Create Customer</button>
       {isCreate && <UserManagement />}  
-      <div className="row bg-dark text-white">
+      <div className="row  text-dark">
       <div className="col-xs-12 col-md-6 col-lg-6 col-xs-6 p-3 border border-light p-2">
-      <table>
+      <table className="table ">
           <tr className="border-bottom border-light p-2">
               <th>#</th>
               <th>Name</th>

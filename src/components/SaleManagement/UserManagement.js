@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { createUser } from "../../graphql-client/mutations";
 import {getUsers} from '../../graphql-client/queries';
 import { useMutation, useQuery } from "@apollo/client";
-
+import {ThanhQuangContext} from '../../App';
 const UserManagement = ({handleIsCreate}) => {
-  
+  const {handleCreateUserSuccess} = useContext(ThanhQuangContext)     
   const [user, setUser] = useState({
     name: "",
     mobile: "",
     address: "",
   });
-
   const [addUser, userMutated] = useMutation(createUser);
   const handleChange = (changes) => {
     setUser({ ...user, ...changes });
@@ -24,12 +23,14 @@ const UserManagement = ({handleIsCreate}) => {
       },
       refetchQueries: [{ query:getUsers}]
     });
+    handleCreateUserSuccess()
     handleIsCreate();
     setUser({
       name: "",
     mobile: "",
     address: "",
     })
+
   };
 
   return (

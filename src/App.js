@@ -11,8 +11,16 @@ function App() {
   const [selectStation,setSelectStation] = useState('Sale'); 
   const [isSaleManagement,setIsSaleManagement] = useState(false)
   const [isOrder,setIsOrder] = useState(false);
+  const [isOrderSuccess,setIsOrderSuccess]= useState(false);
   const [carts,setCarts] =useState([]) 
   const [isSelectedBtn,setIsSelectedBtn] = useState(); 
+  const [isSuccessCreateUser,setIsSuccessCreateUser] = useState(false);
+  const handleIsOrderSuccess=()=>{
+    setIsOrderSuccess(!isOrderSuccess);
+  }
+  const handleCreateUserSuccess=()=>{
+    setIsSuccessCreateUser(!isSuccessCreateUser);
+  }
   const handleRemoveCart =(id)=>{
   const newCarts = carts.filter(cart=>cart.id !== id);
   setCarts(newCarts);
@@ -36,13 +44,25 @@ function App() {
   } 
   const ThanhQuangContextValue = {
   carts,handleRemoveCart,handleAddToCart,addToCart,handleOrder,isOrder,handleNewCarts,handleSetCarts
+  ,handleCreateUserSuccess,isSuccessCreateUser,handleIsOrderSuccess
   };
- 
 
   return (
     <ThanhQuangContext.Provider value={ThanhQuangContextValue}>
+    {isOrderSuccess && 
+      <div className="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Tao Don Hang Thanh Cong </strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    }
+    {isSuccessCreateUser && 
+      <div className="alert alert-success alert-dismissible fade show" role="alert">
+    Tao Khach Hang Thanh Cong
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    }
     <div className="border-bottom pb-2 border-dark m-2 d-flex flex-wrap d-none d-sm-none d-md-block">
-
+    <span className="fs-3 fw-bold">&#128018; SaleLIKEMonkey</span>
       <button className={clsx('btn border-end',selectStation==='userDashboard'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('userDashboard')}><span>📚 </span>User Management </button>
       <button className={clsx('btn border-end px-4',selectStation==='Sale'&& 'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('Sale')}>🛍️ Sale </button>
       <button className={clsx('btn border-end',selectStation==='ProductManagement'&&'btn text-dark bg-light border border-dark')} onClick={()=>setSelectStation('ProductManagement')}>🏠 Product Management</button>
