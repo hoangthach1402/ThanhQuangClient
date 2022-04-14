@@ -30,7 +30,7 @@ const Cart = () => {
         <div className='fw-bold mx-2'>{cart.name}</div>
         <div className='fw-bold'>{cart.price}</div>
         <div className={styles.quantity}>
-        <input type="number" value={cart.stock}  onChange={e=>handleChange([{stock:e.target.value},{id:cart.id}])}/>
+        <input type="number" value={cart.stock}  onChange={e=>handleChange([{stock:parseInt(e.target.value)},{id:cart.id}])}/>
         </div>
         <div><button className="btn" onClick={()=>handleRemoveCart(cart.id)}><span>&#10060;</span></button></div>
         </div>
