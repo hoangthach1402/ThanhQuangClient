@@ -14,7 +14,7 @@ import {
 
 
 const client = new ApolloClient({
-  uri: "https://thanhquangserver.herokuapp.com/",
+  uri: "https://salelikemonkeyserver.herokuapp.com/",
   cache: new InMemoryCache(),
 });
   
