@@ -103,13 +103,13 @@ const UserDashboard = () => {
       
       <div className="accordion-item ">
         <h2 className="accordion-header sticky-0" id="panelsStayOpen-headingTwo">
-          <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-four" aria-expanded="true" aria-controls="panelsStayOpen-four">
+          <button className="accordion-button collapsed accordion__btn" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-four" aria-expanded="true" aria-controls="panelsStayOpen-four">
             SHOW USER
           </button>
         </h2>
         <div id="panelsStayOpen-four" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
           <div className="accordion-body">
-            <table className="table bg-paper vh-100 table-striped">
+            <table className="table bg-paper table-striped">
                 <thead className="">
                     <th>#</th>
                     <th>Name</th>
@@ -139,11 +139,11 @@ const UserDashboard = () => {
                 
             <div class="accordion-item sticky-0">
         <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-five" aria-expanded="false" aria-controls="panelsStayOpen-five">
+          <button class="accordion-button collapsed accordion__btn" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-five" aria-expanded="true" aria-controls="panelsStayOpen-five">
             Show User Info
           </button>
         </h2>
-        <div id="panelsStayOpen-five" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+        <div id="panelsStayOpen-five" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
           <div class="accordion-body">
             <div className="userDashboard__Info bg-light shadow">
                 <div className=" shadow bg-cart">

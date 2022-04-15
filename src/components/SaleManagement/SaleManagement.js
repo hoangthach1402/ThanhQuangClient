@@ -119,7 +119,7 @@ const SaleManagement = () => {
           data_products.products.map((product) => (
             <div
               key={product.id}
-              className="cardItem bg-light p-2 border text-black"
+              className="cardItem p-2 border text-black"
             >
               <div className="imgContainer">
                 <img

@@ -196,3 +196,8 @@ width: 75%;
 .saleManagement__option--btn{
 background: var(--bg-btn-primary);
 }
+.accordion__btn{
+background: #96b4d1;
+font-style: 18px;
+font-weight: bold;
+}
