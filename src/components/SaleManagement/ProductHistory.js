@@ -32,11 +32,11 @@ const ProductHistory = () => {
               
       <div className="accordion-item overflow-auto max-height100vh col-xs-12 col-md-6 p-2 border-end ">
         <h2 className="accordion-header sticky-0" id="panelsStayOpen-headingTwo">
-          <button className="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-six" aria-expanded="false" aria-controls="panelsStayOpen-six">
+          <button className="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-six" aria-expanded="true" aria-controls="panelsStayOpen-six">
             List Product By Order
           </button>
         </h2>
-        <div id="panelsStayOpen-six" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+        <div id="panelsStayOpen-six" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
           <div className="">
             <table className="table table-striped">
               <tr>

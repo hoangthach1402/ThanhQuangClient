@@ -95,7 +95,7 @@ function App() {
       <span onClick={()=>setSelectStation('userDashboard')} className={clsx('btn',selectStation==='userDashboard'?'bg-dark':'')} >📚</span>
       <span onClick={()=>setSelectStation('Sale')} className={clsx('btn',selectStation==='Sale'?'bg-dark':'')}>🛍️</span>
       <span  onClick={()=>setSelectStation('ProductManagement')} className={clsx('btn',selectStation==='ProductManagement'?'bg-dark':'')}>🏠</span>
-      <span  onClick={()=>setSelectStation('orderManagement')} className={clsx('btn',selectStation==='orderManagement'?'bg-dark':'')}>📦</span>
+      {/* <span  onClick={()=>setSelectStation('orderManagement')} className={clsx('btn',selectStation==='orderManagement'?'bg-dark':'')}>📦</span> */}
       <span onClick={()=>setSelectStation('historyProduct')} className={clsx('btn',selectStation==='historyProduct'?'bg-dark':'')}>&#128214;</span>
       {/* <p><span className="fs-1 fw-bold">&#128018;</span></p> */}
 

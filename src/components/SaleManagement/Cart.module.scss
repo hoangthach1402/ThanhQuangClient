@@ -1,3 +1,19 @@
+:root {
+    /* --bg-primary: ; */
+    /* --text-white: ; */
+    --bg-btn-cart:#8a9b00;
+    --bg-btn-checkout:#b5b261;
+    --bg-btn-primary:#cfcfcf ;
+    --bg-btn-secondary:#ebe8e8;
+    --bg-form: #d4d5ba;
+    --text-form:#7c7c7c;
+    --bg-cart: #f5f5e7;
+    --text-primary:#cfcfcf ;
+    /* --text-secondary: ; */
+    /* --bg-btn: ; */
+    /* --text-btn: ; */
+    
+ }
 .buttonCart{
 z-index: 3;
 float:right;
@@ -13,7 +29,7 @@ right:0%;
 min-height: 100px;
 min-width:300px;
 z-index: 1;
-background: #f5f5e7;
+background: var(--bg-cart);
 } 
 .item{
 align-items: center;

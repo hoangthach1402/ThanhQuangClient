@@ -107,7 +107,7 @@ const UserDashboard = () => {
             SHOW USER
           </button>
         </h2>
-        <div id="panelsStayOpen-four" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+        <div id="panelsStayOpen-four" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
           <div className="accordion-body">
             <table className="table bg-paper vh-100 table-striped">
                 <thead className="">

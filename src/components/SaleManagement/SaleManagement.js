@@ -76,7 +76,7 @@ const SaleManagement = () => {
         <button
           onClick={() => setIsCartOpen(!isCartOpen)}
           className={clsx(
-            "btn border border-light bg-dark text-light btnAoMaFloridaParent ",
+            "btn border border-light saleManagement__cart--btn text-light btnAoMaFloridaParent ",
             styles.buttonCart
           )}
         >

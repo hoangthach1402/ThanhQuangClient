@@ -169,6 +169,9 @@ max-height:70vh;
     right: 0;
 
 }
+.saleManagement__cart--btn{
+background: var(--bg-btn-cart);
+}
 .bg-paper{
 background: #d5eaff;
 }
@@ -179,7 +182,7 @@ background: #fbfbf8;
 position: sticky;
 bottom:0;
 width:100%;
-background: rgb(213, 202, 252);
+background: var(--bg-btn-checkout);
 }
 .saleManagement__option--position{
 position:sticky;

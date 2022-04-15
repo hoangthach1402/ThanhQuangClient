@@ -69,11 +69,11 @@ const ProductManagement = () => {
         <div className="row">
         <div className="accordion-item max-height-100 overflow-auto">
         <h2 className="accordion-header sticky-0" id="panelsStayOpen-headingTwo">
-          <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-6" aria-expanded="false" aria-controls="panelsStayOpen-6">
+          <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-6" aria-expanded="true" aria-controls="panelsStayOpen-6">
             List Product
           </button>
         </h2>
-        <div id="panelsStayOpen-6" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+        <div id="panelsStayOpen-6" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
           <div className="accordion-body">
             <div className="col-xs-12 col-md-6 col-lg-6 col-xl-6">
               <table className={clsx("table  table-striped", styles.tableContainer)}>
