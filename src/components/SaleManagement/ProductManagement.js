@@ -67,7 +67,7 @@ const ProductManagement = () => {
         </button>
         {isAddProduct && <FormAddProduct handleIsAdd={handleIsAdd} />}
         <div className="row">
-        <div className="accordion-item max-height-100 overflow-auto">
+        <div className="accordion-item max-height-100 overflow-auto col-xs-12 col-md-6">
         <h2 className="accordion-header sticky-0" id="panelsStayOpen-headingTwo">
           <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-6" aria-expanded="true" aria-controls="panelsStayOpen-6">
             List Product
@@ -75,7 +75,7 @@ const ProductManagement = () => {
         </h2>
         <div id="panelsStayOpen-6" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
           <div className="accordion-body">
-            <div className="col-xs-12 col-md-6 col-lg-6 col-xl-6">
+            <div className="">
               <table className={clsx("table  table-striped", styles.tableContainer)}>
                 <thead>
                   <tr>
