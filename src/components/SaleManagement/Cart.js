@@ -22,7 +22,7 @@ const Cart = () => {
  }
 }
   return (
-    <div className={clsx('max-height-70 overflow-auto bg-cart border  text-white p-2 shadow',styles.cart)}>
+    <div className={clsx('max-height-70 overflow-auto  border  text-white p-2 shadow',styles.cart)}>
         {carts.length ===0 && <p className="text-black fw-bold">Chưa Có Sản Phẩm</p>}
         {carts && carts.map(cart=>(
         <div key={cart.id} className={clsx(styles.item)}>
@@ -36,7 +36,7 @@ const Cart = () => {
         </div>
         ))
         }
-       {carts.length!==0 && <button className="btn border border-dark " onClick={()=>handleOrder()}>Thanh Toan<span>&#129297;</span></button>} 
+       {carts.length!==0 && <button className="btn d-block m-auto cart_btn--thanhtoan border border-dark " onClick={()=>handleOrder()}>Thanh Toan<span>&#129297;</span></button>} 
       
     </div>
        

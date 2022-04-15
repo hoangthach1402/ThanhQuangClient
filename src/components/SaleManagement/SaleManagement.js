@@ -92,14 +92,14 @@ const SaleManagement = () => {
         </button>
       </div>
 
-      <div className="row">
+      <div className="row saleManagement__option--position">
       <button
         onClick={() => setIsCreateCustomer(!isCreateCustomer)}
-        className="btn btn-light mx-2 border border-dark d-block col-5"
+        className="btn saleManagement__option--btn mx-2 border border-dark d-block col-5"
       >
         Tạo Khách Hàng Mới
       </button>
-      <select className="btn d-block col-5 border border-dark" name="" id="" onChange={(e) => setSelectedUserId(e.target.value)}>
+      <select className="btn d-block col-5 saleManagement__option--btn border border-dark" name="" id="" onChange={(e) => setSelectedUserId(e.target.value)}>
 
         <option value="">Chọn Khách </option>
         {data_users &&

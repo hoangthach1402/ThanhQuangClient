@@ -58,7 +58,7 @@ const ProductManagement = () => {
   return (
     <div>
       <h4 className='text-dark text-center border-bottom border-dark'>Products</h4>
-      <div className="bg-light text-dark py-5">
+      <div className="bg-light text-dark ">
         <button
           onClick={() => setIsAddProduct(!isAddProduct)}
           className="btn bg-dark text-light border border-white my-2"
@@ -67,57 +67,69 @@ const ProductManagement = () => {
         </button>
         {isAddProduct && <FormAddProduct handleIsAdd={handleIsAdd} />}
         <div className="row">
-          <div className="col-xs-12 col-md-6 col-lg-6 col-xl-6">
-            <table className={clsx("table  table-striped", styles.tableContainer)}>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Img</th>
-                  <th>Tên</th>
-                  <th>Loại</th>
-                  <th>Giá</th>
-                  <th>Số Lượng</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data &&
-                  data.products.map((product) => (
-                    <tr
-                      className={
-                        selectedProductId === product.id &&
-                        "table-active"
-                      }
-                      key={product.id}
-                      onClick={setselectedProductId.bind(this, product.id)}
-                    >
-                      <th value={product.id} scope="row">
-                        {n++}
-                      </th>
-
-                      <td className="d-flex ">
-                        <img
-                          className={clsx(styles.imgProductManagement)}
-                          src={product.img}
-                          alt=""
-                        />
-                      </td>
-                      <td>
-                        {product.name}
-                      </td>
-                      <td>
-                        {product.type}
-                      </td>
-                      <td className="text-center">
-                        {product.price}
-                      </td>
-                      <td className="col-2 w-25 text-center">
-                        {product.stock}
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
+        <div className="accordion-item max-height-100 overflow-auto">
+        <h2 className="accordion-header sticky-0" id="panelsStayOpen-headingTwo">
+          <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-6" aria-expanded="false" aria-controls="panelsStayOpen-6">
+            List Product
+          </button>
+        </h2>
+        <div id="panelsStayOpen-6" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+          <div className="accordion-body">
+            <div className="col-xs-12 col-md-6 col-lg-6 col-xl-6">
+              <table className={clsx("table  table-striped", styles.tableContainer)}>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Img</th>
+                    <th>Tên</th>
+                    <th>Loại</th>
+                    <th>Giá</th>
+                    <th>Số Lượng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data &&
+                    data.products.map((product) => (
+                      <tr
+                        className={
+                          selectedProductId === product.id &&
+                          "table-active"
+                        }
+                        key={product.id}
+                        onClick={setselectedProductId.bind(this, product.id)}
+                      >
+                        <th value={product.id} scope="row">
+                          {n++}
+                        </th>
+  
+                        <td className="d-flex ">
+                          <img
+                            className={clsx(styles.imgProductManagement)}
+                            src={product.img}
+                            alt=""
+                          />
+                        </td>
+                        <td>
+                          {product.name}
+                        </td>
+                        <td>
+                          {product.type}
+                        </td>
+                        <td className="text-center">
+                          {product.price}
+                        </td>
+                        <td className="col-2 w-25 text-center">
+                          {product.stock}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          
           </div>
+        </div>
+      </div>
           <div className="col-xs-12 border col-md-6 col-lg-6 col-xl-6 ">
             {!productSelected && <p>Please Select you want to Edit ^^</p>}
             {productSelected && (

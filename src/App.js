@@ -97,7 +97,7 @@ function App() {
       <span  onClick={()=>setSelectStation('ProductManagement')} className={clsx('btn',selectStation==='ProductManagement'?'bg-dark':'')}>🏠</span>
       <span  onClick={()=>setSelectStation('orderManagement')} className={clsx('btn',selectStation==='orderManagement'?'bg-dark':'')}>📦</span>
       <span onClick={()=>setSelectStation('historyProduct')} className={clsx('btn',selectStation==='historyProduct'?'bg-dark':'')}>&#128214;</span>
-      <p><span className="fs-1 fw-bold">&#128018;</span></p>
+      {/* <p><span className="fs-1 fw-bold">&#128018;</span></p> */}
 
     <div className="collapse navbar-collapse shadow border-bottom border-dark" id="navbarNavDarkDropdown">
       <ul className="navbar-nav">

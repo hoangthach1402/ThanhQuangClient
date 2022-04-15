@@ -1,3 +1,21 @@
+:root {
+     /* --bg-primary: ; */
+     /* --text-white: ; */
+     --bg-btn-cart:#8a9b00;
+     --bg-btn-checkout:#b5b261;
+     --bg-btn-primary:#cfcfcf ;
+     --bg-btn-secondary:#ebe8e8;
+     --bg-form: #d4d5ba;
+     --text-form:#7c7c7c;
+     --bg-cart: #f5f5e7;
+     --text-primary:#cfcfcf ;
+     /* --text-secondary: ; */
+     /* --bg-btn: ; */
+     /* --text-btn: ; */
+     
+  }
+
+
 .cartStyle{
 background: #000;
 font-size: 16px;
@@ -156,4 +174,22 @@ background: #d5eaff;
 }
 .bg-cart{
 background: #fbfbf8;
+}
+.cart_btn--thanhtoan{
+position: sticky;
+bottom:0;
+width:100%;
+background: rgb(213, 202, 252);
+}
+.saleManagement__option--position{
+position:sticky;
+z-index:4 ;
+top:55px;
+left:0;
+right:0;
+/* background: rgb(205, 229, 245); */
+width: 75%;
+}
+.saleManagement__option--btn{
+background: var(--bg-btn-primary);
 }

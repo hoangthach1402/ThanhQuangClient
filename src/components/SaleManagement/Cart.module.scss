@@ -9,10 +9,11 @@ position: relative;
 .cart{
 position: absolute;
 top: 100%;
-right:50%;
+right:0%;
 min-height: 100px;
 min-width:300px;
 z-index: 1;
+background: #f5f5e7;
 } 
 .item{
 align-items: center;
