@@ -93,6 +93,7 @@ const getOrderByUser = gql`
   query ($userId: ID!) {
     user(id: $userId) {
       orders {
+        createdAt
         payying
         products {
           id

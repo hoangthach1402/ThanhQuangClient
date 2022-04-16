@@ -52,12 +52,13 @@ function App() {
   }
   const addToCart =(product)=>{
   // console.log(product);
-    let isNotExist = carts.find(cart=>cart.id===product.id) ===(null || undefined); 
-    isNotExist &&  setCarts([...carts,{...product}]) ;
+    let isNotExist = carts.find(cart=>cart.productId===product.productId) ===(null || undefined); 
+    isNotExist &&  setCarts([...carts,{...product}]) 
   }
   const handleNewCarts=()=>{
     setCarts([]);
   } 
+  
   const ThanhQuangContextValue = {
   carts,handleRemoveCart,handleAddToCart,addToCart,handleOrder,isOrder,handleNewCarts,handleSetCarts
   ,handleCreateUserSuccess,isSuccessCreateUser,handleIsOrderSuccess

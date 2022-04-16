@@ -110,7 +110,7 @@ const ProductManagement = () => {
                           />
                         </td>
                         <td>
-                          {product.name}
+                          {product.name.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))}
                         </td>
                         <td>
                           {product.type}

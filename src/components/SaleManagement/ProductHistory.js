@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from 'moment';
 import {
   getProducts,
   getProductWithOrders,
@@ -90,8 +91,8 @@ const ProductHistory = () => {
               <p><span className="text-dark text-center fw-bold border-bottom border-dark my-2 ">Sản Phẩm Được Bán Trong Những Đơn Này: </span></p>
               {product_data.product.orders.map(order=>(
                   <div className="bg-light text-dark m-2 p-2 shadow border border-top border-dark">
-                    <p>OrderId :{order.id}</p>  
-                    <p>Khach Hang :{order.user.name}</p>
+                    <div className="border-bottom border-dark"> <span className="fw-bold">OrderId :</span> {order.id}</div> <div> <span className="fw-bold">Ngày Tạo:</span>  {moment(order.createdAt).format('DD-MM-YYYY :LT')}</div>  
+                    <div className=""> <span className="fw-bold">Khach Hang :</span><span className="text-decoration-underline">{order.user.name.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))}</span> </div>
                     <table className="table ">
                     <thead>
                         <th>#</th>
@@ -104,7 +105,7 @@ const ProductHistory = () => {
                         <tr>
                         <td>{++index}</td>
                         <td>{product.name}</td>
-                        <td>{product.price}</td>
+                        <td>{product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</td>
                         <td className="text-center">{product.stock}</td>
                         </tr>
                     ))}  

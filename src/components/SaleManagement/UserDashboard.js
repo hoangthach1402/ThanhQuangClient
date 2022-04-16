@@ -1,4 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react'
+import moment from 'moment';
 import {useQuery,useMutation} from '@apollo/client';
 import {deleteOrder,editUser,deleteUser} from '../../graphql-client/mutations';
 import UserManagement from './UserManagement';
@@ -78,12 +79,12 @@ const UserDashboard = () => {
 
    const DebtToString=(debt)=>{
     return (
-        <div className="w-50 ms-auto bg-danger text-light fw-bold  text-start"><span >&#128405;</span>Can Thanh Toan : ${debt} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></div>
+        <div className="w-50 ms-auto bg-danger text-light   text-start"><span >&#128405;</span>Còn Thiếu :: {debt.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></div>
     )
    }
    const CompletePayment =()=>{
     return (
-        <div className="w-50 ms-auto text-light bg-success fw-bold  text-start">✔️ Thanh Toán Đủ </div>
+        <div className="w-50 ms-auto text-light bg-success  text-start">✔️ Thanh Toán Đủ </div>
     )
    }
    const handleIsCreateUserDashboard =()=>{
@@ -123,7 +124,7 @@ const UserDashboard = () => {
                     {user_data && user_data.users.map(user=>(
                     <tr className={clsx(selectedUserId===user.id && 'table-active')} key={user.id} onClick={setSelectedUserId.bind(this,user.id)}>
                         <td>{++n}</td>
-                        <td>{user.name}</td>
+                        <td>{user.name.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))}</td>
                         <td>{user.mobile}</td>
                         <td>{user.address}</td>
                     </tr>
@@ -198,7 +199,7 @@ const UserDashboard = () => {
                 {u_data.user.orders.map(order=>(
                 <div key={order.id} className="bg-paper text-dark p-2 m-1 border border-dark w-100 position-relative">
                     <div className="fw-bold border-bottom border-dark">Ma Don:<span>{order.id}</span></div>
-                    <div>KH: {u_data.user.name}</div>
+                    <div> <span className="fw-bold">KH: </span> {u_data.user.name} -<span className="fw-bold"> Ngay Tao:</span> {moment(order.createdAt).format('DD-MM-YYYY :LT')}</div>
                     <table className="table table-striped">
                         <thead className="p-2">
                             <th>#</th>
@@ -211,20 +212,20 @@ const UserDashboard = () => {
                         {order.products.map((product,index)=>(
                             <tr key={++index}>
                                 <td>{++index}</td>
-                                <td>{product.name}</td>
-                                <td>{product.price}</td>
+                                <td>{product.name.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))}</td>
+                                <td>{product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</td>
                                 <td>{product.stock}</td>
                             </tr>
                         ))}
                         </tbody>
                     </table>
-                    <div className="fw-bold text-light  bg-dark  ms-auto d-block w-50 text-start"><span>&#128181; </span> Tong Cong:  ${order.products.reduce((a,b)=>{
+                    <div className="text-light  bg-dark  ms-auto d-block w-50 text-start"><span>&#128181; </span> Tổng Cộng: {order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
-                         },0)} </div>
-                         <div className="text-light bg-primary fw-bold  ms-auto w-50 text-start"><span>&#128181; </span> Da thanh toan : ${order.payying}</div>
+                         },0).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) } </div>
+                         <div className="text-light bg-primary   ms-auto w-50 text-start"><span>&#128181; </span> Đã Thanh Toán: {order.payying.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</div>
                          { order.payying < order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
-                         },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying))):CompletePayment()}      
+                         },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})))):CompletePayment()}      
                     <button className="btn border  border-dark d-block ms-auto userDashboard__btnDelete bg-light" onClick={()=>handleDeleteOrder(order.id)}>❌ </button>  
                 </div>
                 ))}

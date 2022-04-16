@@ -129,12 +129,12 @@ const SaleManagement = ({data_productsApp}) => {
                   {/* {product.name} */}
                   <p>
                     Tên Sản Phẩm:{" "}
-                    <span className="fw-bold">{product.name}</span>
+                    <span className="fw-bold">{product.name.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))}</span>
                   </p>
                   <p>
                     Gía :{" "}
                     <span className="fw-bold text-danger">
-                      ${product.price}
+                       {product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
                     </span>
                   </p>
                   <p>
