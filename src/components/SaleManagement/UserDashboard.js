@@ -84,7 +84,7 @@ const UserDashboard = () => {
    }
    const CompletePayment =()=>{
     return (
-        <div className="w-50 ms-auto text-light bg-success  text-start">✔️ Thanh Toán Đủ </div>
+        <div className="w-50 ms-auto text-dark bg-light  text-start">✔️ Thanh Toán Đủ </div>
     )
    }
    const handleIsCreateUserDashboard =()=>{
