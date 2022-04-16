@@ -47,7 +47,8 @@ query getUserById($userId: ID!){
     orders {
       id
       products {
-        id
+        id 
+        productId 
         name 
         price
         stock 
@@ -80,6 +81,7 @@ const getOrders = gql`
       }
       products {
         id
+        productId
         name
         price
       }
@@ -93,8 +95,11 @@ const getOrderByUser = gql`
       orders {
         payying
         products {
+          id
+          productId 
           name
           price
+          stock  
         }
       }
     }

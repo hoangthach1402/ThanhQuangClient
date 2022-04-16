@@ -28,6 +28,7 @@ const Order = ({ user }) => {
   async function handleCreateOrder() {
     const newCarts = await carts.map((cart) => ({
       id:cart.id,
+      productId: cart.productId,
       name: cart.name,
       img: cart.img,
       price: cart.price,

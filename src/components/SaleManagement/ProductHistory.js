@@ -19,12 +19,7 @@ const ProductHistory = () => {
   } = useQuery(getProductWithOrders, {
     variables: { productId: selectProductId },
   });
-  // useEffect(() => {
-  //    selectProductId &&
-  //    getProductWithOrders({variables:{
-  //        productId: selectProductId
-  //    }})
-  // },[selectProductId])
+
   return (
     <div className="">
         <h4 className="text-center text-dark border-bottom border-dark">History</h4>

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import UserManagement from "./UserManagement";
 import { getUsers, getProducts } from "../../graphql-client/queries";
+import { v4 as uuidv4 } from 'uuid';
 import { useQuery } from "@apollo/client";
 import Cart from "./Cart";
 import clsx from "clsx";
@@ -146,7 +147,7 @@ const SaleManagement = ({data_productsApp}) => {
                 <div className="cardContent__Bottom">
                   <button
                     className="btn border border-dark"
-                    onClick={() => addToCart({id:product.id,name:product.name,img:product.img,price:parseFloat(product.price),type:product.type,stock:parseInt(1)})}
+                    onClick={() => addToCart({id:uuidv4(),productId:product.id,name:product.name,img:product.img,price:parseFloat(product.price),type:product.type,stock:parseInt(1)})}
                   >
                     Them Vao Gio Hang
                     <i className="fa-solid fa-cart-shopping"></i>
