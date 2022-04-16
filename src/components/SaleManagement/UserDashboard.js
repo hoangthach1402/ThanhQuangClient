@@ -35,18 +35,23 @@ const UserDashboard = () => {
       
     }
 
-   const {loading:u_loading,error:u_err,data:u_data} = useQuery(getUser,{
+   const {loading:u_loading,error:u_err,data:u_data,refetch} = useQuery(getUser,{
+         
        variables: {
         userId:selectedUserId
        }
    })
 
    useEffect(()=>{
-       if(user_data){
-           const findUser = user_data.users.find(u=>u.id===selectedUserId)
-           setEditUserState({...editUserState,...findUser});
+    refetch({  variables: {
+      userId:selectedUserId
+     }})
+     console.log(u_data)
+      //  if(user_data){
+      //      const findUser = user_data.users.find(u=>u.id===selectedUserId)
+      //      setEditUserState({...editUserState,...findUser});
 
-        }
+      //   }
         // getUser({variables:{userId:selectedUserId}})
     },[selectedUserId])
 
@@ -124,7 +129,7 @@ const UserDashboard = () => {
                         <td>{user.name}</td>
                         <td>{user.mobile}</td>
                         <td>{user.address}</td>
-                    </tr>
+                    </tr> 
                 ))}
                     </tbody>
             </table>

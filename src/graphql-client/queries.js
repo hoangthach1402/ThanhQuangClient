@@ -51,7 +51,8 @@ query getUserById($userId: ID!){
         name 
         price
         stock 
-      }
+        img
+        }
     payying        
     }
   }

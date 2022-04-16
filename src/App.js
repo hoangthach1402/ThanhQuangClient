@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import {useQuery} from '@apollo/client';
 import { createContext } from "react";
+import {getProducts} from './graphql-client/queries';
 import SaleManagement from './components/SaleManagement/SaleManagement';
 import ProductManagement from './components/SaleManagement/ProductManagement';
 import OrderManagement from './components/SaleManagement/OrderManagement'
@@ -8,6 +10,13 @@ import ProductHistory from './components/SaleManagement/ProductHistory'
 import clsx from 'clsx'
 export const ThanhQuangContext = createContext();
 function App() {
+  const {
+    loading: loading_productsApp,
+    error: error_productsApp,
+    data: data_productsApp,
+    refetch: refetchQueries_productsApp,
+  } = useQuery(getProducts);
+    
   const [selectStation,setSelectStation] = useState('Sale'); 
   const [isSaleManagement,setIsSaleManagement] = useState(false)
   const [isOrder,setIsOrder] = useState(false);
@@ -15,9 +24,13 @@ function App() {
   const [carts,setCarts] =useState([]) 
   const [isSelectedBtn,setIsSelectedBtn] = useState(); 
   const [isSuccessCreateUser,setIsSuccessCreateUser] = useState(false);
+  const [saleProducts,setSaleProducts] = useState([]);
   useEffect(() => {
-  setIsOrder(false);
-  },[selectStation])
+   
+  },[selectStation,])
+   useEffect(() => {
+    refetchQueries_productsApp()
+   },[data_productsApp]) 
   const handleIsOrderSuccess=()=>{
     setIsOrderSuccess(!isOrderSuccess);
   }
@@ -29,7 +42,6 @@ function App() {
   setCarts(newCarts);
   }
   const handleAddToCart=(product)=>{
-  console.log('run');
   setCarts([...carts,{...product}])
   }
   const handleSetCarts=(products)=>{
@@ -39,6 +51,7 @@ function App() {
   setIsOrder(!isOrder);
   }
   const addToCart =(product)=>{
+  // console.log(product);
     let isNotExist = carts.find(cart=>cart.id===product.id) ===(null || undefined); 
     isNotExist &&  setCarts([...carts,{...product}]) ;
   }
@@ -49,26 +62,11 @@ function App() {
   carts,handleRemoveCart,handleAddToCart,addToCart,handleOrder,isOrder,handleNewCarts,handleSetCarts
   ,handleCreateUserSuccess,isSuccessCreateUser,handleIsOrderSuccess
   };
-  console.log(isSuccessCreateUser)
+  // console.log(isSuccessCreateUser)
   return (
     <ThanhQuangContext.Provider value={ThanhQuangContextValue}>
-    {/* {isOrderSuccess && 
-      <div className="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Tao Don Hang Thanh Cong </strong> 
-  <button type="button" class="btn-close" ></button>
-</div>
-    }
-    
-    {isSuccessCreateUser && 
-      <div className="alert alert-success alert-dismissible fade show" role="alert">
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    Tao Khach Hang Thanh Cong
-</div>
-    } */}
-    {/* <div className={clsx('alert alert-success alert-dismissible fade  btnAlert',isOrder?'show':'d-none')} role="alert">
-  <strong>Vui Long Chon Khach Hang !</strong> 
-  <button onClick={()=>setIsOrderSuccess(!isOrderSuccess)} class="btn-close" ></button>
-</div> */}
+  
+
     <div className={clsx('alert alert-success alert-dismissible fade  btnAlert',isOrderSuccess?'show':'d-none')} role="alert">
   <strong>Tao Don Hang Thanh Cong </strong> 
   <button onClick={()=>setIsOrderSuccess(!isOrderSuccess)} class="btn-close" ></button>
@@ -118,7 +116,7 @@ function App() {
        
 
       <div className="containerApp">
-      {selectStation==='Sale' && <SaleManagement /> }
+      {selectStation==='Sale' && <SaleManagement data_productsApp={data_productsApp}/> }
       {selectStation==='userDashboard' && <UserDashboard /> }
       {(selectStation==='ProductManagement') && <ProductManagement />}
       {(selectStation==='orderManagement') && <OrderManagement />}

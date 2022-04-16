@@ -7,13 +7,12 @@ import clsx from "clsx";
 import styles from "./Cart.module.scss";
 import Order from "./Order";
 import { ThanhQuangContext } from "../../App";
-const SaleManagement = () => {
+const SaleManagement = ({data_productsApp}) => {
   const { isOrder } = useContext(ThanhQuangContext);
   const [isClose,setIsClose]= useState(false)
   const [selectedUserId, setSelectedUserId] = useState();
   const { addToCart, carts } = useContext(ThanhQuangContext);
   const [selectedUser, setSelectedUser] = useState();
-  const [productAdd, setProductAdd] = useState();
   const [isCartOpen, setIsCartOpen] = useState(false);
   useEffect(() => {
   setIsClose(false)
@@ -55,23 +54,18 @@ const SaleManagement = () => {
       </>
     );
   };
-  console.log(isClose)
+  // console.log(isClose)
   return (
     <div className="container  text-white ">
        <h4 className="text-dark text-center border-bottom border-dark ">SALE</h4> 
       {isOrder && selectedUser && <Order user={selectedUser} />}
-      {/* {isOrder && !selectedUser ? (
-        <p className="bg-danger  text-white p-2">
-          Chọn Khách Hàng <span>&#128064;</span>{" "}
-        </p>
-      ) : (
-        ""
-      )} */}
+    
       <div className={clsx('alert alert-warning alert-dismissible fade  btnAlert',isOrder && !selectedUser&&!isClose?'show':'d-none')} role="alert">
     <strong>Vui Long Chon Khach Hang</strong> 
     <button  onClick={()=>setIsClose(true)} class="btn-close" >X</button>
-  </div>
+    </div>
       
+      {/* Cart-button */}
       <div>
         <button
           onClick={() => setIsCartOpen(!isCartOpen)}
@@ -91,7 +85,8 @@ const SaleManagement = () => {
           {isCartOpen && <Cart />}
         </button>
       </div>
-
+      
+      {/* taoKH vs Chon Khach Option */}
       <div className="row saleManagement__option--position">
       <button
         onClick={() => setIsCreateCustomer(!isCreateCustomer)}
@@ -113,12 +108,12 @@ const SaleManagement = () => {
       {isCreateCustomer && <UserManagement handleIsCreate={handleIsCreate} />}
       
       
-      
+      {/* show Product List */}
       <div className="p-2 mt-2 cardList">
-        {data_products &&
-          data_products.products.map((product) => (
+        {data_productsApp &&
+          data_productsApp.products.map((product,index) => (
             <div
-              key={product.id}
+              key={index}
               className="cardItem p-2 border text-black"
             >
               <div className="imgContainer">
@@ -151,9 +146,9 @@ const SaleManagement = () => {
                 <div className="cardContent__Bottom">
                   <button
                     className="btn border border-dark"
-                    onClick={() => addToCart({ ...product, stock: 1 })}
+                    onClick={() => addToCart({id:product.id,name:product.name,img:product.img,price:parseFloat(product.price),type:product.type,stock:parseInt(1)})}
                   >
-                    Them Vao Gio Hang{" "}
+                    Them Vao Gio Hang
                     <i className="fa-solid fa-cart-shopping"></i>
                   </button>
                 </div>
