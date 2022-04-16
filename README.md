@@ -3,3 +3,6 @@
   <!-- refetchQueries: () => [{ query: GET_PERSON, variables: {id: personId} }] -->
  //   <!-- {product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})} -->
     <!-- {moment(order.createdAt).format('DD-MM-YYYY :LT')} -->
+<!-- touppsercase eachworld  myString.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase()))); -->
+<!-- <p class="text-capitalize">CapiTaliZed text.</p> -->
+<!-- text-decoration-underline -->
