@@ -29,6 +29,8 @@ query getProductWithOrders($productId: ID!){
       }
       payying
       products {
+        id 
+        productId
         img
         name
         stock 

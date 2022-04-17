@@ -1,18 +1,19 @@
 :root {
     /* --bg-primary: ; */
     /* --text-white: ; */
-    --bg-btn-cart:#8a9b00;
-    --bg-btn-checkout:#b5b261;
+    --bg-btn-cart:#737842;
+    --bg-btn-checkout:#e7e7e7;
     --bg-btn-primary:#cfcfcf ;
     --bg-btn-secondary:#ebe8e8;
     --bg-form: #d4d5ba;
     --text-form:#7c7c7c;
-    --bg-cart: #f5f5e7;
+    --bg-cart: #f9f9f5;
     --text-primary:#cfcfcf ;
-    /* --text-secondary: ; */
-    /* --bg-btn: ; */
-    /* --text-btn: ; */
+   
     
+ }
+ .sale__product-item{
+ background: var(--bg-product__item);
  }
 .buttonCart{
 z-index: 3;

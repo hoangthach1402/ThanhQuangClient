@@ -1,20 +1,20 @@
 :root {
      /* --bg-primary: ; */
      /* --text-white: ; */
-     --bg-btn-cart:#8a9b00;
-     --bg-btn-checkout:#b5b261;
+     --bg-btn-cart:#737842;
+     --bg-btn-checkout:#c3c2b4;
      --bg-btn-primary:#cfcfcf ;
      --bg-btn-secondary:#ebe8e8;
      --bg-form: #d4d5ba;
      --text-form:#7c7c7c;
      --bg-cart: #f5f5e7;
      --text-primary:#cfcfcf ;
-     /* --text-secondary: ; */
-     /* --bg-btn: ; */
-     /* --text-btn: ; */
+     --bg-product__item:#dbdbdb;
      
   }
-
+  .sale__product-item{
+    background: var(--bg-product__item);
+    }
 
 .cartStyle{
 background: #000;

@@ -110,12 +110,12 @@ const SaleManagement = ({data_productsApp}) => {
       
       
       {/* show Product List */}
-      <div className="p-2 mt-2 cardList">
+      <div className="p-2 mt-2 row">
         {data_productsApp &&
           data_productsApp.products.map((product,index) => (
             <div
               key={index}
-              className="cardItem p-2 border text-black"
+              className=" col-xs-12 col-sm-6 col-md-4 col-lg-3 border text-black sale__product-item"
             >
               <div className="imgContainer">
                 <img

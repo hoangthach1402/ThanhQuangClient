@@ -3,8 +3,9 @@ import clsx from "clsx";
 import { ThanhQuangContext } from "../../App";
 import styles from "./Cart.module.scss";
 import { useMutation } from "@apollo/client";
-import {getOrders,getUsers,getUser,getProducts} from '../../graphql-client/queries';
+import {getOrders,getUsers,getUser,getProducts,getProductWithOrders} from '../../graphql-client/queries';
 import { createOrder } from "../../graphql-client/mutations";
+import moment from 'moment'
 const Order = ({ user }) => {
   // console.log(user);
   const [addOrder, { loading, error, data }] = useMutation(createOrder);
@@ -36,14 +37,19 @@ const Order = ({ user }) => {
       type: cart.type,
       
     }));
-    console.log(newCarts);
+   
     addOrder({
       variables: {
         userId: order.userId,
         input: newCarts,
         payying: parseInt(order.payying),
       },
-      // refetchQueries: [{query:getUser,variables:{userId:order.userId}}]
+      refetchQueries: [{query:getUser,variables:{userId:order.userId}},{query:getProducts},
+        // {query:getProductWithOrders,variables:{productId:newCarts[0].productId}},
+        // {query:getProductWithOrders,variables:{productId:newCarts[1].productId}}
+      ]
+        
+      
     });
     handleNewCarts();
     handleOrder();
@@ -63,10 +69,11 @@ const Order = ({ user }) => {
         <h5 className="text-danger">
 Hóa Đơn Bán Hàng</h5>
         <p className="text-dark">Cửa Hàng ...................</p>
-        <p>Ngay.....Thang...... Nam .........</p>
-        <p className="">Họ Tên Khách Hàng: <span className="fw-bold">{user.name}.</span> </p>
-        <p>Ghi Chu: ...................................................................</p>
-        <p>Thông Tin Đơn Hàng : </p>
+        <p>{moment().format('L - LT')}</p>
+        <p className="">Họ Tên Khách Hàng: <span className="fw-bold">{user.name} </span> </p>
+        <p><span className="fw-bold">Địa Chỉ:</span> {user.address} </p>
+        <p><span className="fw-bold"> Ghi Chú :<input type="text" id="" class="form-control" placeholder="Nhập Ghi Chú ..." aria-describedby="" /></span></p>
+        <p className="text-decoration-underline">Thông Tin Đơn Hàng : </p>
         <div className="p-3 border">
         <table className="w-100 table table-striped">
           <thead>
@@ -90,15 +97,16 @@ Hóa Đơn Bán Hàng</h5>
           </tbody>
         </table>
         </div>
-        <div className="text-end fw-bold">Tổng Cộng : <span className="text-danger">${total}</span></div>
+        <div className="text-end fw-bold">Tổng Cộng : <span className="text-danger">{total.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</span></div>
         <label className="fw-bold px-2" htmlFor="paying">Nhận Của Khách: </label>
         <div className="input-group mb-3">
-  <span className="input-group-text">$</span>
+  <span className="input-group-text">Nhập Tiền:</span>
   <input type="number" class="form-control"
   value={order.payying}
+  placeholder="Vui Lòng Không Để Trống"
   onInput={(e) => handleChange({ payying: parseInt(e.target.value) })}
    aria-label="Amount (to the nearest dollar)"/>
-  <span className="input-group-text">.00</span>
+  <span className="input-group-text">VND</span>
 </div>
        
       </div>
