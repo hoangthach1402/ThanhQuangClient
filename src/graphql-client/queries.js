@@ -9,6 +9,7 @@ const getProducts = gql`
       price
       stock
       img
+    
     }
   }
 `;
@@ -21,6 +22,7 @@ query getProductWithOrders($productId: ID!){
     stock
     type 
     orders {
+      createdAt
       id
       user{
         name 
@@ -44,7 +46,9 @@ query getUserById($userId: ID!){
      id 
     name 
     address 
+    
     orders {
+      createdAt
       id
       products {
         id 
