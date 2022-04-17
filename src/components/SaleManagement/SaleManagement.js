@@ -115,7 +115,7 @@ const SaleManagement = ({data_productsApp}) => {
           data_productsApp.products.map((product,index) => (
             <div
               key={index}
-              className=" col-xs-12 col-sm-6 col-md-4 col-lg-3 border text-black sale__product-item"
+              className=" col-xs-12 col-sm-6 col-md-4 col-lg-3 border text-black "
             >
               <div className="imgContainer">
                 <img
