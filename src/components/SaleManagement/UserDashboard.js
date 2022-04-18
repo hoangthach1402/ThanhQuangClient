@@ -41,7 +41,28 @@ const UserDashboard = () => {
         userId:selectedUserId
        }
    })
-
+    //  const json_data = [{
+    // x: "2018-06-21T20:30:00Z",
+    // y: 6.39
+    //   },
+    //   {
+    // x: "2018-07-21T10:30:00Z",
+    // y: 6.39
+    //   },
+    //   {
+    // x: "2018-07-21T09:30:00Z",
+    // y: 6.39
+    //   },
+    //   {
+    // x: "2018-08-21T21:30:00Z",
+    // y: 5.93
+    //   },
+    //   {
+    // x: "2018-09-21T21:30:00Z",
+    // y: 5.93
+    //   }
+    // ];
+    // console.log(json_data.sort((a,b)=>a.x - b-x));
    useEffect(()=>{
        if(user_data){
            const findUser = user_data.users.find(u=>u.id===selectedUserId)
@@ -194,7 +215,7 @@ const UserDashboard = () => {
       </div>
              
 
-               
+
 
                 {u_data.user.orders.map(order=>(
                 <div key={order.id} className="bg-paper text-dark p-2 m-1 border border-dark w-100 position-relative">

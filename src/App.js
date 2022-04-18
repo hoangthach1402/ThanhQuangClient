@@ -10,6 +10,15 @@ import ProductHistory from './components/SaleManagement/ProductHistory'
 import clsx from 'clsx'
 export const ThanhQuangContext = createContext();
 function App() {
+  // var json_data = [
+  //   {x: new Date("2018-07-21T10:30:00.000Z"), y: 6.39},
+  //   {x:  new Date("2013-07-21T10:30:00.000Z"), y: 6.39},
+  //   {x:  new Date("2017-07-21T09:30:00.000Z"), y: 6.39},
+  //   {x: new Date("2014-08-21T21:30:00.000Z"), y: 5.93},
+  //   {x: new Date("2022-09-21T21:30:00.000Z"), y: 5.93}
+  //   ];
+  //   const newArray =json_data.sort((a,b)=>b.x -a.x);
+  //   console.log(newArray)
   const {
     loading: loading_productsApp,
     error: error_productsApp,

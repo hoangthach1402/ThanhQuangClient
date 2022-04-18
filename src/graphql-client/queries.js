@@ -81,6 +81,7 @@ query getUsers{
 const getOrders = gql`
   query {
     orders {
+    createdAt
       id
       user {
         name

@@ -6,6 +6,8 @@ import {
 } from "../../graphql-client/queries";
 import { useQuery } from "@apollo/client";
 const ProductHistory = () => {
+  const [total, setTotal] = useState();
+  
   const {
     loading: products_loading,
     error: products_error,
@@ -25,7 +27,29 @@ const ProductHistory = () => {
   product_refetch({variables:{productId:selectProductId}})
   }
   },[selectProductId])
-   
+  useEffect(() => {
+  if(selectProductId && product_data){
+    setTotal(0)
+    let totalStock =0; 
+    for(var i=0 ; i<product_data.product.orders.length;i++){
+       if(product_data.product.orders[i].products){
+       let length = product_data.product.orders[i].products.length
+       for(var j =0; j<length;j++){
+        if(product_data.product.orders[i].products[j].productId ===selectProductId){
+        totalStock+= product_data.product.orders[i].products[j].stock; 
+        }
+      }
+    }
+  }
+  if(totalStock !==0){
+    setTotal(totalStock)
+  }
+}
+  
+ 
+  
+  
+  },[selectProductId,product_data]) 
   // refetch({  variables: {
   //   userId:selectedUserId
   //  }})  
@@ -99,6 +123,7 @@ const ProductHistory = () => {
         </div>
       </div>
               <p><span className="text-dark text-center fw-bold border-bottom border-dark my-2 ">Sản Phẩm Được Bán Trong Những Đơn Này: </span></p>
+               <p>Tổng lượng bán ra: {total && total}</p> 
               {product_data.product.orders.map(order=>(
                   <div key={order.id} className="bg-light text-dark m-2 p-2 shadow border border-top border-dark">
                     <div className="border-bottom border-dark"> <span className="fw-bold">OrderId :</span> {order.id}</div> <div> <span className="fw-bold">Ngày Tạo:</span>  {moment(order.createdAt).format('DD-MM-YYYY :LT')}</div>  
@@ -115,7 +140,7 @@ const ProductHistory = () => {
                     </thead>
                       <tbody>
                     {order.products.map((product,index)=>(
-                        <tr key={product.id}>
+                        <tr key={product.id} className={product.productId === selectProductId?'bg-warning':''}>
                         <td>{++index}</td>
                         <td>{product.name}</td>
                         <td>{product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</td>
