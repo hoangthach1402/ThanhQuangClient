@@ -14,7 +14,7 @@ import {
 
 
 const client = new ApolloClient({
-  uri: "https://salelikemonkeyserver.herokuapp.com/",
+  uri: "https://monkeyapp.herokuapp.com/",
   cache: new InMemoryCache(),
 });
   

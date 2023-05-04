@@ -40,7 +40,7 @@ const OrderManagement = () => {
         <div key={order.id} onClick={setOrderSelectedId.bind(this,order.id)} className="p-2 m-2 bg-dark text-white">
          <p >ID: {order.id}</p>
          <p>{moment(order.createdAt).format('L')}</p>
-          <p>{order.user.name}</p>
+          {/* <p>{order.user.name}</p> */}
         </div>
         ))
         }
