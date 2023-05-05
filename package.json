@@ -11,9 +11,7 @@
       "not op_mini all"
     ]
   },
-  "engines": {
-    "node": "14.x"
-  },
+
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@testing-library/jest-dom": "^5.16.3",
