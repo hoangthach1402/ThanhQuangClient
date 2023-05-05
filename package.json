@@ -41,7 +41,8 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "install": "npm install --force"
   },
   "version": "0.1.0"
 }
