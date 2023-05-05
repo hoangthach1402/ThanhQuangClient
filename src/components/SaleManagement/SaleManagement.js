@@ -55,10 +55,10 @@ const SaleManagement = ({data_productsApp}) => {
       </>
     );
   };
-  // console.log(isClose)
+
   return (
     <div className="container  text-white ">
-       <h4 className="text-dark text-center border-bottom border-dark ">SALE</h4> 
+       <h4 className="text-dark text-center border-bottom border-dark ">SALEs</h4> 
       {isOrder && selectedUser && <Order user={selectedUser} />}
     
       <div className={clsx('alert alert-warning alert-dismissible fade  btnAlert',isOrder && !selectedUser&&!isClose?'show':'d-none')} role="alert">
