@@ -91,11 +91,11 @@ const SaleManagement = ({data_productsApp}) => {
       <div className="row saleManagement__option--position">
       <button
         onClick={() => setIsCreateCustomer(!isCreateCustomer)}
-        className="btn saleManagement__option--btn mx-2 border border-dark d-block col-5"
+        className="text-dark btn saleManagement__option--btn mx-2 border border-dark d-block col-5"
       >
         Tạo Khách Hàng Mới
       </button>
-      <select className="btn d-block col-5 saleManagement__option--btn border border-dark" name="" id="" onChange={(e) => setSelectedUserId(e.target.value)}>
+      <select className="btn d-block col-5 saleManagement__option--btn border text-dark border-dark" name="" id="" onChange={(e) => setSelectedUserId(e.target.value)}>
 
         <option value="">Chọn Khách </option>
         {data_users &&
