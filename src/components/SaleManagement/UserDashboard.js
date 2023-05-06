@@ -100,7 +100,7 @@ const UserDashboard = () => {
 
    const DebtToString=(debt)=>{
     return (
-        <div className="w-50 ms-auto bg-danger text-light   text-start"><span >&#128405;</span>Còn Thiếu :: {debt.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></div>
+        <div className="w-50 ms-auto bg-danger text-light   text-start"><span >&#128405;</span>Còn Thiếu: {debt.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})} <i class="fs-3 fa-solid fa-triangle-exclamation"></i></div>
     )
    }
    const CompletePayment =()=>{
@@ -245,8 +245,16 @@ const UserDashboard = () => {
                          },0).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) } </div>
                          <div className="text-light bg-primary   ms-auto w-50 text-start"><span>&#128181; </span> Đã Thanh Toán: {order.payying.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</div>
                          { order.payying < order.products.reduce((a,b)=>{
+    return a +(b.stock *b.price) 
+},0) ? DebtToString(substract(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0), order.payying)) : CompletePayment()} 
+
+                         {/* {order.payying < order.products.reduce((a,b)=>{
+    return a +(b.stock *b.price) 
+},0) ? DebtToString(substract(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}), order.payying.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}))) : CompletePayment()} */}
+
+                         {/* { order.payying < order.products.reduce((a,b)=>{
                             return a +(b.stock *b.price) 
-                         },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})))):CompletePayment()}      
+                         },0)?DebtToString(substract(parseInt(order.products.reduce((a,b)=>{return a+ (b.price*b.stock)},0)),parseInt(order.payying.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})))):CompletePayment()}       */}
                     <button className="btn border  border-dark d-block ms-auto userDashboard__btnDelete bg-light" onClick={()=>handleDeleteOrder(order.id)}>❌ </button>  
                 </div>
                 ))}
